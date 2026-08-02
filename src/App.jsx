@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 
 export default function App() {
-  // 🌟【データエリア】
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // ハンバーガーメニューの開閉状態
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // ロン君の関連サイトのリンクデータ
-  const links = [
+  // 🌟【リンク分類：Vercel / Render / Figma】
+  const vercelLinks = [
     {
       title: "🔮 ロン君の運勢占い",
       url: "https://my-js-page.vercel.app",
@@ -34,20 +33,40 @@ export default function App() {
     {
       title: "💰 ロン君の消費税計算サイト",
       url: "https://zeikin-calc.vercel.app/",
-      desc: "金額を入力すると、消費税を自動で計算してくれる便利なサイト！",
+      desc: "金額を入力すると消費税を自動計算！",
+    },
+    {
+      title: "🧪 AI検証サイト（総合）",
+      url: "https://your-ai-lab.vercel.app/",
+      desc: "AI検証用の総合サイト（例示）",
     },
   ];
 
-  // リンクをクリックしたときにメニューを自動で閉じるルール
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
+  const renderLinks = [
+    {
+      title: "🔮 ロン君の運勢占い（Render版）",
+      url: "https://my-js-page.onrender.com/",
+      desc: "Renderでビルドした占いサイト。",
+    },
+    {
+      title: "💰 ロン君の消費税計算サイト（Render版）",
+      url: "https://zeikin-calc.onrender.com/",
+      desc: "Renderでビルドした消費税計算サイト。",
+    },
+  ];
 
-  // ⚡【デザイン・スタイル設定】
-  const themeColor = "#fca311"; // 可愛い黒猫を引き立てるおしゃれなオレンジイエロー
-  const darkColor = "#14213d"; // 黒猫の毛並みをイメージした大人っぽいネイビーブラック
+  const figmaLinks = [
+    {
+      title: "🎵 能登衆音楽コレクション（Figma）",
+      url: "https://beatle-noto-ogi.figma.site/",
+      desc: "Figmaで作成した音楽コレクションサイト。",
+    },
+  ];
 
-  // アニメーション用のキーフレーム（擬似的にインラインで管理）
+  const themeColor = "#fca311";
+  const darkColor = "#14213d";
+
+  // アニメーションCSS
   useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
@@ -60,182 +79,85 @@ export default function App() {
         box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
         border-color: ${themeColor} !important;
       }
-      /* スクロールバーも可愛く */
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #fdf0d5; }
-      ::-webkit-scrollbar-thumb { background: ${themeColor}; border-radius: 4px; }
     `;
     document.head.appendChild(styleSheet);
     return () => document.head.removeChild(styleSheet);
   }, []);
 
-  // 🎨【見た目エリア】：HTMLの組み立て
   return (
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#fdf0d5",
+        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)", // AI風グラデーション
         color: darkColor,
         fontFamily:
-          '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
-        margin: 0,
+          '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
         padding: 0,
+        margin: 0,
         boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
       }}
     >
-      {/* 🧭 ヘッダーエリア */}
+      {/* 🧭 ヘッダー */}
       <header
         style={{
           backgroundColor: darkColor,
           color: "#fff",
           padding: "15px 20px",
-          position: "sticky",
-          top: 0,
-          zIndex: 1000,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            cursor: "pointer",
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
             src="/ron.png"
             alt="Ron Logo"
             style={{
               width: "40px",
               height: "40px",
-              objectFit: "contain",
               borderRadius: "50%",
               backgroundColor: "#fff",
               padding: "2px",
             }}
           />
-          <span
-            style={{
-              fontWeight: "bold",
-              fontSize: "18px",
-              letterSpacing: "1px",
-            }}
-          >
+          <span style={{ fontWeight: "bold", fontSize: "18px" }}>
             ロン君の部屋
           </span>
         </div>
 
-        {/* 💻 PC用ナビゲーション（画面が広い時に表示） */}
-        <nav style={{ display: "flex", gap: "20px" }} className="pc-nav">
-          {links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "14px",
-                fontWeight: "bold",
-                transition: "color 0.2s",
-              }}
-            >
-              サイト{idx + 1}
-            </a>
-          ))}
+        <nav className="pc-nav" style={{ display: "flex", gap: "20px" }}>
+          <span style={{ fontSize: "14px", opacity: 0.8 }}>
+            AI検証ハブサイト
+          </span>
         </nav>
 
-        {/* 🍔 スマホ用ハンバーガーボタン（三本線） */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="menu-button"
           style={{
             display: "none",
             background: "none",
             border: "none",
             color: "#fff",
             fontSize: "28px",
-            cursor: "pointer",
-            outline: "none",
-            padding: "5px",
           }}
-          className="menu-button"
         >
           {isMenuOpen ? "🐾" : "☰"}
         </button>
       </header>
 
-      {/* 📱 スマホ用開閉メニュー */}
-      {isMenuOpen && (
-        <div
-          style={{
-            backgroundColor: darkColor,
-            position: "fixed",
-            top: "70px",
-            left: 0,
-            width: "100%",
-            padding: "20px",
-            boxSizing: "border-box",
-            zIndex: 999,
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            borderTop: `2px solid ${themeColor}`,
-            boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
-            animation: "popIn 0.3s ease-out",
-          }}
-        >
-          <p
-            style={{
-              color: themeColor,
-              margin: "0 0 5px 0",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          >
-            🐾 ロン君の特設リンクメニュー
-          </p>
-          {links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleLinkClick}
-              style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "16px",
-                padding: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                borderRadius: "6px",
-                fontWeight: "bold",
-              }}
-            >
-              {link.title}
-            </a>
-          ))}
-        </div>
-      )}
-
-      {/* 🏡 メインコンテンツ */}
+      {/* 🏡 メイン */}
       <main
         style={{
-          flex: 1,
-          padding: "40px 20px",
-          maxWidth: "800px",
+          maxWidth: "900px",
           margin: "0 auto",
-          width: "100%",
-          boxSizing: "border-box",
+          padding: "40px 20px",
         }}
       >
-        {/* 🐈 ロン君のプロフィールカード */}
+        {/* 🐈 プロフィール */}
         <div
           style={{
             backgroundColor: "#fff",
@@ -245,248 +167,148 @@ export default function App() {
             boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
             marginBottom: "40px",
             animation: "popIn 0.4s ease-out",
-            position: "relative",
-            border: "2px solid #eee",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              top: "-15px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              backgroundColor: themeColor,
-              color: "#fff",
-              padding: "4px 15px",
-              borderRadius: "20px",
-              fontSize: "12px",
-              fontWeight: "bold",
-            }}
-          >
-            PROFILE
-          </div>
-
           <img
             src="/ron.png"
-            alt="黒猫のロン君"
+            alt="黒猫ロン君"
             style={{
               width: "130px",
               height: "130px",
               objectFit: "contain",
-              margin: "10px auto 20px auto",
-              display: "block",
-              filter: "drop-shadow(0px 5px 5px rgba(0,0,0,0.1))",
+              marginBottom: "20px",
             }}
           />
-
-          <h2
-            style={{
-              margin: "0 0 10px 0",
-              fontSize: "26px",
-              fontWeight: "bold",
-            }}
-          >
+          <h2 style={{ marginBottom: "10px", fontSize: "26px" }}>
             ロン君 (Ron)
           </h2>
-          <p
-            style={{
-              margin: "0 0 15px 0",
-              color: "#666",
-              fontSize: "15px",
-              fontWeight: "bold",
-            }}
-          >
+          <p style={{ marginBottom: "15px", color: "#666" }}>
             🐈‍⬛ 黒猫の男の子（オス） / 🎂 7歳
           </p>
-          <p
-            style={{
-              margin: 0,
-              fontSize: "16px",
-              lineHeight: "1.6",
-              color: darkColor,
-              maxWidth: "500px",
-              margin: "0 auto",
-            }}
-          >
-            こんにちは！ボクは黒猫のロン。今年でピカピカの7歳になったよ🐾
-            <br />
-            ツヤツヤの黒い毛並みが自慢なんだ。ボクの特製アプリでいっぱい遊んでいってね！
+          <p style={{ lineHeight: "1.6", color: darkColor }}>
+            こんにちは！ボクは黒猫のロン。  
+            このサイトは、AI開発の検証を目的に作られているよ🐾
           </p>
         </div>
 
-        {/* 🧪 説明セクション：目的・検証環境 */}
+        {/* 🧪 説明セクション */}
         <section
           style={{
             backgroundColor: "#fff",
             borderRadius: "16px",
             padding: "25px 20px",
-            boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
             marginBottom: "35px",
-            border: "2px solid #eee",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
           }}
         >
-          <h3
-            style={{
-              fontSize: "20px",
-              margin: "0 0 15px 0",
-              fontWeight: "bold",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
+          <h3 style={{ marginBottom: "15px", fontSize: "20px" }}>
             🧪 ロン君の部屋の説明
           </h3>
 
-          <div style={{ fontSize: "14px", lineHeight: "1.7", color: "#444" }}>
-            <p style={{ margin: "0 0 8px 0" }}>
-              <strong>目的：</strong>
-              ロン君の部屋では、AI開発の検証を行っています。すべて無料で作成・運用し、
-              1つのサイトはだいたい <strong>3時間くらいで完成</strong>させる方針です。
-            </p>
+          <p>
+            <strong>目的：</strong>
+            AI開発の検証を行うためのハブサイトです。  
+            全て無料で作成・運用し、1つのサイトは約3時間で完成させています。
+          </p>
 
-            <p style={{ margin: "0 0 8px 0" }}>
-              <strong>検証環境：</strong>
-              React / Next.js / Vite / Vercel / Supabase / MongoDB / GitHub /
-              Local LLM / RAG / Cursor / VS Code などを組み合わせて検証しています。
-            </p>
+          <p>
+            <strong>検証環境：</strong>
+            React / Next.js / Vite / Vercel / Render / Supabase / MongoDB /
+            GitHub / Local LLM / RAG / Cursor / VS Code
+          </p>
 
-            <p style={{ margin: "0 0 8px 0" }}>
-              ※ LLM はあえて <strong>低レベルのものでもOK</strong> とし、
-              <strong>RAG（外部知識の参照）でカバーする</strong>方針です。
-            </p>
+          <p>
+            ※ LLM は低レベルのものでOK。  
+            RAG（外部知識参照）で補完する方針です。
+          </p>
 
-            <p style={{ margin: "0 0 8px 0" }}>
-              <strong>Figma からの移植：</strong>
-              Figma で作成したデザインを、上記の環境（React / Next.js / Vite / Vercel
-              など）に移植してサイトを作る検証も行っています。
-            </p>
+          <p>
+            <strong>Figma：</strong>
+            Figmaで作成したデザインを React / Next.js / Vercel に移植する検証も行っています。
+          </p>
 
-            <p style={{ margin: "10px 0 0 0", fontSize: "13px", color: "#777" }}>
-              これらのリンク先のサイトは、すべて{" "}
-              <strong>Vercel 上で作成・運用</strong>されています。
-            </p>
-          </div>
+          <p style={{ marginTop: "10px", color: "#777" }}>
+            ※ このサイト群はすべてAIで作成されています。
+          </p>
         </section>
 
-        {/* 🔗 リンクボタン一覧 */}
-        <h3
-          style={{
-            fontSize: "20px",
-            margin: "0 0 20px 0",
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-          }}
-        >
-          🐾 ロン君のあぷり・さいと一覧 🐾
-        </h3>
+        {/* 🔗 Vercelリンク */}
+        <h3 style={{ marginBottom: "15px" }}>🚀 Vercelで作成したサイト</h3>
+        {vercelLinks.map((link, idx) => (
+          <a
+            key={idx}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-card"
+            style={{
+              display: "block",
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              textDecoration: "none",
+              color: darkColor,
+              border: "2px solid #eee",
+              transition: "0.3s",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Vercelでビルドされています
+            </p>
+          </a>
+        ))}
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-card"
-              style={{
-                display: "block",
-                textDecoration: "none",
-                color: "inherit",
-                backgroundColor: "#fff",
-                borderRadius: "12px",
-                padding: "20px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.03)",
-                border: "2px solid #eee",
-                transition: "all 0.3s ease",
-                boxSizing: "border-box",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: "10px",
-                }}
-              >
-                <div style={{ textLeft: "left" }}>
-                  <h4
-                    style={{
-                      margin: "0 0 8px 0",
-                      fontSize: "18px",
-                      color: darkColor,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {link.title}
-                  </h4>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: "14px",
-                      color: "#666",
-                      lineHeight: "1.4",
-                    }}
-                  >
-                    {link.desc}
-                  </p>
-                  <p
-                    style={{
-                      margin: "6px 0 0 0",
-                      fontSize: "12px",
-                      color: "#999",
-                    }}
-                  >
-                    ※ このサイトは Vercel 上で運用されています。
-                  </p>
-                </div>
-                <span
-                  style={{
-                    backgroundColor: themeColor,
-                    color: "#fff",
-                    padding: "8px 16px",
-                    borderRadius: "20px",
-                    fontSize: "13px",
-                    fontWeight: "bold",
-                    whiteSpace: "nowrap",
-                    marginLeft: "auto",
-                  }}
-                >
-                  サイトを開く ➔
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </main>
+        {/* 🔗 Renderリンク */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>⚙ Renderで作成したサイト</h3>
+        {renderLinks.map((link, idx) => (
+          <a
+            key={idx}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-card"
+            style={{
+              display: "block",
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              textDecoration: "none",
+              color: darkColor,
+              border: "2px solid #eee",
+              transition: "0.3s",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Renderでビルドされています
+            </p>
+          </a>
+        ))}
 
-      {/* 📝 コピーライトフッター */}
-      <footer
-        style={{
-          textAlign: "center",
-          padding: "25px 0",
-          fontSize: "13px",
-          color: "#888",
-          borderTop: "1px solid rgba(0,0,0,0.05)",
-          backgroundColor: "#fff",
-          marginTop: "40px",
-        }}
-      >
-        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
-      </footer>
-
-      {/* 📱 レスポンシブ表示をコントロールするCSS（PCとスマホの切り替え） */}
-      <style>{`
-        @media (max-width: 600px) {
-          .pc-nav { display: none !important; }
-          .menu-button { display: block !important; }
-        }
-      `}</style>
-    </div>
-  );
-}
+        {/* 🔗 Figmaリンク */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
+        {figmaLinks.map((link, idx) => (
+          <a
+            key={idx}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-card"
+            style={{
+              display: "block",
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              textDecoration: "none",
+              color: darkColor,
+              border: "2px solid #eee",
+              transition: "0.3s",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
