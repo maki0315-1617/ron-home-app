@@ -83,13 +83,10 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)", // AI風グラデーション
+        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)",
         color: darkColor,
         fontFamily:
           '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
-        padding: 0,
-        margin: 0,
-        boxSizing: "border-box",
       }}
     >
       {/* 🧭 ヘッダー */}
@@ -123,11 +120,17 @@ export default function App() {
           </span>
         </div>
 
-        {/* PCナビ */}
-        <nav className="pc-nav" style={{ display: "flex", gap: "20px" }}>
-          <span style={{ fontSize: "14px", opacity: 0.8 }}>
-            AI検証ハブサイト
-          </span>
+        {/* PCナビ（スマホでも常に表示） */}
+        <nav
+          style={{
+            display: "flex",
+            gap: "20px",
+            fontWeight: "bold",
+            fontSize: "14px",
+            opacity: 0.9,
+          }}
+        >
+          <span>AI検証ハブサイト</span>
         </nav>
 
         {/* スマホ用ハンバーガー */}
@@ -135,18 +138,18 @@ export default function App() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="menu-button"
           style={{
-            display: "none",
             background: "none",
             border: "none",
             color: "#fff",
             fontSize: "28px",
+            display: "block",
           }}
         >
           {isMenuOpen ? "🐾" : "☰"}
         </button>
       </header>
 
-      {/* 📱 スマホメニュー */}
+      {/* 📱 スマホメニュー（カード化） */}
       {isMenuOpen && (
         <div
           style={{
@@ -170,65 +173,98 @@ export default function App() {
 
           {/* Vercel */}
           {vercelLinks.map((link, idx) => (
-            <a
+            <div
               key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
               style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "16px",
-                padding: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                borderRadius: "6px",
+                backgroundColor: "#fff",
+                padding: "15px",
+                borderRadius: "10px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
               }}
             >
-              {link.title}
-            </a>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  textDecoration: "none",
+                  color: darkColor,
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                {link.title}
+              </a>
+              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
+              <p style={{ fontSize: "12px", color: "#999" }}>
+                ※ Vercelでビルド
+              </p>
+            </div>
           ))}
 
           {/* Render */}
           {renderLinks.map((link, idx) => (
-            <a
+            <div
               key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
               style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "16px",
-                padding: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                borderRadius: "6px",
+                backgroundColor: "#fff",
+                padding: "15px",
+                borderRadius: "10px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
               }}
             >
-              {link.title}
-            </a>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  textDecoration: "none",
+                  color: darkColor,
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                {link.title}
+              </a>
+              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
+              <p style={{ fontSize: "12px", color: "#999" }}>
+                ※ Renderでビルド
+              </p>
+            </div>
           ))}
 
           {/* Figma */}
           {figmaLinks.map((link, idx) => (
-            <a
+            <div
               key={idx}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
               style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "16px",
-                padding: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                borderRadius: "6px",
+                backgroundColor: "#fff",
+                padding: "15px",
+                borderRadius: "10px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
               }}
             >
-              {link.title}
-            </a>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  textDecoration: "none",
+                  color: darkColor,
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                {link.title}
+              </a>
+              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
+              <p style={{ fontSize: "12px", color: "#999" }}>
+                ※ Figmaで作成
+              </p>
+            </div>
           ))}
         </div>
       )}
@@ -250,7 +286,6 @@ export default function App() {
             textAlign: "center",
             boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
             marginBottom: "40px",
-            animation: "popIn 0.4s ease-out",
           }}
         >
           <img
@@ -316,25 +351,19 @@ export default function App() {
           </p>
         </section>
 
-        {/* 🔗 Vercelリンク */}
+        {/* 🔗 Vercelリンク（カード） */}
         <h3 style={{ marginBottom: "15px" }}>🚀 Vercelで作成したサイト</h3>
         {vercelLinks.map((link, idx) => (
-          <a
+          <div
             key={idx}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
             className="link-card"
             style={{
-              display: "block",
               backgroundColor: "#fff",
               padding: "20px",
               borderRadius: "12px",
               marginBottom: "15px",
-              textDecoration: "none",
-              color: darkColor,
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
               border: "2px solid #eee",
-              transition: "0.3s",
             }}
           >
             <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
@@ -342,28 +371,39 @@ export default function App() {
             <p style={{ fontSize: "12px", color: "#999" }}>
               ※ Vercelでビルドされています
             </p>
-          </a>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
+          </div>
         ))}
 
-        {/* 🔗 Renderリンク */}
+        {/* 🔗 Renderリンク（カード） */}
         <h3 style={{ margin: "30px 0 15px 0" }}>⚙ Renderで作成したサイト</h3>
         {renderLinks.map((link, idx) => (
-          <a
+          <div
             key={idx}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
             className="link-card"
             style={{
-              display: "block",
               backgroundColor: "#fff",
               padding: "20px",
               borderRadius: "12px",
               marginBottom: "15px",
-              textDecoration: "none",
-              color: darkColor,
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
               border: "2px solid #eee",
-              transition: "0.3s",
             }}
           >
             <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
@@ -371,63 +411,19 @@ export default function App() {
             <p style={{ fontSize: "12px", color: "#999" }}>
               ※ Renderでビルドされています
             </p>
-          </a>
-        ))}
-
-        {/* 🔗 Figmaリンク */}
-        <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
-        {figmaLinks.map((link, idx) => (
-          <a
-            key={idx}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-card"
-            style={{
-              display: "block",
-              backgroundColor: "#fff",
-              padding: "20px",
-              borderRadius: "12px",
-              marginBottom: "15px",
-              textDecoration: "none",
-              color: darkColor,
-              border: "2px solid #eee",
-              transition: "0.3s",
-            }}
-          >
-            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
-            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
-            <p style={{ fontSize: "12px", color: "#999" }}>
-              ※ Figmaで作成されています
-            </p>
-          </a>
-        ))}
-      </main>
-
-      {/* フッター */}
-      <footer
-        style={{
-          textAlign: "center",
-          padding: "25px 0",
-          fontSize: "13px",
-          color: "#888",
-          backgroundColor: "#fff",
-          marginTop: "40px",
-        }}
-      >
-        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
-        <p style={{ fontSize: "12px", color: "#aaa" }}>
-          ※ このサイトはAIで自動生成されています
-        </p>
-      </footer>
-
-      {/* スマホ用CSS */}
-      <style>{`
-        @media (max-width: 600px) {
-          .pc-nav { display: none !important; }
-          .menu-button { display: block !important; }
-        }
-      `}</style>
-    </div>
-  );
-}
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
