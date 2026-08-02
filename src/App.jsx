@@ -88,7 +88,7 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)", // AI風グラデーション
+        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)",
         color: darkColor,
         fontFamily:
           '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
@@ -312,3 +312,35 @@ export default function App() {
             }}
           >
             <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Figmaで作成されています
+            </p>
+          </a>
+        ))}
+      </main>
+
+      {/* フッター */}
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "25px 0",
+          fontSize: "13px",
+          color: "#888",
+          backgroundColor: "#fff",
+          marginTop: "40px",
+        }}
+      >
+        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
+      </footer>
+
+      {/* スマホ用CSS */}
+      <style>{`
+        @media (max-width: 600px) {
+          .pc-nav { display: none !important; }
+          .menu-button { display: block !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
