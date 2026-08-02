@@ -34,7 +34,7 @@ export default function App() {
       title: "💰 ロン君の消費税計算サイト",
       url: "https://zeikin-calc.vercel.app/",
       desc: "金額を入力すると消費税を自動計算！",
-    },
+    }
   ];
 
   const renderLinks = [
@@ -146,7 +146,7 @@ export default function App() {
         </button>
       </header>
 
-      {/* 📱 スマホメニュー（カードデザイン） */}
+      {/* 📱 スマホメニュー（一覧表＋スクロール可能） */}
       {isMenuOpen && (
         <div
           style={{
@@ -155,11 +155,10 @@ export default function App() {
             top: "70px",
             left: 0,
             width: "100%",
+            height: "80vh",
+            overflowY: "auto",
             padding: "20px",
             zIndex: 999,
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
             borderTop: `2px solid ${themeColor}`,
             animation: "popIn 0.3s ease-out",
           }}
@@ -168,100 +167,67 @@ export default function App() {
             🐾 ロン君の特設リンクメニュー
           </p>
 
-          {/* Vercel */}
+          {/* Vercel一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>🚀 Vercel</h4>
           {vercelLinks.map((link, idx) => (
-            <div
+            <a
               key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
               style={{
-                backgroundColor: "#fff",
-                padding: "15px",
-                borderRadius: "10px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
               }}
             >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  textDecoration: "none",
-                  color: darkColor,
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                {link.title}
-              </a>
-              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
-              <p style={{ fontSize: "12px", color: "#999" }}>
-                ※ Vercelでビルド
-              </p>
-            </div>
+              {link.title}
+            </a>
           ))}
 
-          {/* Render */}
+          {/* Render一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>⚙ Render</h4>
           {renderLinks.map((link, idx) => (
-            <div
+            <a
               key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
               style={{
-                backgroundColor: "#fff",
-                padding: "15px",
-                borderRadius: "10px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
               }}
             >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  textDecoration: "none",
-                  color: darkColor,
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                {link.title}
-              </a>
-              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
-              <p style={{ fontSize: "12px", color: "#999" }}>
-                ※ Renderでビルド
-              </p>
-            </div>
+              {link.title}
+            </a>
           ))}
 
-          {/* Figma */}
+          {/* Figma一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>🎨 Figma</h4>
           {figmaLinks.map((link, idx) => (
-            <div
+            <a
               key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
               style={{
-                backgroundColor: "#fff",
-                padding: "15px",
-                borderRadius: "10px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
               }}
             >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  textDecoration: "none",
-                  color: darkColor,
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                {link.title}
-              </a>
-              <p style={{ margin: "5px 0", color: "#666" }}>{link.desc}</p>
-              <p style={{ fontSize: "12px", color: "#999" }}>
-                ※ Figmaで作成
-              </p>
-            </div>
+              {link.title}
+            </a>
           ))}
         </div>
       )}
