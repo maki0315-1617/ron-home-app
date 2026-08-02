@@ -34,7 +34,7 @@ export default function App() {
       title: "💰 ロン君の消費税計算サイト",
       url: "https://zeikin-calc.vercel.app/",
       desc: "金額を入力すると消費税を自動計算！",
-    }
+    },
   ];
 
   const renderLinks = [
@@ -120,20 +120,18 @@ export default function App() {
           </span>
         </div>
 
-        {/* PCナビ（スマホでも常に表示） */}
-        <nav
+        {/* 常に表示される「AI検証ハブサイト」 */}
+        <div
           style={{
-            display: "flex",
-            gap: "20px",
             fontWeight: "bold",
             fontSize: "14px",
             opacity: 0.9,
           }}
         >
-          <span>AI検証ハブサイト</span>
-        </nav>
+          AI検証ハブサイト
+        </div>
 
-        {/* スマホ用ハンバーガー */}
+        {/* ハンバーガーメニュー */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="menu-button"
@@ -142,14 +140,13 @@ export default function App() {
             border: "none",
             color: "#fff",
             fontSize: "28px",
-            display: "block",
           }}
         >
           {isMenuOpen ? "🐾" : "☰"}
         </button>
       </header>
 
-      {/* 📱 スマホメニュー（カード化） */}
+      {/* 📱 スマホメニュー（カードデザイン） */}
       {isMenuOpen && (
         <div
           style={{
@@ -427,3 +424,74 @@ export default function App() {
               }}
             >
               サイトを開く ➔
+            </a>
+          </div>
+        ))}
+
+        {/* 🔗 Figmaリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
+        {figmaLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Figmaで作成されています
+            </p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
+          </div>
+        ))}
+      </main>
+
+      {/* フッター */}
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "25px 0",
+          fontSize: "13px",
+          color: "#888",
+          backgroundColor: "#fff",
+          marginTop: "40px",
+        }}
+      >
+        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
+        <p style={{ fontSize: "12px", color: "#aaa" }}>
+          ※ このサイトはAIで自動生成されています
+        </p>
+      </footer>
+
+      {/* スマホ用CSS：ハンバーガーだけ制御 */}
+      <style>{`
+        @media (max-width: 600px) {
+          .menu-button { display: block; }
+        }
+      `}</style>
+    </div>
+  );
+}
