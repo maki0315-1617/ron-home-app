@@ -34,12 +34,7 @@ export default function App() {
       title: "💰 ロン君の消費税計算サイト",
       url: "https://zeikin-calc.vercel.app/",
       desc: "金額を入力すると消費税を自動計算！",
-    },
-    {
-      title: "🧪 AI検証サイト（総合）",
-      url: "https://your-ai-lab.vercel.app/",
-      desc: "AI検証用の総合サイト（例示）",
-    },
+    }
   ];
 
   const renderLinks = [
@@ -88,7 +83,7 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)",
+        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)", // AI風グラデーション
         color: darkColor,
         fontFamily:
           '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
@@ -128,12 +123,14 @@ export default function App() {
           </span>
         </div>
 
+        {/* PCナビ */}
         <nav className="pc-nav" style={{ display: "flex", gap: "20px" }}>
           <span style={{ fontSize: "14px", opacity: 0.8 }}>
             AI検証ハブサイト
           </span>
         </nav>
 
+        {/* スマホ用ハンバーガー */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="menu-button"
@@ -148,6 +145,93 @@ export default function App() {
           {isMenuOpen ? "🐾" : "☰"}
         </button>
       </header>
+
+      {/* 📱 スマホメニュー */}
+      {isMenuOpen && (
+        <div
+          style={{
+            backgroundColor: darkColor,
+            position: "fixed",
+            top: "70px",
+            left: 0,
+            width: "100%",
+            padding: "20px",
+            zIndex: 999,
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            borderTop: `2px solid ${themeColor}`,
+            animation: "popIn 0.3s ease-out",
+          }}
+        >
+          <p style={{ color: themeColor, fontWeight: "bold" }}>
+            🐾 ロン君の特設リンクメニュー
+          </p>
+
+          {/* Vercel */}
+          {vercelLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "16px",
+                padding: "10px",
+                backgroundColor: "rgba(255,255,255,0.05)",
+                borderRadius: "6px",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Render */}
+          {renderLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "16px",
+                padding: "10px",
+                backgroundColor: "rgba(255,255,255,0.05)",
+                borderRadius: "6px",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Figma */}
+          {figmaLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "16px",
+                padding: "10px",
+                backgroundColor: "rgba(255,255,255,0.05)",
+                borderRadius: "6px",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+        </div>
+      )}
 
       {/* 🏡 メイン */}
       <main
@@ -332,6 +416,9 @@ export default function App() {
         }}
       >
         <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
+        <p style={{ fontSize: "12px", color: "#aaa" }}>
+          ※ このサイトはAIで自動生成されています
+        </p>
       </footer>
 
       {/* スマホ用CSS */}
