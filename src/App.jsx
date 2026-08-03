@@ -464,7 +464,7 @@ export default function App() {
         </p>
       </footer>
 
-      {/* スマホ用CSS：ハンバーガーだけ制御 */}
+      {/* スマホ用CSS：のハンバーガーだけ制御 */}
       <style>{`
         @media (max-width: 600px) {
           .menu-button { display: block; }
