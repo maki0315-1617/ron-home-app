@@ -34,6 +34,11 @@ export default function App() {
       title: "💰 ロン君の消費税計算サイト",
       url: "https://zeikin-calc.vercel.app/",
       desc: "金額を入力すると消費税を自動計算！",
+    },
+    {
+      title: "🎵 能登衆音楽コレクション（Vercel版）",
+      url: "https://noto-musice-collection.vercel.app/",
+      desc: "能登衆の音楽をまとめたコレクションサイト。",
     }
   ];
 
@@ -56,18 +61,26 @@ export default function App() {
       url: "https://beatle-noto-ogi.figma.site/",
       desc: "Figmaで作成した音楽コレクションサイト。",
     },
+    {
+      title: "💰 ロン君消費税計算サイト（Figma）",
+      url: "https://mace-walk-72354966.figma.site/",
+      desc: "Figmaで作成した消費税計算サイト。",
+    }
   ];
 
   const themeColor = "#fca311";
   const darkColor = "#14213d";
 
-  // アニメーションCSS
+  // 🌟 スライドアニメーションCSS
   useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
-      @keyframes popIn {
-        0% { transform: scale(0.9); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
+      @keyframes slideIn {
+        0% { transform: translateX(-100%); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+      .slide-menu {
+        animation: slideIn 0.35s ease-out;
       }
       .link-card:hover {
         transform: translateY(-5px) !important;
@@ -120,7 +133,6 @@ export default function App() {
           </span>
         </div>
 
-        {/* 常に表示される「AI検証ハブサイト」 */}
         <div
           style={{
             fontWeight: "bold",
@@ -131,7 +143,6 @@ export default function App() {
           AI検証ハブサイト
         </div>
 
-        {/* ハンバーガーメニュー */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="menu-button"
@@ -146,21 +157,21 @@ export default function App() {
         </button>
       </header>
 
-      {/* 📱 スマホメニュー（一覧表＋スクロール可能） */}
+      {/* 📱 スマホメニュー（スライドイン） */}
       {isMenuOpen && (
         <div
+          className="slide-menu"
           style={{
             backgroundColor: darkColor,
             position: "fixed",
             top: "70px",
             left: 0,
-            width: "100%",
+            width: "80%",
             height: "80vh",
             overflowY: "auto",
             padding: "20px",
             zIndex: 999,
             borderTop: `2px solid ${themeColor}`,
-            animation: "popIn 0.3s ease-out",
           }}
         >
           <p style={{ color: themeColor, fontWeight: "bold" }}>
@@ -261,6 +272,7 @@ export default function App() {
               marginBottom: "20px",
             }}
           />
+
           <h2 style={{ marginBottom: "10px", fontSize: "26px" }}>
             ロン君 (Ron)
           </h2>
