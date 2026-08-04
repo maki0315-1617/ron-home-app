@@ -39,6 +39,11 @@ export default function App() {
       title: "🎵 能登衆音楽コレクション（Vercel版）",
       url: "https://noto-musice-collection.vercel.app/",
       desc: "能登衆の音楽をまとめたコレクションサイト。",
+    },
+    {
+      title: "🐾 ロン君大好き！！",
+      url: "https://ron-makino.vercel.app/",
+      desc: "ロン君への愛情がたっぷり詰まった特設サイト！",
     }
   ];
 
@@ -307,7 +312,7 @@ export default function App() {
 
           <p>
             <strong>検証環境：</strong>
-            React / Next.js / Vite / Vercel / Render / Supabase / MongoDB /
+            React / Next.js / Vite / Vercel / Render / Supabase / Firebase / MongoDB /
             GitHub / Local LLM / RAG / Cursor / VS Code
           </p>
 
