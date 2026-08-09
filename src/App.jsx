@@ -341,7 +341,7 @@ export default function App() {
 
           <p>
             <strong>検証環境：</strong>
-            React / Next.js / Vite / Vercel / Render / Supabase / Firebase / MongoDB /
+            React / Next.js / Vite / Vercel / Cloudflare Workers / Render / Supabase / Firebase / MongoDB /
             GitHub / Local LLM / RAG / Cursor / VS Code
           </p>
 
