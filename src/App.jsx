@@ -47,6 +47,14 @@ export default function App() {
     }
   ];
 
+  const workersLinks = [
+    {
+      title: "🐛 ロン君のゴキ退 Ver2",
+      url: "https://rongokiv2.ronron201907.workers.dev/",
+      desc: "Cloudflare Workersで動くロン君のゴキ退治 Ver2。",
+    },
+  ];
+
   const renderLinks = [
     {
       title: "🔮 ロン君の運勢占い（Render版）",
@@ -186,6 +194,27 @@ export default function App() {
           {/* Vercel一覧 */}
           <h4 style={{ color: "#fff", marginTop: "20px" }}>🚀 Vercel</h4>
           {vercelLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Cloudflare Workers一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>☁️ Cloudflare Workers</h4>
+          {workersLinks.map((link, idx) => (
             <a
               key={idx}
               href={link.url}
@@ -371,9 +400,9 @@ export default function App() {
           </div>
         ))}
 
-        {/* 🔗 Renderリンク（カード） */}
-        <h3 style={{ margin: "30px 0 15px 0" }}>⚙ Renderで作成したサイト</h3>
-        {renderLinks.map((link, idx) => (
+        {/* 🔗 Cloudflare Workersリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>☁️ Cloudflare Workersで作成したサイト</h3>
+        {workersLinks.map((link, idx) => (
           <div
             key={idx}
             className="link-card"
@@ -389,7 +418,7 @@ export default function App() {
             <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
             <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
             <p style={{ fontSize: "12px", color: "#999" }}>
-              ※ Renderでビルドされています
+              ※ Cloudflare Workersで動作しています
             </p>
             <a
               href={link.url}
@@ -411,7 +440,7 @@ export default function App() {
           </div>
         ))}
 
-        {/* 🔗 Figmaリンク（カード） */}
+        {/* 🔗 Renderリンク（カード） */}
         <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
         {figmaLinks.map((link, idx) => (
           <div
