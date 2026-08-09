@@ -441,6 +441,46 @@ export default function App() {
         ))}
 
         {/* 🔗 Renderリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>⚙ Renderで作成したサイト</h3>
+        {renderLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Renderでビルドされています
+            </p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
+          </div>
+        ))}
+
+        {/* 🔗 Figmaリンク（カード） */}
         <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
         {figmaLinks.map((link, idx) => (
           <div
