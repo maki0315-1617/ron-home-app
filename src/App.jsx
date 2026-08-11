@@ -319,6 +319,51 @@ export default function App() {
           </p>
         </div>
 
+        {/* 📘 React学習リンク */}
+        <section
+          style={{
+            background: "linear-gradient(135deg, #fff7ed, #eff6ff)",
+            border: `2px solid ${themeColor}`,
+            borderRadius: "16px",
+            padding: "22px 20px",
+            marginBottom: "35px",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              marginBottom: "8px",
+            }}
+          >
+            <span style={{ fontSize: "24px" }}>📘</span>
+            <h3 style={{ margin: 0, fontSize: "20px", color: darkColor }}>
+              React学習用ページへ移動
+            </h3>
+          </div>
+          <p style={{ marginBottom: "12px", color: "#4b5563", lineHeight: 1.6 }}>
+            Reactの学習内容をまとめたページです。ここからすぐに開けるので、学習の入口として使いやすいです。
+          </p>
+          <a
+            href="/memo.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              backgroundColor: themeColor,
+              color: "#fff",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            React学習サイトを開く ➔
+          </a>
+        </section>
+
         {/* 🧪 説明セクション */}
         <section
           style={{

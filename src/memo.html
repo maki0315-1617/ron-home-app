@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark" data-lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Learning Hub</title>
+    <style>
+        :root {
+            /* ダークモード（標準設定） */
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --text-bright: #f0f6fc;
+            --react-blue: #58a6ff;
+            --accent-purple: #bc8cff;
+            --accent-gradient: linear-gradient(135deg, #58a6ff 0%, #bc8cff 100%);
+            --border-color: #30363d;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --roadmap-bg: rgba(22, 27, 34, 0.6);
+        }
+
+        [data-theme="light"] {
+            /* ライトモード */
+            --bg-color: #f6f8fa;
+            --card-bg: #ffffff;
+            --text-color: #57606a;
+            --text-bright: #24292f;
+            --react-blue: #0969da;
+            --accent-purple: #8250df;
+            --accent-gradient: linear-gradient(135deg, #0969da 0%, #8250df 100%);
+            --border-color: #d0d7de;
+            --shadow-color: rgba(140, 149, 159, 0.15);
+            --roadmap-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+
+        /* コントロール（言語＆テーマ切り替えボタン） */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-bright);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            border-color: var(--react-blue);
+        }
+
+        /* アニメーション効果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: radial-gradient(circle at top, rgba(88, 166, 255, 0.15) 0%, transparent 60%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--text-bright);
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--text-color);
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .roadmap-info {
+            background: var(--roadmap-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .roadmap-info strong {
+            color: var(--react-blue);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--react-blue);
+            box-shadow: 0 12px 24px var(--shadow-color), 0 0 20px rgba(88, 166, 255, 0.15);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -14px;
+            left: 30px;
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* 進捗チェックボックス */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .progress-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--react-blue);
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .card.completed {
+            border-color: #2da44e !important;
+            opacity: 0.8;
+        }
+        
+        .card.completed .card-badge {
+            background: #2da44e;
+        }
+
+        .card-content h2 {
+            font-size: 1.6rem;
+            color: var(--text-bright);
+            margin-bottom: 12px;
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background-color: rgba(88, 166, 255, 0.1);
+            color: var(--react-blue);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            background-color: rgba(88, 166, 255, 0.05);
+            color: var(--text-bright);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+        }
+
+        /* 表示言語の制御用ルール */
+        [data-lang="ja"] .lang-en { display: none !important; }
+        [data-lang="en"] .lang-ja { display: none !important; }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card.featured {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="control-btn" id="langBtn">🌐 EN / JA</button>
+        <button class="control-btn" id="themeBtn">🌓 Theme</button>
+    </div>
+
+    <header class="header">
+        <h1>React <span>Learning Hub</span></h1>
+        <p class="lang-ja">初心者からプロへ。最も効率的な順番で網羅する、挫折しないためのReactサポートサイト・教材ナビゲーション。</p>
+        <p class="lang-en">From beginner to pro. Comprehensive React support sites and tutorials map structured for the most efficient learning experience.</p>
+    </header>
+
+    <main class="container">
+        <!-- ロードマップ案内ボード -->
+        <div class="roadmap-info animate-fade-in" style="animation-delay: 0.1s;">
+            <span class="lang-ja">💡 <strong>おすすめの学習順：</strong> スクールオブウェブ ➔ 公式ドキュメント ➔ Zenn入門 ➔ 問題集 ➔ APIリファレンス</span>
+            <span class="lang-en">💡 <strong>Recommended Path:</strong> School of Web ➔ Official Docs ➔ Zenn Guide ➔ Exercises ➔ API Reference</span>
+        </div>
+
+        <div class="grid">
+            <!-- 1. スクールオブウェブ -->
+            <div class="card featured animate-fade-in" style="animation-delay: 0.2s;" data-id="step1">
+                <span class="card-badge">
+                    <span class="lang-ja">STEP 1: まずはここから！</span>
+                    <span class="lang-en">STEP 1: Start Here!</span>
+                </span>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <input type="checkbox" id="check-step1" class="progress-checkbox">
+                        <label for="check-step1" class="progress-label">
+                            <span class="lang-ja">完了としてマーク</span>
+                            <span class="lang-en">Mark as Complete</span>
+                        </label>
+                    </div>
+                    <h2>スクールオブウェブ</h2>
+                    <div class="tag-list">
+                        <span class="tag lang-ja">超初心者向け</span><span class="tag lang-en">Beginner Friendly</span>
+                        <span class="tag lang-ja">入門講座</span><span class="tag lang-en">Tutorial</span>
+                        <span class="tag lang-ja">全文無料公開</span><span class="tag lang-en">100% Free</span>
+                    </div>
+                    <p class="lang-ja">ReactやTypeScript、Viteを標準に据えたフロントエンド開発を基礎から網羅できる無料のオンライン本。図解や解説が丁寧なため、仕組みを直感的に理解しやすく最初のステップに最適です。</p>
+                    <p class="lang-en">A free online text covering frontend development with React, TypeScript, and Vite. Beautiful illustrations and step-by-step explanations make it perfect for beginners to grab core concepts intuitively.</p>
+                </div>
+                <a href="https://schoolofweb.net" target="_blank" class="btn">
+                    <span class="lang-ja">サイトを見る ➔</span><span class="lang-en">Visit Site ➔</span>
+                </a>
+            </div>
+
+            <!-- 2. 公式ドキュメント -->
+            <div class="card animate-fade-in" style="animation-delay: 0.3s;" data-id="step2">
+                <span class="card-badge">
+                    <span class="lang-ja">STEP 2: 基礎を固める</span>
+                    <span class="lang-en">STEP 2: Solidify Basics</span>
+                </span>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <input type="checkbox" id="check-step2" class="progress-checkbox">
+                        <label for="check-step2" class="progress-label">
+                            <span class="lang-ja">完了としてマーク</span>
+                            <span class="lang-en">Mark as Complete</span>
+                        </label>
+                    </div>
+                    <h2>React公式ドキュメント</h2>
+                    <div class="tag-list">
+                        <span class="tag lang-ja">一次情報</span><span class="tag lang-en">Official Source</span>
+                        <span class="tag lang-ja">チュートリアル</span><span class="tag lang-en">Interactive Labs</span>
+                    </div>
+                    <p class="lang-ja">もっとも正確で信頼できるオフィシャルドキュメント。リニューアルされた「Learn React」では、ブラウザ上で実際にコードを書き換えて動作を確認できる演習があり、体験しながら学習できます。</p>
+                    <p class="lang-en">The most precise and official source. The updated "Learn React" provides browser-embedded coding panels so you can experiment with changing state and components interactively.</p>
+                </div>
+                <a href="https://react.dev" target="_blank" class="btn">
+                    <span class="lang-ja">サイトを見る ➔</span><span class="lang-en">Visit Site ➔</span>
+                </a>
+            </div>
+
+            <!-- 3. Zenn React入門 2026 -->
+            <div class="card animate-fade-in" style="animation-delay: 0.4s;" data-id="step3">
+                <span class="card-badge">
+                    <span class="lang-ja">STEP 3: 最新の書き方</span>
+                    <span class="lang-en">STEP 3: Modern Practices</span>
+                </span>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <input type="checkbox" id="check-step3" class="progress-checkbox">
+                        <label for="check-step3" class="progress-label">
+                            <span class="lang-ja">完了としてマーク</span>
+                            <span class="lang-en">Mark as Complete</span>
+                        </label>
+                    </div>
+                    <h2>Zenn React入門 2026</h2>
+                    <div class="tag-list">
+                        <span class="tag lang-ja">最新トレンド</span><span class="tag lang-en">2026 Trends</span>
+                        <span class="tag lang-ja">Vite + TS</span><span class="tag lang-en">Vite + TS</span>
+                    </div>
+                    <p class="lang-ja">モダン開発におけるデファクトスタンダード（Vite + TypeScript + Tailwind CSSなど）に準拠した最新の解説書。現在の開発現場で即戦力となるモダンなコードの書き方をキャッチアップできます。</p>
+                    <p class="lang-en">A modern handbook compliant with industry standards like Vite, TypeScript, and Tailwind CSS. Up-to-date best practices to jump into professional workflows immediately.</p>
+                </div>
+                <a href="https://zenn.dev" target="_blank" class="btn">
+                    <span class="lang-ja">サイトを見る ➔</span><span class="lang-en">Visit Site ➔</span>
+                </a>
+            </div>
+
+            <!-- 4. ウェブエンジニア問題集 -->
+            <div class="card animate-fade-in" style="animation-delay: 0.5s;" data-id="step4">
+                <span class="card-badge">
+                    <span class="lang-ja">STEP 4: アウトプット</span>
+                    <span class="lang-en">STEP 4: Output Quiz</span>
+                </span>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <input type="checkbox" id="check-step4" class="progress-checkbox">
+                        <label for="check-step4" class="progress-label">
+                            <span class="lang-ja">完了としてマーク</span>
+                            <span class="lang-en">Mark as Complete</span>
+                        </label>
+                    </div>
+                    <h2>ウェブエンジニア問題集</h2>
+                    <div class="tag-list">
+                        <span class="tag lang-ja">クイズ形式</span><span class="tag lang-en">Quiz App</span>
+                        <span class="tag lang-ja">苦手克服</span><span class="tag lang-en">Self Assessment</span>
+                    </div>
+                    <p class="lang-ja">HTML/CSSからJavaScript、Reactまでクイズ形式で挑戦できる無料の学習サイト。問題を解きながら自分の「苦手な部分」にいち早く気づき、付属の教科書ですぐに学び直せます。</p>
+                    <p class="lang-en">A free evaluation platform with multiple-choice quizzes on HTML/CSS, JS, and React. Instantly identify your weak spots and review them with targeted references.</p>
+                </div>
+                <a href="https://ntorelabo.com" target="_blank" class="btn">
+                    <span class="lang-ja">サイトを見る ➔</span><span class="lang-en">Visit Site ➔</span>
+                </a>
+            </div>
+
+            <!-- 5. React API リファレンス (URL修正完了) -->
+            <div class="card animate-fade-in" style="animation-delay: 0.6s;" data-id="step5">
+                <span class="card-badge">
+                    <span class="lang-ja">随時: 辞書として活用</span>
+                    <span class="lang-en">Ref: Dictionary Lookups</span>
+                </span>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <input type="checkbox" id="check-step5" class="progress-checkbox">
+                        <label for="check-step5" class="progress-label">
+                            <span class="lang-ja">完了としてマーク</span>
+                            <span class="lang-en">Mark as Complete</span>
+                        </label>
+                    </div>
+                    <h2>React API リファレンス</h2>
+                    <div class="tag-list">
+                        <span class="tag lang-ja">リファレンス</span><span class="tag lang-en">Full API Spec</span>
+                        <span class="tag lang-ja">フック一覧</span><span class="tag lang-en">Built-in Hooks</span>
+                    </div>
+                    <p class="lang-ja">useStateやuseEffectなど、Reactに組み込まれているすべてのAPI仕様が網羅されています。開発中やエラーで行き詰まったとき、より正確な仕組みを調べるための「最強の辞書」として重宝します。</p>
+                    <p class="lang-en">Provides exact specifications for all built-in React APIs like useState and useEffect. Acts as an absolute dictionary whenever you encounter weird bugs or depth limitations.</p>
+                </div>
+                <a href="https://ja.react.dev/reference/react" target="_blank" class="btn">
+                    <span class="lang-ja">サイトを見る ➔</span><span class="lang-en">Visit Site ➔</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // テーマ切り替え機能
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('hub-theme', newTheme);
+        });
+
+        // 保存されたテーマの読み込み
+        const savedTheme = localStorage.getItem('hub-theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // 言語切り替え機能
+        const langBtn = document.getElementById('langBtn');
+        langBtn.addEventListener('click', () => {
+            const currentLang = document.documentElement.getAttribute('data-lang');
+            const newLang = currentLang === 'ja' ? 'en' : 'ja';
+            document.documentElement.setAttribute('data-lang', newLang);
+            localStorage.setItem('hub-lang', newLang);
+        });
+
+        // 保存された言語の読み込み
+        const savedLang = localStorage.getItem('hub-lang');
+        if (savedLang) {
+            document.documentElement.setAttribute('data-lang', savedLang);
+        }
+
+        // 進捗管理ロジック（ローカルストレージ連動）
+        const checkboxes = document.querySelectorAll('.progress-checkbox');
+        checkboxes.forEach(box => {
+            const card = box.closest('.card');
+            const cardId = card.getAttribute('data-id');
+
+            // 過去の保存状態を復元
+            const isCompleted = localStorage.getItem(`progress-${cardId}`) === 'true';
+            if (isCompleted) {
+                box.checked = true;
+                card.classList.add('completed');
+            }
+
+            // チェックボックス変更イベント
+            box.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    card.classList.add('completed');
+                    localStorage.setItem(`progress-${cardId}`, 'true');
+                } else {
+                    card.classList.remove('completed');
+                    localStorage.setItem(`progress-${cardId}`, 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
