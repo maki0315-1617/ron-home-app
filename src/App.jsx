@@ -401,13 +401,53 @@ export default function App() {
             全て無料で作成・運用し、1つのサイトは約3時間で完成させています。
           </p>
 
-          <p>
-            <strong>検証環境：</strong>
-            React / Next.js / Vite / Vercel / Cloudflare Workers / Render / Supabase / Firebase / MongoDB /
-            GitHub / Local LLM / RAG / Cursor / VS Code
-          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "10px" }}>
+            <span style={{ fontWeight: "bold", minWidth: "110px", color: "#333" }}>検証環境：</span>
+            {[
+              { label: "React", url: "https://react.dev" },
+              { label: "Next.js", url: "https://nextjs.org" },
+              { label: "Vite", url: "https://vitejs.dev" },
+              { label: "Vercel", url: "https://vercel.com" },
+              { label: "Cloudflare Workers", url: "https://www.cloudflare.com/products/workers" },
+              { label: "Render", url: "https://render.com" },
+              { label: "Supabase", url: "https://supabase.com" },
+              { label: "Firebase", url: "https://firebase.google.com" },
+              { label: "MongoDB", url: "https://www.mongodb.com" },
+              { label: "GitHub", url: "https://github.com" },
+              { label: "VS Code", url: "https://code.visualstudio.com" },
+            ].map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  padding: "8px 14px",
+                  borderRadius: "999px",
+                  backgroundColor: "rgba(252,163,17,0.12)",
+                  color: themeColor,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  border: `1px solid ${themeColor}`,
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "0 6px 12px rgba(252,163,17,0.18)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-          <p>
+          <p style={{ marginTop: "18px" }}>
             ※ LLM は低レベルのものでOK。  
             RAG（外部知識参照）で補完する方針です。
           </p>
