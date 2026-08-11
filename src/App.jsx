@@ -191,6 +191,23 @@ export default function App() {
             🐾 ロン君の特設リンクメニュー
           </p>
 
+          <a
+            href="/memo.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              display: "block",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "12px 0",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              fontWeight: "bold",
+            }}
+          >
+            📘 React学習サイト
+          </a>
+
           {/* Vercel一覧 */}
           <h4 style={{ color: "#fff", marginTop: "20px" }}>🚀 Vercel</h4>
           {vercelLinks.map((link, idx) => (
