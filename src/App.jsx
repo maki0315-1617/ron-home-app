@@ -401,8 +401,8 @@ export default function App() {
             全て無料で作成・運用し、1つのサイトは約3時間で完成させています。
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "10px" }}>
-            <span style={{ fontWeight: "bold", minWidth: "110px", color: "#333" }}>検証環境：</span>
+          <div className="env-badges" style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "12px", alignItems: "center" }}>
+            <span style={{ fontWeight: "bold", minWidth: "90px", color: "#333" }}>検証環境：</span>
             {[
               { label: "React", url: "https://react.dev" },
               { label: "Next.js", url: "https://nextjs.org" },
@@ -414,6 +414,8 @@ export default function App() {
               { label: "Firebase", url: "https://firebase.google.com" },
               { label: "MongoDB", url: "https://www.mongodb.com" },
               { label: "GitHub", url: "https://github.com" },
+              { label: "Cursor", url: "https://www.cursor.so" },
+              { label: "Figma", url: "https://www.figma.com" },
               { label: "VS Code", url: "https://code.visualstudio.com" },
             ].map((link, idx) => (
               <a
@@ -421,6 +423,7 @@ export default function App() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="env-badge"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -635,7 +638,37 @@ export default function App() {
         }}
       >
         <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
-        <p style={{ fontSize: "12px", color: "#aaa" }}>
+        <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
+          最終確認: {new Date().toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" })}
+        </p>
+        <div
+          style={{
+            marginTop: "14px",
+            padding: "14px 16px",
+            backgroundColor: "#f9fafb",
+            borderRadius: "14px",
+            border: "1px solid #e5e7eb",
+            maxWidth: "700px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            color: "#555",
+            textAlign: "left",
+          }}
+        >
+          <p style={{ margin: "0 0 6px", fontWeight: 700 }}>更新履歴</p>
+          <ul style={{ margin: 0, paddingLeft: "18px", color: "#555" }}>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: 「更新履歴」表示を追加しました。
+            </li>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: Cursor / Figma を検証環境リンクに追加しました。
+            </li>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: 検証環境リンクをモバイルでも見やすいバッジ表示に変更しました。
+            </li>
+          </ul>
+        </div>
+        <p style={{ fontSize: "12px", color: "#aaa", margin: "14px 0 0 0" }}>
           ※ このサイトはAIで自動生成されています
         </p>
       </footer>
@@ -644,6 +677,13 @@ export default function App() {
       <style>{`
         @media (max-width: 600px) {
           .menu-button { display: block; }
+          main { padding: 24px 14px !important; }
+          .env-badges { gap: 8px; }
+          .env-badge {
+            width: 100% !important;
+            justify-content: center !important;
+            box-sizing: border-box;
+          }
         }
       `}</style>
     </div>
