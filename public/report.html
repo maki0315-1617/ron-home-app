@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脆弱性診断レポート概要 - ron-home-app.vercel.app</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --risk-medium-bg: #fef3c7;
+            --risk-medium-text: #b45309;
+            --risk-info-bg: #e0f2fe;
+            --risk-info-text: #0369a1;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .nav-links {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--border-color);
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .alert-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-header {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-bar;
+            display: inline-block;
+        }
+
+        .risk-medium {
+            background-color: var(--risk-medium-bg);
+            color: var(--risk-medium-text);
+        }
+
+        .risk-info {
+            background-color: var(--risk-info-bg);
+            color: var(--risk-info-text);
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li.alert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        li.alert-card strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        li.alert-card span {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ページ上部に分かりやすいリンクを追加 -->
+        <div class="nav-links">
+            <a href="ron-home-app.html">
+                &larr; ron-home-app の詳細ページに戻る / 移動する
+            </a>
+        </div>
+
+        <h2>2. レポートの概要説明</h2>
+        <p>
+            このスキャンレポートは、セキュリティツール <strong>OWASP ZAP（ZAP by Checkmarx）</strong> を用いて 
+            <a href="https://ron-home-app.vercel.app" target="_blank" rel="noopener noreferrer">https://ron-home-app.vercel.app</a> 
+            に対して実施された脆弱性診断の結果を示しています。
+        </p>
+
+        <div class="section-title">① 診断の基本情報</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">スキャン日時</span>
+                <span class="info-value">2026年8月13日 15:02:19</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">対象サイト</span>
+                <span class="info-value">
+                    <a href="https://ron-home-app.vercel.app" target="_blank" rel="noopener noreferrer">ron-home-app.vercel.app</a>
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">総アラート数</span>
+                <span class="info-value">合計 4件（中: 2件 / 情報: 2件）</span>
+            </div>
+        </div>
+
+        <div class="section-title">② 主な検出事項（アラートの内訳）</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+            検出された4件の内訳は以下の通りです。すべてパッシブスキャナー（受動的スキャン）によって検出されています。
+        </p>
+
+        <!-- リスク：中 -->
+        <div class="alert-group">
+            <div class="alert-header risk-medium">リスク：中（計 2件）</div>
+            <ul>
+                <li class="alert-card">
+                    <strong>Content Security Policy (CSP) ヘッダーが設定されていない</strong>
+                    <span>クロスサイトスクリプティング（XSS）などを防ぐためのCSPヘッダーが設定されていません。</span>
+                </li>
+                <li class="alert-card">
+                    <strong>クリックジャッキング対策ヘッダーの欠如</strong>
+                    <span>サイトがiframe等で悪意ある別サイトに埋め込まれるのを防ぐ X-Frame-Options や frame-ancestors が設定されていません。</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- リスク：情報 -->
+        <div class="alert-group">
+            <div class="alert-header risk-info">リスク：情報（計 2件）</div>
+            <ul>
+                <li class="alert-card">
+                    <strong>Cache-controlディレクティブを再確認する</strong>
+                    <span>sitemap.xml などのキャッシュ設定に関する情報です。</span>
+                </li>
+                <li class="alert-card">
+                    <strong>モダンWebアプリケーション</strong>
+                    <span>JavaScriptモジュールなどを利用したモダンな構成であることが検知されています。</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

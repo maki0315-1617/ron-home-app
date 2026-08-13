@@ -81,6 +81,21 @@ export default function App() {
     }
   ];
 
+  const sharedLinks = [
+    {
+      title: "📊 セキュリティ診断レポート",
+      url: "/report.html",
+      description: "OWASP ZAP で確認した脆弱性の概要と結果をわかりやすくまとめた共有ページです。",
+      badge: "共有ページ",
+    },
+    {
+      title: "📘 React学習サイト",
+      url: "/memo.html",
+      description: "学習メモや検証内容を整理しているページ。今後も他の資料をここに追加しやすい構成です。",
+      badge: "資料集",
+    },
+  ];
+
   const themeColor = "#fca311";
   const darkColor = "#14213d";
 
@@ -190,6 +205,23 @@ export default function App() {
           <p style={{ color: themeColor, fontWeight: "bold" }}>
             🐾 ロン君の特設リンクメニュー
           </p>
+
+          <a
+            href="/report.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              display: "block",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "12px 0",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              fontWeight: "bold",
+            }}
+          >
+            📊 セキュリティ診断レポート
+          </a>
 
           <a
             href="/memo.html"
@@ -336,49 +368,96 @@ export default function App() {
           </p>
         </div>
 
-        {/* 📘 React学習リンク */}
+        {/* � 共有ページ一覧 */}
         <section
           style={{
             background: "linear-gradient(135deg, #fff7ed, #eff6ff)",
             border: `2px solid ${themeColor}`,
-            borderRadius: "16px",
-            padding: "22px 20px",
+            borderRadius: "18px",
+            padding: "24px 20px",
             marginBottom: "35px",
-            boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
+            boxShadow: "0 6px 16px rgba(0,0,0,0.08)",
           }}
         >
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
-              marginBottom: "8px",
+              gap: "10px",
+              marginBottom: "18px",
             }}
           >
-            <span style={{ fontSize: "24px" }}>📘</span>
+            <span style={{ fontSize: "28px" }}>🔗</span>
             <h3 style={{ margin: 0, fontSize: "20px", color: darkColor }}>
-              React学習用ページへ移動
+              共有ページ一覧
             </h3>
           </div>
-          <p style={{ marginBottom: "12px", color: "#4b5563", lineHeight: 1.6 }}>
-            Reactの学習内容をまとめたページです。ここからすぐに開けるので、学習の入口として使いやすいです。
-          </p>
-          <a
-            href="/memo.html"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <div
             style={{
-              display: "inline-block",
-              backgroundColor: themeColor,
-              color: "#fff",
-              padding: "10px 18px",
-              borderRadius: "999px",
-              textDecoration: "none",
-              fontWeight: "bold",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "14px",
             }}
           >
-            React学習サイトを開く ➔
-          </a>
+            {sharedLinks.map((link, idx) => (
+              <div
+                key={idx}
+                className="link-card"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(20,33,61,0.08)",
+                  borderRadius: "14px",
+                  padding: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  minHeight: "170px",
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    alignSelf: "flex-start",
+                    backgroundColor: "rgba(252,163,17,0.14)",
+                    color: darkColor,
+                    borderRadius: "999px",
+                    padding: "5px 10px",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {link.badge}
+                </span>
+                <h4 style={{ margin: 0, fontSize: "18px", color: darkColor }}>
+                  {link.title}
+                </h4>
+                <p style={{ margin: 0, color: "#4b5563", lineHeight: 1.6, flex: 1 }}>
+                  {link.description}
+                </p>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "fit-content",
+                    backgroundColor: themeColor,
+                    color: "#fff",
+                    padding: "8px 16px",
+                    borderRadius: "999px",
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                  }}
+                >
+                  開く ➔
+                </a>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* 🧪 説明セクション */}
@@ -657,6 +736,9 @@ export default function App() {
         >
           <p style={{ margin: "0 0 6px", fontWeight: 700 }}>更新履歴</p>
           <ul style={{ margin: 0, paddingLeft: "18px", color: "#555" }}>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/13: 共有ページ一覧を追加し、report.html への導線を分かりやすくしました。
+            </li>
             <li style={{ marginBottom: "4px" }}>
               2026/08/11: 「更新履歴」表示を追加しました。
             </li>
