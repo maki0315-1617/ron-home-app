@@ -1,402 +1,773 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // 🌟【リンク分類：Vercel / Render / Figma】
+  const vercelLinks = [
+    {
+      title: "🔮 ロン君の運勢占い",
+      url: "https://my-js-page.vercel.app",
+      desc: "今日のロン君からのメッセージと運勢を占おう！",
+    },
+    {
+      title: "🎮 黒猫ロン君クリックゲーム",
+      url: "https://my-react-app-topaz-iota.vercel.app/",
+      desc: "画面のロン君をたくさんクリックして遊ぶ楽しいゲーム！",
+    },
+    {
+      title: "🪳 ロン君のゴキ退治",
+      url: "https://my-ron-game1-app.vercel.app/",
+      desc: "すばやい動きのゴキブリをロン君が退治するアクションゲーム！",
+    },
+    {
+      title: "📅 ロン君お世話カレンダー",
+      url: "https://ronron-app.vercel.app/",
+      desc: "ロン君の毎日のお世話や体調を優しく管理できるカレンダー！",
+    },
+    {
+      title: "🎤 ロン君の音声簡易文字起こし",
+      url: "https://ron-voise-app.vercel.app",
+      desc: "会議の議事録やメモに大活躍するリアルタイム文字起こしツール！",
+    },
+    {
+      title: "💰 ロン君の消費税計算サイト",
+      url: "https://zeikin-calc.vercel.app/",
+      desc: "金額を入力すると消費税を自動計算！",
+    },
+    {
+      title: "🎵 能登衆音楽コレクション（Vercel版）",
+      url: "https://noto-musice-collection.vercel.app/",
+      desc: "能登衆の音楽をまとめたコレクションサイト。",
+    },
+    {
+      title: "🐾 ロン君大好き！！",
+      url: "https://ron-makino.vercel.app/",
+      desc: "ロン君への愛情がたっぷり詰まった特設サイト！",
+    }
+  ];
+
+  const workersLinks = [
+    {
+      title: "🐛 ロン君のゴキ退 Ver2",
+      url: "https://rongokiv2.ronron201907.workers.dev/",
+      desc: "Cloudflare Workersで動くロン君のゴキ退治 Ver2。",
+    },
+  ];
+
+  const renderLinks = [
+    {
+      title: "🔮 ロン君の運勢占い（Render版）",
+      url: "https://my-js-page.onrender.com/",
+      desc: "Renderでビルドした占いサイト。",
+    },
+    {
+      title: "💰 ロン君の消費税計算サイト（Render版）",
+      url: "https://zeikin-calc.onrender.com/",
+      desc: "Renderでビルドした消費税計算サイト。",
+    },
+  ];
+
+  const figmaLinks = [
+    {
+      title: "🎵 能登衆音楽コレクション（Figma）",
+      url: "https://beatle-noto-ogi.figma.site/",
+      desc: "Figmaで作成した音楽コレクションサイト。",
+    },
+    {
+      title: "💰 ロン君消費税計算サイト（Figma）",
+      url: "https://mace-walk-72354966.figma.site/",
+      desc: "Figmaで作成した消費税計算サイト。",
+    }
+  ];
+
+  const sharedLinks = [
+    {
+      title: "📊 セキュリティ診断レポート",
+      url: "/report.html",
+      description: "OWASP ZAP で確認した脆弱性の概要と結果をわかりやすくまとめた共有ページです。",
+      badge: "共有ページ",
+    },
+    {
+      title: "📘 React学習サイト",
+      url: "/memo.html",
+      description: "学習メモや検証内容を整理しているページ。今後も他の資料をここに追加しやすい構成です。",
+      badge: "資料集",
+    },
+  ];
+
+  const themeColor = "#fca311";
+  const darkColor = "#14213d";
+
+  // 🌟 スライドアニメーションCSS
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowBackToTop(true);
-      } else {
-        setShowBackToTop(false);
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+      @keyframes slideIn {
+        0% { transform: translateX(-100%); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
       }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+      .slide-menu {
+        animation: slideIn 0.35s ease-out;
+      }
+      .link-card:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        border-color: ${themeColor} !important;
+      }
+    `;
+    document.head.appendChild(styleSheet);
+    return () => document.head.removeChild(styleSheet);
   }, []);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
-
   return (
-    <div style={styles.body}>
-      {/* ヘッダー */}
-      <header style={styles.header}>
-        <div style={styles.headerLogo}>
-          <img src="ron-logo.png" alt="Ron Logo" style={styles.logoImg} />
-          <span>ロン君の部屋</span>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #d8b4fe, #93c5fd)",
+        color: darkColor,
+        fontFamily:
+          '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
+      }}
+    >
+      {/* 🧭 ヘッダー */}
+      <header
+        style={{
+          backgroundColor: darkColor,
+          color: "#fff",
+          padding: "15px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="/ron.png"
+            alt="Ron Logo"
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              backgroundColor: "#fff",
+              padding: "2px",
+            }}
+          />
+          <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+            ロン君の部屋
+          </span>
         </div>
-        <div style={styles.headerSubtitle}>AI検証ハブサイト</div>
-        <button style={styles.menuBtn} onClick={toggleMenu} aria-label="メニューを開く">☰</button>
+
+        <div
+          style={{
+            fontWeight: "bold",
+            fontSize: "14px",
+            opacity: 0.9,
+          }}
+        >
+          AI検証ハブサイト
+        </div>
+
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="menu-button"
+          style={{
+            background: "none",
+            border: "none",
+            color: "#fff",
+            fontSize: "28px",
+          }}
+        >
+          {isMenuOpen ? "🐾" : "☰"}
+        </button>
       </header>
 
-      {/* はんばーがーめにゅー */}
-      <nav style={{ ...styles.navMenu, right: menuOpen ? '0' : '-100%' }}>
-        <ul style={styles.navList}>
-          <li><a href="#about" onClick={closeMenu} style={styles.navLink}>ロン君について</a></li>
-          <li><a href="#shared-pages" onClick={closeMenu} style={styles.navLink}>共有ページ一覧</a></li>
-          <li><a href="#about-room" onClick={closeMenu} style={styles.navLink}>ロン君の部屋の説明</a></li>
-          <li><a href="#vercel-sites" onClick={closeMenu} style={styles.navLink}>Vercelで作成したサイト</a></li>
-          <li><a href="#cloudflare-sites" onClick={closeMenu} style={styles.navLink}>Cloudflare Workersで作成したサイト</a></li>
-          <li><a href="#render-sites" onClick={closeMenu} style={styles.navLink}>Renderで作成したサイト</a></li>
-          <li><a href="#figma-sites" onClick={closeMenu} style={styles.navLink}>Figmaで作成したサイト</a></li>
-        </ul>
-      </nav>
+      {/* 📱 スマホメニュー（スライドイン） */}
+      {isMenuOpen && (
+        <div
+          className="slide-menu"
+          style={{
+            backgroundColor: darkColor,
+            position: "fixed",
+            top: "70px",
+            left: 0,
+            width: "80%",
+            height: "80vh",
+            overflowY: "auto",
+            padding: "20px",
+            zIndex: 999,
+            borderTop: `2px solid ${themeColor}`,
+          }}
+        >
+          <p style={{ color: themeColor, fontWeight: "bold" }}>
+            🐾 ロン君の特設リンクメニュー
+          </p>
 
-      <main style={styles.container}>
-        {/* ロン君紹介セクション */}
-        <section style={styles.hero} id="about">
-          <div style={styles.heroImage}>
-            <img src="ron.png" alt="黒猫ロン君" style={styles.ronImg} />
+          <a
+            href="/report.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              display: "block",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "12px 0",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              fontWeight: "bold",
+            }}
+          >
+            📊 セキュリティ診断レポート
+          </a>
+
+          <a
+            href="/memo.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            style={{
+              display: "block",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "12px 0",
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              fontWeight: "bold",
+            }}
+          >
+            📘 React学習サイト
+          </a>
+
+          {/* Vercel一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>🚀 Vercel</h4>
+          {vercelLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Cloudflare Workers一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>☁️ Cloudflare Workers</h4>
+          {workersLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Render一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>⚙ Render</h4>
+          {renderLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+
+          {/* Figma一覧 */}
+          <h4 style={{ color: "#fff", marginTop: "20px" }}>🎨 Figma</h4>
+          {figmaLinks.map((link, idx) => (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              style={{
+                display: "block",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "10px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {link.title}
+            </a>
+          ))}
+        </div>
+      )}
+
+      {/* 🏡 メイン */}
+      <main
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          padding: "40px 20px",
+        }}
+      >
+        {/* 🐈 プロフィール */}
+        <div
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "16px",
+            padding: "30px 20px",
+            textAlign: "center",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
+            marginBottom: "40px",
+          }}
+        >
+          <img
+            src="/ron.png"
+            alt="黒猫ロン君"
+            style={{
+              width: "130px",
+              height: "130px",
+              objectFit: "contain",
+              marginBottom: "20px",
+            }}
+          />
+
+          <h2 style={{ marginBottom: "10px", fontSize: "26px" }}>
+            ロン君 (Ron)
+          </h2>
+          <p style={{ marginBottom: "15px", color: "#666" }}>
+            🐈‍⬛ 黒猫の男の子（オス） / 🎂 7歳
+          </p>
+          <p style={{ lineHeight: "1.6", color: darkColor }}>
+            こんにちは！ボクは黒猫のロン。  
+            このサイトは、AI開発の検証を目的に作られているよ🐾
+          </p>
+        </div>
+
+        {/* � 共有ページ一覧 */}
+        <section
+          style={{
+            background: "linear-gradient(135deg, #fff7ed, #eff6ff)",
+            border: `2px solid ${themeColor}`,
+            borderRadius: "18px",
+            padding: "24px 20px",
+            marginBottom: "35px",
+            boxShadow: "0 6px 16px rgba(0,0,0,0.08)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "18px",
+            }}
+          >
+            <span style={{ fontSize: "28px" }}>🔗</span>
+            <h3 style={{ margin: 0, fontSize: "20px", color: darkColor }}>
+              共有ページ一覧
+            </h3>
           </div>
-          <div style={styles.heroContent}>
-            <h2>ロン君 (Ron)</h2>
-            <p style={styles.profileBadge}>🐈‍⬛ 黒猫の男の子（オス） / 🎂 7歳</p>
-            <p>こんにちは！ボクは黒猫のロン。 このサイトは、AI開発の検証を目的に作られているよ🐾</p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "14px",
+            }}
+          >
+            {sharedLinks.map((link, idx) => (
+              <div
+                key={idx}
+                className="link-card"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(20,33,61,0.08)",
+                  borderRadius: "14px",
+                  padding: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  minHeight: "170px",
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    alignSelf: "flex-start",
+                    backgroundColor: "rgba(252,163,17,0.14)",
+                    color: darkColor,
+                    borderRadius: "999px",
+                    padding: "5px 10px",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {link.badge}
+                </span>
+                <h4 style={{ margin: 0, fontSize: "18px", color: darkColor }}>
+                  {link.title}
+                </h4>
+                <p style={{ margin: 0, color: "#4b5563", lineHeight: 1.6, flex: 1 }}>
+                  {link.description}
+                </p>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "fit-content",
+                    backgroundColor: themeColor,
+                    color: "#fff",
+                    padding: "8px 16px",
+                    borderRadius: "999px",
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                  }}
+                >
+                  開く ➔
+                </a>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* 共有ページ一覧 */}
-        <section style={styles.section} id="shared-pages">
-          <h2>🔗 共有ページ一覧</h2>
-          <div style={styles.cardGrid}>
-            <div style={styles.card}>
-              <h3>📊 セキュリティ診断レポート</h3>
-              <p>OWASP ZAP で確認した脆弱性の概要と結果をわかりやすくまとめた共有ページです。</p>
-              <a href="https://ron-home-app.vercel.app/report.html" style={styles.btn}>開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>📘 React学習サイト</h3>
-              <p>学習メモや検証内容を整理しているページ。今後も他の資料をここに追加しやすい構成です。</p>
-              <a href="https://ron-home-app.vercel.app/memo.html" style={styles.btn}>開く ➔</a>
-            </div>
+        {/* 🧪 説明セクション */}
+        <section
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "16px",
+            padding: "25px 20px",
+            marginBottom: "35px",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.05)",
+          }}
+        >
+          <h3 style={{ marginBottom: "15px", fontSize: "20px" }}>
+            🧪 ロン君の部屋の説明
+          </h3>
+
+          <p>
+            <strong>目的：</strong>
+            AI開発の検証を行うためのハブサイトです。  
+            全て無料で作成・運用し、1つのサイトは約3時間で完成させています。
+          </p>
+
+          <div className="env-badges" style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "12px", alignItems: "center" }}>
+            <span style={{ fontWeight: "bold", minWidth: "90px", color: "#333" }}>検証環境：</span>
+            {[
+              { label: "React", url: "https://react.dev" },
+              { label: "Next.js", url: "https://nextjs.org" },
+              { label: "Vite", url: "https://vitejs.dev" },
+              { label: "Vercel", url: "https://vercel.com" },
+              { label: "Cloudflare Workers", url: "https://www.cloudflare.com/products/workers" },
+              { label: "Render", url: "https://render.com" },
+              { label: "Supabase", url: "https://supabase.com" },
+              { label: "Firebase", url: "https://firebase.google.com" },
+              { label: "MongoDB", url: "https://www.mongodb.com" },
+              { label: "GitHub", url: "https://github.com" },
+              { label: "Cursor", url: "https://www.cursor.so" },
+              { label: "Figma", url: "https://www.figma.com" },
+              { label: "VS Code", url: "https://code.visualstudio.com" },
+            ].map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="env-badge"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  padding: "8px 14px",
+                  borderRadius: "999px",
+                  backgroundColor: "rgba(252,163,17,0.12)",
+                  color: themeColor,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  border: `1px solid ${themeColor}`,
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "0 6px 12px rgba(252,163,17,0.18)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
+
+          <p style={{ marginTop: "18px" }}>
+            ※ LLM は低レベルのものでOK。  
+            RAG（外部知識参照）で補完する方針です。
+          </p>
+
+          <p>
+            <strong>Figma：</strong>
+            Figmaで作成したデザインを React / Next.js / Vercel に移植する検証も行っています。
+          </p>
+
+          <p style={{ marginTop: "10px", color: "#777" }}>
+            ※ このサイト群はすべてAIで作成されています。
+          </p>
         </section>
 
-        {/* ロン君の部屋の説明 */}
-        <section style={styles.section} id="about-room">
-          <h2>🧪 ロン君の部屋の説明</h2>
-          <div style={styles.card}>
-            <p><strong>目的：</strong> AI開発の検証を行うためのハブサイトです。 全て無料で作成・運用し、1つのサイトは約3時間で完成させています。</p>
-            <p><strong>検証環境：</strong> 
-              <a href="https://ron-home-app.vercel.app/url?id=2" style={styles.envLink}>React</a>{' '}
-              <a href="https://nextjs.org/" style={styles.envLink}>Next.js</a>{' '}
-              <a href="https://ron-home-app.vercel.app/url?id=4" style={styles.envLink}>Vite</a>{' '}
-              <a href="https://ron-home-app.vercel.app/url?id=5" style={styles.envLink}>Vercel</a>{' '}
-              <a href="https://ron-home-app.vercel.app/url?id=6" style={styles.envLink}>Cloudflare Workers</a>{' '}
-              <a href="url?id=14" style={styles.envLink}>Render</a>{' '}
-              <a href="url?id=15" style={styles.envLink}>Supabase</a>{' '}
-              <a href="url?id=16" style={styles.envLink}>Firebase</a>{' '}
-              <a href="url?id=17" style={styles.envLink}>MongoDB</a>{' '}
-              <a href="url?id=18" style={styles.envLink}>GitHub</a>{' '}
-              <a href="url?id=19" style={styles.envLink}>Cursor</a>{' '}
-              <a href="url?id=20" style={styles.envLink}>Figma</a>{' '}
-              <a href="url?id=21" style={styles.envLink}>VS Code</a>
+        {/* 🔗 Vercelリンク（カード） */}
+        <h3 style={{ marginBottom: "15px" }}>🚀 Vercelで作成したサイト</h3>
+        {vercelLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Vercelでビルドされています
             </p>
-            <p style={styles.note}>※ LLM は低レベルのものでOK。 RAG（外部知識参照）で補完する方針です。</p>
-            <p><strong>Figma：</strong> Figmaで作成したデザインを React / Next.js / Vercel に移植する検証も行っています。</p>
-            <p style={styles.note}>※ このサイト群はすべてAIで作成されています。</p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
           </div>
-        </section>
+        ))}
 
-        {/* Vercelで作成したサイト */}
-        <section style={styles.section} id="vercel-sites">
-          <h2>🚀 Vercelで作成したサイト</h2>
-          <div style={styles.cardGrid}>
-            <div style={styles.card}>
-              <h3>📅 ロン君の簡易スケジュール</h3>
-              <p>ロン君の毎日のスケジュールを手軽にチェックできる便利なスケジュール表！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://ron-sch.vercel.app/" target="_blank" rel="noopener noreferrer" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🔮 ロン君の運勢占い</h3>
-              <p>今日のロン君からのメッセージと運勢を占おう！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="url?id=23" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🎮 黒猫ロン君クリックゲーム</h3>
-              <p>画面のロン君をたくさんクリックして遊ぶ楽しいゲーム！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://my-react-app-topaz-iota.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🪳 ロン君のゴキ退治</h3>
-              <p>すばやい動きのゴキブリをロン君が退治するアクションゲーム！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://my-ron-game1-app.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>📅 ロン君お世話カレンダー</h3>
-              <p>ロン君の毎日のお世話や体調を優しく管理できるカレンダー！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://ronron-app.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🎤 ロン君の音声簡易文字起こし</h3>
-              <p>会議の議事録やメモに大活躍するリアルタイム文字起こしツール！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://ron-voise-app.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>💰 ロン君の消費税計算サイト</h3>
-              <p>金額を入力すると消費税を自動計算！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://zeikin-calc.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🎵 能登衆音楽コレクション（Vercel版）</h3>
-              <p>能登衆の音楽をまとめたコレクションサイト。</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="url?id=29" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>🐾 ロン君大好き！！</h3>
-              <p>ロン君への愛情がたっぷり詰まった特設サイト！</p>
-              <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://ron-makino.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
+        {/* 🔗 Cloudflare Workersリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>☁️ Cloudflare Workersで作成したサイト</h3>
+        {workersLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Cloudflare Workersで動作しています
+            </p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
           </div>
-        </section>
-        {/* Cloudflare Workersで作成したサイト */}
-        <section style={styles.section} id="cloudflare-sites">
-          <h2>☁️ Cloudflare Workersで作成したサイト</h2>
-          <div style={styles.cardGrid}>
-            <div style={styles.card}>
-              <h3>🐛 ロン君のゴキ退 Ver2</h3>
-              <p>Cloudflare Workersで動くロン君のゴキ退治 Ver2。</p>
-              <span style={styles.note}>※ Cloudflare Workersで動作しています</span>
-              <a href="https://rongokiv2.ronron201907.workers.dev/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-          </div>
-        </section>
+        ))}
 
-        {/* Renderで作成したサイト */}
-        <section style={styles.section} id="render-sites">
-          <h2>⚙ Renderで作成したサイト</h2>
-          <div style={styles.cardGrid}>
-            <div style={styles.card}>
-              <h3>🔮 ロン君の運勢占い（Render版）</h3>
-              <p>Renderでビルドした占いサイト。</p>
-              <span style={styles.note}>※ Renderでビルドされています</span>
-              <a href="https://my-js-page.onrender.com/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>💰 ロン君の消費税計算サイト（Render版）</h3>
-              <p>Renderでビルドした消費税計算サイト。</p>
-              <span style={styles.note}>※ Renderでビルドされています</span>
-              <a href="https://react.dev/5" style={styles.btn}>サイトを開く ➔</a>
-            </div>
+        {/* 🔗 Renderリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>⚙ Renderで作成したサイト</h3>
+        {renderLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Renderでビルドされています
+            </p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
           </div>
-        </section>
+        ))}
 
-        {/* Figmaで作成したサイト */}
-        <section style={styles.section} id="figma-sites">
-          <h2>🎨 Figmaで作成したサイト</h2>
-          <div style={styles.cardGrid}>
-            <div style={styles.card}>
-              <h3>🎵 能登衆音楽コレクション（Figma）</h3>
-              <p>Figmaで作成した音楽コレクションサイト。</p>
-              <span style={styles.note}>※ Figmaで作成されています</span>
-              <a href="url?id=34" style={styles.btn}>サイトを開く ➔</a>
-            </div>
-            <div style={styles.card}>
-              <h3>💰 ロン君消費税計算サイト（Figma）</h3>
-              <p>Figmaで作成した消費税計算サイト。</p>
-              <span style={styles.note}>※ Figmaで作成されています</span>
-              <a href="https://mace-walk-72354966.figma.site/" style={styles.btn}>サイトを開く ➔</a>
-            </div>
+        {/* 🔗 Figmaリンク（カード） */}
+        <h3 style={{ margin: "30px 0 15px 0" }}>🎨 Figmaで作成したサイト</h3>
+        {figmaLinks.map((link, idx) => (
+          <div
+            key={idx}
+            className="link-card"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              border: "2px solid #eee",
+            }}
+          >
+            <h4 style={{ marginBottom: "8px" }}>{link.title}</h4>
+            <p style={{ marginBottom: "5px", color: "#666" }}>{link.desc}</p>
+            <p style={{ fontSize: "12px", color: "#999" }}>
+              ※ Figmaで作成されています
+            </p>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              サイトを開く ➔
+            </a>
           </div>
-        </section>
-
-        {/* 更新履歴セクション */}
-        <section style={styles.section}>
-          <h2>更新履歴</h2>
-          <div style={styles.card}>
-            <ul style={styles.historyList}>
-              <li>2026/08/13: 共有ページ一覧を追加し、report.html への導線を分かりやすくしました。</li>
-              <li>2026/08/11: 「更新履歴」表示を追加しました。</li>
-              <li>2026/08/11: Cursor / Figma を検証環境リンクに追加しました。</li>
-              <li>2026/08/11: 検証環境リンクをモバイルでも見やすいバッジ表示に変更しました。</li>
-            </ul>
-            <p style={styles.note}>※ このサイトはAIで自動生成されています</p>
-          </div>
-        </section>
+        ))}
       </main>
 
-      {/* トップに戻る矢印ボタン */}
-      <a 
-        href="#" 
-        style={{ 
-          ...styles.backToTop, 
-          opacity: showBackToTop ? 1 : 0, 
-          visibility: showBackToTop ? 'visible' : 'hidden' 
-        }} 
-        aria-label="トップに戻る"
+      {/* フッター */}
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "25px 0",
+          fontSize: "13px",
+          color: "#888",
+          backgroundColor: "#fff",
+          marginTop: "40px",
+        }}
       >
-        ⬆
-      </a>
-
-      <footer style={styles.footer}>
-        <p>&copy; 2026 ron. All rights reserved. 最終確認: 2026/08/16</p>
+        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
+        <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
+          最終確認: {new Date().toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" })}
+        </p>
+        <div
+          style={{
+            marginTop: "14px",
+            padding: "14px 16px",
+            backgroundColor: "#f9fafb",
+            borderRadius: "14px",
+            border: "1px solid #e5e7eb",
+            maxWidth: "700px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            color: "#555",
+            textAlign: "left",
+          }}
+        >
+          <p style={{ margin: "0 0 6px", fontWeight: 700 }}>更新履歴</p>
+          <ul style={{ margin: 0, paddingLeft: "18px", color: "#555" }}>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/13: 共有ページ一覧を追加し、report.html への導線を分かりやすくしました。
+            </li>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: 「更新履歴」表示を追加しました。
+            </li>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: Cursor / Figma を検証環境リンクに追加しました。
+            </li>
+            <li style={{ marginBottom: "4px" }}>
+              2026/08/11: 検証環境リンクをモバイルでも見やすいバッジ表示に変更しました。
+            </li>
+          </ul>
+        </div>
+        <p style={{ fontSize: "12px", color: "#aaa", margin: "14px 0 0 0" }}>
+          ※ このサイトはAIで自動生成されています
+        </p>
       </footer>
+
+      {/* スマホ用CSS：のハンバーガーだけ制御 */}
+      <style>{`
+        @media (max-width: 600px) {
+          .menu-button { display: block; }
+          main { padding: 24px 14px !important; }
+          .env-badges { gap: 8px; }
+          .env-badge {
+            width: 100% !important;
+            justify-content: center !important;
+            box-sizing: border-box;
+          }
+        }
+      `}</style>
     </div>
   );
 }
-
-// スタイル定義
-const styles = {
-  body: {
-    fontFamily: 'sans-serif',
-    margin: 0,
-    backgroundColor: '#f3f0ff',
-    color: '#333',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#2e2640',
-    color: '#fff',
-    padding: '1rem',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-  },
-  headerLogo: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.55rem',
-  },
-  logoImg: {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-  },
-  headerSubtitle: {
-    fontSize: '0.9rem',
-  },
-  menuBtn: {
-    background: 'none',
-    border: 'none',
-    color: '#fff',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-  },
-  navMenu: {
-    position: 'fixed',
-    top: '60px',
-    width: '250px',
-    height: 'calc(100vh - 60px)',
-    backgroundColor: '#ffffff',
-    boxShadow: '-2px 0 5px rgba(0,0,0,0.1)',
-    transition: 'right 0.3s ease',
-    zIndex: 999,
-    overflowY: 'auto',
-  },
-  navList: {
-    listStyle: 'none',
-    padding: '1rem',
-    margin: 0,
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#333',
-    fontWeight: 'bold',
-    display: 'block',
-    padding: '0.5rem',
-    borderRadius: '4px',
-  },
-  container: {
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '1rem',
-  },
-  hero: {
-    background: '#fff',
-    borderRadius: '12px',
-    padding: '1.5rem',
-    textAlign: 'center',
-    marginBottom: '2rem',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-  },
-  ronImg: {
-    width: '120px',
-    height: '120px',
-    borderRadius: '50%',
-    objectFit: 'cover',
-  },
-  profileBadge: {
-    fontWeight: 'bold',
-    color: '#555',
-  },
-  section: {
-    marginBottom: '2rem',
-  },
-  cardGrid: {
-    display: 'grid',
-    gap: '1rem',
-  },
-  card: {
-    background: '#fff',
-    padding: '1rem',
-    borderRadius: '8px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-  },
-  note: {
-    fontSize: '0.8rem',
-    color: '#666',
-    display: 'block',
-    marginBottom: '0.5rem',
-  },
-  btn: {
-    display: 'inline-block',
-    backgroundColor: '#6c5ce7',
-    color: '#fff',
-    padding: '0.5rem 1rem',
-    borderRadius: '4px',
-    textDecoration: 'none',
-    fontSize: '0.9rem',
-  },
-  envLink: {
-    display: 'inline-block',
-    backgroundColor: '#e2d9fc',
-    color: '#4a3b8c',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '4px',
-    textDecoration: 'none',
-    fontSize: '0.85rem',
-    margin: '2px',
-  },
-  historyList: {
-    paddingLeft: '1.2rem',
-    fontSize: '0.9rem',
-    color: '#555',
-  },
-  footer: {
-    textAlign: 'center',
-    padding: '1.5rem',
-    color: '#666',
-    fontSize: '0.9rem',
-  },
-  backToTop: {
-    position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-    backgroundColor: '#6c5ce7',
-    color: '#fff',
-    width: '45px',
-    height: '45px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textDecoration: 'none',
-    fontSize: '1.2rem',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-    transition: 'opacity 0.3s, visibility 0.3s',
-    zIndex: 1000,
-  },
-};
