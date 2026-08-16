@@ -80,19 +80,19 @@ export default function App() {
           <div style={styles.card}>
             <p><strong>目的：</strong> AI開発の検証を行うためのハブサイトです。 全て無料で作成・運用し、1つのサイトは約3時間で完成させています。</p>
             <p><strong>検証環境：</strong> 
-              <a href="url?id=2" style={styles.envLink}>React</a>{' '}
+              <a href="https://ron-home-app.vercel.app/url?id=2" style={styles.envLink}>React</a>{' '}
               <a href="https://nextjs.org/" style={styles.envLink}>Next.js</a>{' '}
-              <a href="url?id=4" style={styles.envLink}>Vite</a>{' '}
-              <a href="url?id=5" style={styles.envLink}>Vercel</a>{' '}
-              <a href="url?id=6" style={styles.envLink}>Cloudflare Workers</a>{' '}
-              <a href="url?id=7" style={styles.envLink}>Render</a>{' '}
-              <a href="url?id=8" style={styles.envLink}>Supabase</a>{' '}
-              <a href="url?id=9" style={styles.envLink}>Firebase</a>{' '}
-              <a href="url?id=10" style={styles.envLink}>MongoDB</a>{' '}
-              <a href="url?id=11" style={styles.envLink}>GitHub</a>{' '}
-              <a href="url?id=12" style={styles.envLink}>Cursor</a>{' '}
-              <a href="url?id=13" style={styles.envLink}>Figma</a>{' '}
-              <a href="url?id=14" style={styles.envLink}>VS Code</a>
+              <a href="https://ron-home-app.vercel.app/url?id=4" style={styles.envLink}>Vite</a>{' '}
+              <a href="https://ron-home-app.vercel.app/url?id=5" style={styles.envLink}>Vercel</a>{' '}
+              <a href="https://ron-home-app.vercel.app/url?id=6" style={styles.envLink}>Cloudflare Workers</a>{' '}
+              <a href="url?id=14" style={styles.envLink}>Render</a>{' '}
+              <a href="url?id=15" style={styles.envLink}>Supabase</a>{' '}
+              <a href="url?id=16" style={styles.envLink}>Firebase</a>{' '}
+              <a href="url?id=17" style={styles.envLink}>MongoDB</a>{' '}
+              <a href="url?id=18" style={styles.envLink}>GitHub</a>{' '}
+              <a href="url?id=19" style={styles.envLink}>Cursor</a>{' '}
+              <a href="url?id=20" style={styles.envLink}>Figma</a>{' '}
+              <a href="url?id=21" style={styles.envLink}>VS Code</a>
             </p>
             <p style={styles.note}>※ LLM は低レベルのものでOK。 RAG（外部知識参照）で補完する方針です。</p>
             <p><strong>Figma：</strong> Figmaで作成したデザインを React / Next.js / Vercel に移植する検証も行っています。</p>
@@ -114,7 +114,7 @@ export default function App() {
               <h3>🔮 ロン君の運勢占い</h3>
               <p>今日のロン君からのメッセージと運勢を占おう！</p>
               <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="url?id=15" style={styles.btn}>サイトを開く ➔</a>
+              <a href="url?id=23" style={styles.btn}>サイトを開く ➔</a>
             </div>
             <div style={styles.card}>
               <h3>🎮 黒猫ロン君クリックゲーム</h3>
@@ -150,7 +150,7 @@ export default function App() {
               <h3>🎵 能登衆音楽コレクション（Vercel版）</h3>
               <p>能登衆の音楽をまとめたコレクションサイト。</p>
               <span style={styles.note}>※ Vercelでビルドされています</span>
-              <a href="https://noto-musice-collection.vercel.app/" style={styles.btn}>サイトを開く ➔</a>
+              <a href="url?id=29" style={styles.btn}>サイトを開く ➔</a>
             </div>
             <div style={styles.card}>
               <h3>🐾 ロン君大好き！！</h3>
@@ -200,7 +200,7 @@ export default function App() {
               <h3>🎵 能登衆音楽コレクション（Figma）</h3>
               <p>Figmaで作成した音楽コレクションサイト。</p>
               <span style={styles.note}>※ Figmaで作成されています</span>
-              <a href="https://beatle-noto-ogi.figma.site/" style={styles.btn}>サイトを開く ➔</a>
+              <a href="url?id=34" style={styles.btn}>サイトを開く ➔</a>
             </div>
             <div style={styles.card}>
               <h3>💰 ロン君消費税計算サイト（Figma）</h3>
