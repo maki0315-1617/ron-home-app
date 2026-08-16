@@ -26,6 +26,11 @@ export default function App() {
       desc: "ロン君の毎日のお世話や体調を優しく管理できるカレンダー！",
     },
     {
+      title: "📅 ロン君の簡易スケジュール",
+      url: "https://ron-sch.vercel.app/",
+      desc: "ろん君のスケジュール管理サイト！",
+    },
+    {
       title: "🎤 ロン君の音声簡易文字起こし",
       url: "https://ron-voise-app.vercel.app",
       desc: "会議の議事録やメモに大活躍するリアルタイム文字起こしツール！",
