@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLanguage } from "./i18n/LanguageContext.jsx";
 import {
   getLandingContent,
@@ -8,15 +8,16 @@ import {
   GOOGLE_MAPS_LINK_URL,
 } from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
-import {
-  SITE_URL,
-  DEMO_ENTRY_URL,
-  DEMO_ENTRY_PATH,
-  DEMO_SCHEDULE_APP_URL,
-} from "./siteConfig.js";
+import { SITE_URL, DEMO_APP_URL } from "./siteConfig.js";
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
+
+const demoLinkProps = {
+  href: DEMO_APP_URL,
+  target: "_blank",
+  rel: "noopener noreferrer",
+};
 
 function SectionCard({ id, title, icon, children, style }) {
   return (
@@ -64,8 +65,6 @@ function LegalBlock({ title, paragraphs }) {
 }
 
 export default function LandingPage() {
-  const [searchParams] = useSearchParams();
-  const isDemoEntry = searchParams.get("demo") === "1";
   const { locale } = useLanguage();
   const L = useMemo(() => getLandingContent(locale), [locale]);
   const company = useMemo(
@@ -96,12 +95,6 @@ export default function LandingPage() {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
-
-  useEffect(() => {
-    if (!isDemoEntry) return;
-    const t = window.setTimeout(() => scrollToSection("demo"), 400);
-    return () => window.clearTimeout(t);
-  }, [isDemoEntry, scrollToSection]);
 
   useEffect(() => {
     const styleSheet = document.createElement("style");
@@ -257,8 +250,8 @@ export default function LandingPage() {
           </span>
         </button>
 
-        <Link
-          to={DEMO_ENTRY_PATH}
+        <a
+          {...demoLinkProps}
           className="cta-button"
           style={{
             display: "none",
@@ -275,7 +268,7 @@ export default function LandingPage() {
           id="header-demo-cta"
         >
           {ui.tryDemo}
-        </Link>
+        </a>
 
         <LanguageToggle compact />
 
@@ -297,30 +290,6 @@ export default function LandingPage() {
           {isMenuOpen ? "✕" : "☰"}
         </button>
       </header>
-
-      {isDemoEntry && (
-        <div
-          role="status"
-          style={{
-            backgroundColor: "#fef3c7",
-            borderBottom: `3px solid ${themeColor}`,
-            color: darkColor,
-            padding: "14px 18px",
-            textAlign: "center",
-          }}
-        >
-          <p style={{ margin: 0, fontWeight: 800, fontSize: "16px" }}>{ui.demoBannerTitle}</p>
-          <p style={{ margin: "8px auto 0", maxWidth: "720px", lineHeight: 1.65, fontSize: "14px" }}>
-            {ui.demoBannerBody}
-          </p>
-          <p style={{ margin: "10px 0 0", fontSize: "12px", color: "#555" }}>
-            {ui.demoEntryUrlLabel}{" "}
-            <a href={DEMO_ENTRY_URL} style={{ color: darkColor, fontWeight: 600 }}>
-              {DEMO_ENTRY_URL}
-            </a>
-          </p>
-        </div>
-      )}
 
       {isMenuOpen && (
         <>
@@ -425,8 +394,8 @@ export default function LandingPage() {
                 </a>
               ),
             )}
-            <Link
-              to={DEMO_ENTRY_PATH}
+            <a
+              {...demoLinkProps}
               onClick={() => setIsMenuOpen(false)}
               style={{
                 display: "block",
@@ -441,7 +410,7 @@ export default function LandingPage() {
               }}
             >
               {ui.openDemoApp}
-            </Link>
+            </a>
           </nav>
         </>
       )}
@@ -509,8 +478,8 @@ export default function LandingPage() {
             >
               {ui.contactCta}
             </button>
-            <Link
-              to={DEMO_ENTRY_PATH}
+            <a
+              {...demoLinkProps}
               className="cta-button"
               style={{
                 backgroundColor: "#fff",
@@ -524,7 +493,7 @@ export default function LandingPage() {
               }}
             >
               {ui.freeDemo}
-            </Link>
+            </a>
           </div>
           <p style={{ marginTop: "18px", fontSize: "12px", color: "#888" }}>
             {ui.officialSite}{" "}
@@ -551,71 +520,36 @@ export default function LandingPage() {
           <p style={{ lineHeight: 1.75, color: "#444", marginTop: 0 }}>
             {ui.demoLead}
           </p>
-          {!isDemoEntry && (
-            <Link
-              to={DEMO_ENTRY_PATH}
-              className="cta-button"
-              style={{
-                display: "inline-block",
-                backgroundColor: themeColor,
-                color: "#fff",
-                padding: "10px 18px",
-                borderRadius: "999px",
-                textDecoration: "none",
-                fontWeight: 700,
-              }}
-            >
-              {ui.demoOpen}
-            </Link>
-          )}
-          {isDemoEntry && (
-            <>
-              <div
-                style={{
-                  marginTop: "16px",
-                  padding: "14px 16px",
-                  borderRadius: "12px",
-                  backgroundColor: "#fff7ed",
-                  border: `2px solid ${themeColor}`,
-                  fontWeight: 700,
-                  color: darkColor,
-                }}
-              >
-                {ui.demoBannerTitle}
-              </div>
-              <p style={{ margin: "16px 0 10px", fontWeight: 700, color: darkColor }}>
-                {ui.demoIframeTitle}
-              </p>
-              <div
-                style={{
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  border: "1px solid #e5e7eb",
-                }}
-              >
-                <iframe
-                  title={ui.demoIframeTitle}
-                  src={DEMO_SCHEDULE_APP_URL}
-                  width="100%"
-                  height="520"
-                  style={{ border: 0, display: "block" }}
-                  loading="lazy"
-                />
-              </div>
-              <Link
-                to="/"
-                style={{
-                  display: "inline-block",
-                  marginTop: "14px",
-                  color: darkColor,
-                  fontWeight: 600,
-                  fontSize: "14px",
-                }}
-              >
-                ← {ui.demoGoOfficial}
-              </Link>
-            </>
-          )}
+          <div
+            style={{
+              margin: "14px 0 16px",
+              padding: "12px 14px",
+              borderRadius: "10px",
+              backgroundColor: "#fff7ed",
+              border: `1px solid ${themeColor}`,
+              fontSize: "14px",
+              fontWeight: 600,
+              color: darkColor,
+              lineHeight: 1.6,
+            }}
+          >
+            {ui.demoNotice}
+          </div>
+          <a
+            {...demoLinkProps}
+            className="cta-button"
+            style={{
+              display: "inline-block",
+              backgroundColor: themeColor,
+              color: "#fff",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+          >
+            {ui.demoOpen}
+          </a>
         </SectionCard>
 
         <SectionCard id="resources" title={ui.resourcesTitle} icon="🔗">

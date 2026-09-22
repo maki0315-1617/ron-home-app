@@ -1,4 +1,4 @@
-import { DEMO_ENTRY_URL } from "../siteConfig.js";
+import { DEMO_APP_URL } from "../siteConfig.js";
 
 const LINK_URLS = {
   vercel: [
@@ -6,7 +6,7 @@ const LINK_URLS = {
     "https://my-react-app-topaz-iota.vercel.app/",
     "https://my-ron-game1-app.vercel.app/",
     "https://ronron-app.vercel.app/",
-    DEMO_ENTRY_URL,
+    DEMO_APP_URL,
     "https://ron-voise-app.vercel.app",
     "https://zeikin-calc.vercel.app/",
     "https://noto-musice-collection.vercel.app/",
@@ -77,7 +77,7 @@ const content = {
       { title: "🎮 黒猫ロン君クリックゲーム", desc: "画面のロン君をたくさんクリックして遊ぶ楽しいゲーム！" },
       { title: "🪳 ロン君のゴキ退治", desc: "すばやい動きのゴキブリをロン君が退治するアクションゲーム！" },
       { title: "📅 ロン君お世話カレンダー", desc: "ロン君の毎日のお世話や体調を優しく管理できるカレンダー！" },
-      { title: "📅 ロンスケ＋ジュール（デモ入口）", desc: "ロンAIシステムズのデモ入口ページ（?demo=1）" },
+      { title: "📅 ロンスケ＋ジュール（デモ）", desc: "ロンAIシステムズのスケジュール管理アプリ・デモ版（新しいタブで開きます）" },
       { title: "🎤 ロン君の音声簡易文字起こし", desc: "会議の議事録やメモに大活躍するリアルタイム文字起こしツール！" },
       { title: "💰 ロン君の消費税計算サイト", desc: "金額を入力すると消費税を自動計算！" },
       { title: "🎵 能登衆音楽コレクション（Vercel版）", desc: "能登衆の音楽をまとめたコレクションサイト。" },
@@ -154,7 +154,7 @@ const content = {
       { title: "🎮 Black cat Ron clicker", desc: "Click Ron on screen — a fun mini game!" },
       { title: "🪳 Ron's roach patrol", desc: "Action game: Ron catches speedy roaches!" },
       { title: "📅 Ron care calendar", desc: "Gently track Ron's daily care and health." },
-      { title: "📅 Ron Schedule+ (demo entry)", desc: "Ron AI Systems demo entry page (?demo=1)." },
+      { title: "📅 Ron Schedule+ (demo)", desc: "Ron AI Systems schedule app demo (opens in a new tab)." },
       { title: "🎤 Ron voice transcription", desc: "Real-time transcription for meetings and memos." },
       { title: "💰 Ron tax calculator", desc: "Enter amounts to calculate consumption tax." },
       { title: "🎵 Noto music collection (Vercel)", desc: "Collection of Noto community music." },
