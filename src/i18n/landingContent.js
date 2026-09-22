@@ -9,8 +9,8 @@ export function getLandingContent(locale) {
   if (!en) {
     return {
       company: {
-        name: "合同会社ロンシステムズ",
-        nameEn: "Ron Systems LLC",
+        name: "ロンAIシステムズ",
+        nameEn: "Ron AI Systems",
         product: "ロンスケ＋ジュール",
         productEn: "Ron Schedule+",
         address: COMPANY_ADDRESS_JA,
@@ -33,7 +33,7 @@ export function getLandingContent(locale) {
         { id: "terms", label: "利用規約" },
       ],
       resources: [
-        { to: "/hub", label: "🐾 ロンシステムズAI検証HUB", internal: true },
+        { to: "/hub", label: "🐾 ロンAIシステムズAI検証HUB", internal: true },
         { href: "/report.html", label: "📊 セキュリティ診断レポート", internal: false },
         { href: "/memo.html", label: "📘 React学習サイト", internal: false },
       ],
@@ -43,14 +43,14 @@ export function getLandingContent(locale) {
         menuClose: "メニューを閉じる",
         siteNav: "サイト内リンク",
         relatedPages: "関連ページ",
-        openDemoApp: "デモアプリを開く ↗",
+        openDemoApp: "デモ入口を開く",
         officialSite: "公式サイト：",
         scrollTop: "ページトップへ戻る",
         providedBy: "提供",
         heroLead:
           "予定の登録・確認を、シンプルな操作で。個人のタスク管理から小規模チームの共有まで、すぐ使えるスケジュールアプリの公式ポータルサイトです。",
         contactCta: "お問い合わせ",
-        freeDemo: "無料デモを見る ↗",
+        freeDemo: "デモ入口へ進む",
         mascotAlt: "ロンスケ＋ジュールのマスコット",
         featuresTitle: "機能・特徴",
         features: [
@@ -61,11 +61,18 @@ export function getLandingContent(locale) {
           "小規模チーム向けの共有運用にも対応予定（Enterpriseプラン）",
         ],
         demoTitle: "デモアプリ",
-        demoLead: "実際の操作感はデモ環境でご確認いただけます。本番導入前の評価・社内共有にご利用ください。",
-        demoOpen: "ロンスケ＋ジュール デモを開く ↗",
+        demoLead:
+          "デモは専用入口（?demo=1）からご利用ください。本番契約・課金は発生しません。操作確認・社内共有向けです。",
+        demoOpen: "ロンスケ＋ジュール デモ入口へ",
+        demoBannerTitle: "これはデモへの入口です",
+        demoBannerBody:
+          "表示中のページはデモ用です。本番環境ではなく、契約・課金は行われません。下のデモアプリで操作をお試しください。",
+        demoEntryUrlLabel: "デモ入口URL：",
+        demoIframeTitle: "ロンスケ＋ジュール デモ（操作画面）",
+        demoGoOfficial: "公式トップ（デモ以外）へ戻る",
         resourcesTitle: "関連ページ",
         resourcesLead: "AI検証用に作成したリンク集や資料ページも引き続きご利用いただけます。",
-        hubLink: "ロンシステムズAI検証HUB",
+        hubLink: "ロンAIシステムズAI検証HUB",
         reportLink: "セキュリティ診断レポート",
         memoLink: "React学習サイト",
         pricingTitle: "料金プラン（参考）",
@@ -172,8 +179,8 @@ export function getLandingContent(locale) {
 
   return {
     company: {
-      name: "Ron Systems LLC",
-      nameEn: "Ron Systems LLC",
+      name: "Ron AI Systems",
+      nameEn: "Ron AI Systems",
       product: "Ron Schedule+",
       productEn: "Ron Schedule+",
       address: "Horinouchi 3-chome, Nonoichi, Ishikawa, Japan",
@@ -196,7 +203,7 @@ export function getLandingContent(locale) {
       { id: "terms", label: "Terms of use" },
     ],
     resources: [
-      { to: "/hub", label: "🐾 Ron Systems AI Verification HUB", internal: true },
+      { to: "/hub", label: "🐾 Ron AI Systems AI Verification HUB", internal: true },
       { href: "/report.html", label: "📊 Security report", internal: false },
       { href: "/memo.html", label: "📘 React learning notes", internal: false },
     ],
@@ -206,14 +213,14 @@ export function getLandingContent(locale) {
       menuClose: "Close menu",
       siteNav: "On this page",
       relatedPages: "Related",
-      openDemoApp: "Open demo app ↗",
+      openDemoApp: "Open demo entry",
       officialSite: "Official site:",
       scrollTop: "Back to top",
       providedBy: "by",
       heroLead:
         "Add and review plans with simple actions—from personal tasks to small-team sharing. The official portal for our schedule app.",
       contactCta: "Contact us",
-      freeDemo: "View free demo ↗",
+      freeDemo: "Go to demo entry",
       mascotAlt: "Ron Schedule+ mascot",
       featuresTitle: "Features",
       features: [
@@ -224,11 +231,18 @@ export function getLandingContent(locale) {
         "Team sharing planned (Enterprise tier)",
       ],
       demoTitle: "Demo app",
-      demoLead: "Try the demo environment before production rollout or internal sharing.",
-      demoOpen: "Open Ron Schedule+ demo ↗",
+      demoLead:
+        "Use the dedicated demo entry (?demo=1). No production contract or billing applies— for trials and internal review.",
+      demoOpen: "Ron Schedule+ demo entry",
+      demoBannerTitle: "This is the demo entry point",
+      demoBannerBody:
+        "You are viewing the demo portal. This is not production and does not create contracts or charges. Try the app below.",
+      demoEntryUrlLabel: "Demo entry URL:",
+      demoIframeTitle: "Ron Schedule+ demo (live UI)",
+      demoGoOfficial: "Back to official home (non-demo)",
       resourcesTitle: "Related pages",
       resourcesLead: "AI experiment links and documentation remain available.",
-      hubLink: "Ron Systems AI Verification HUB",
+      hubLink: "Ron AI Systems AI Verification HUB",
       reportLink: "Security assessment report",
       memoLink: "React learning notes",
       pricingTitle: "Pricing (reference)",

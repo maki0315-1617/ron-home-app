@@ -1,10 +1,12 @@
+import { DEMO_ENTRY_URL } from "../siteConfig.js";
+
 const LINK_URLS = {
   vercel: [
     "https://my-js-page.vercel.app",
     "https://my-react-app-topaz-iota.vercel.app/",
     "https://my-ron-game1-app.vercel.app/",
     "https://ronron-app.vercel.app/",
-    "https://ron-sch.vercel.app/",
+    DEMO_ENTRY_URL,
     "https://ron-voise-app.vercel.app",
     "https://zeikin-calc.vercel.app/",
     "https://noto-musice-collection.vercel.app/",
@@ -17,9 +19,9 @@ const LINK_URLS = {
 
 const content = {
   ja: {
-    siteTitle: "ロンシステムズAI検証HUB",
+    siteTitle: "ロンAIシステムズAI検証HUB",
     siteSubtitle: "AI検証ハブサイト",
-    menuTitle: "🐾 ロンシステムズAI検証HUB リンクメニュー",
+    menuTitle: "🐾 ロンAIシステムズAI検証HUB リンクメニュー",
     homeLink: "🏠 ロンスケ＋ジュール 公式トップ",
     profileAlt: "黒猫ロン君",
     profileName: "ロン君 (Ron)",
@@ -28,7 +30,7 @@ const content = {
       "こんにちは！ボクは黒猫のロン。このHUBは、AI開発の検証を目的に作られているよ🐾",
     sharedTitle: "共有ページ一覧",
     openBtn: "開く ➔",
-    aboutTitle: "🧪 ロンシステムズAI検証HUBの説明",
+    aboutTitle: "🧪 ロンAIシステムズAI検証HUBの説明",
     purposeLabel: "目的：",
     purposeText:
       "AI開発の検証を行うためのハブサイトです。全て無料で作成・運用し、1つのサイトは約3時間で完成させています。",
@@ -75,7 +77,7 @@ const content = {
       { title: "🎮 黒猫ロン君クリックゲーム", desc: "画面のロン君をたくさんクリックして遊ぶ楽しいゲーム！" },
       { title: "🪳 ロン君のゴキ退治", desc: "すばやい動きのゴキブリをロン君が退治するアクションゲーム！" },
       { title: "📅 ロン君お世話カレンダー", desc: "ロン君の毎日のお世話や体調を優しく管理できるカレンダー！" },
-      { title: "📅 ロンスケ＋ジュール", desc: "ロンシステムズのスケジュール管理アプリ（デモ）" },
+      { title: "📅 ロンスケ＋ジュール（デモ入口）", desc: "ロンAIシステムズのデモ入口ページ（?demo=1）" },
       { title: "🎤 ロン君の音声簡易文字起こし", desc: "会議の議事録やメモに大活躍するリアルタイム文字起こしツール！" },
       { title: "💰 ロン君の消費税計算サイト", desc: "金額を入力すると消費税を自動計算！" },
       { title: "🎵 能登衆音楽コレクション（Vercel版）", desc: "能登衆の音楽をまとめたコレクションサイト。" },
@@ -95,9 +97,9 @@ const content = {
     sectionLabels: { vercel: "🚀 Vercel", workers: "☁️ Cloudflare Workers", render: "⚙ Render", figma: "🎨 Figma" },
   },
   en: {
-    siteTitle: "Ron Systems AI Verification HUB",
+    siteTitle: "Ron AI Systems AI Verification HUB",
     siteSubtitle: "AI verification hub",
-    menuTitle: "🐾 Ron Systems AI Verification HUB — Links",
+    menuTitle: "🐾 Ron AI Systems AI Verification HUB — Links",
     homeLink: "🏠 Ron Schedule+ Official Home",
     profileAlt: "Black cat Ron",
     profileName: "Ron the Cat",
@@ -106,7 +108,7 @@ const content = {
       "Hi! I'm Ron, a black cat. This HUB is built for AI development experiments 🐾",
     sharedTitle: "Shared pages",
     openBtn: "Open ➔",
-    aboutTitle: "🧪 About this AI Verification HUB",
+    aboutTitle: "🧪 About Ron AI Systems AI Verification HUB",
     purposeLabel: "Purpose:",
     purposeText:
       "A hub for AI development experiments. All sites are built and run for free; each site takes about 3 hours to complete.",
@@ -152,7 +154,7 @@ const content = {
       { title: "🎮 Black cat Ron clicker", desc: "Click Ron on screen — a fun mini game!" },
       { title: "🪳 Ron's roach patrol", desc: "Action game: Ron catches speedy roaches!" },
       { title: "📅 Ron care calendar", desc: "Gently track Ron's daily care and health." },
-      { title: "📅 Ron Schedule+", desc: "Ron Systems schedule app (demo)." },
+      { title: "📅 Ron Schedule+ (demo entry)", desc: "Ron AI Systems demo entry page (?demo=1)." },
       { title: "🎤 Ron voice transcription", desc: "Real-time transcription for meetings and memos." },
       { title: "💰 Ron tax calculator", desc: "Enter amounts to calculate consumption tax." },
       { title: "🎵 Noto music collection (Vercel)", desc: "Collection of Noto community music." },
