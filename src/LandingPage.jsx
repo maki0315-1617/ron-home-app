@@ -1,7 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "./i18n/LanguageContext.jsx";
-import { getLandingContent, resolveCompanyDisplay } from "./i18n/landingContent.js";
+import {
+  getLandingContent,
+  resolveCompanyDisplay,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_LINK_URL,
+} from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
 
 const SITE_URL = "https://ron-home-app.vercel.app";
@@ -795,6 +800,44 @@ export default function LandingPage() {
               </div>
             ))}
           </dl>
+          <div style={{ marginTop: "22px" }}>
+            <p style={{ margin: "0 0 10px", fontWeight: 700, fontSize: "15px", color: darkColor }}>
+              {ui.mapTitle}
+            </p>
+            <div
+              style={{
+                borderRadius: "12px",
+                overflow: "hidden",
+                border: "1px solid #e5e7eb",
+                lineHeight: 0,
+              }}
+            >
+              <iframe
+                title={ui.mapTitle}
+                src={GOOGLE_MAPS_EMBED_URL}
+                width="100%"
+                height="320"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <a
+              href={GOOGLE_MAPS_LINK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "12px",
+                color: darkColor,
+                fontWeight: 600,
+                fontSize: "14px",
+              }}
+            >
+              {ui.mapLink} ↗
+            </a>
+          </div>
         </SectionCard>
 
         <SectionCard id="tokusho" title={ui.tokushoTitle} icon="📋">

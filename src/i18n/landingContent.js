@@ -1,3 +1,9 @@
+export const COMPANY_ADDRESS_JA = "石川県野々市市堀内三丁目";
+
+export const GOOGLE_MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(COMPANY_ADDRESS_JA)}&hl=ja&z=16&output=embed`;
+
+export const GOOGLE_MAPS_LINK_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_ADDRESS_JA)}`;
+
 export function getLandingContent(locale) {
   const en = locale === "en";
   if (!en) {
@@ -7,7 +13,7 @@ export function getLandingContent(locale) {
         nameEn: "Ron Systems LLC",
         product: "ロンスケ＋ジュール",
         productEn: "Ron Schedule+",
-        address: "〒920-0869 石川県金沢市本町二丁目15番1号 ロンビル5階",
+        address: COMPANY_ADDRESS_JA,
         phone: "0120-867-309",
         phoneHours: "平日 10:00〜17:00（土日祝・年末年始を除く）",
         email: "ronron201907@gmail.com",
@@ -79,7 +85,9 @@ export function getLandingContent(locale) {
         tokushoNote: "通信販売・サービス提供に関する表示（架空のサンプルです）。",
         privacyTitle: "個人情報保護方針",
         termsTitle: "利用規約",
-        footerFictional: "※ 住所・電話・代表者名等はLP用の架空情報です。",
+        footerFictional: "※ 電話・代表者名等はLP用の架空情報です。",
+        mapTitle: "所在地マップ（Google Maps）",
+        mapLink: "Google Maps で大きな地図を見る",
         agreePrivacy: "に同意する",
         submit: "送信する",
         submitting: "送信中…",
@@ -168,7 +176,7 @@ export function getLandingContent(locale) {
       nameEn: "Ron Systems LLC",
       product: "Ron Schedule+",
       productEn: "Ron Schedule+",
-      address: "5F Ron Bldg., 15-1 Honmachi 2-chome, Kanazawa, Ishikawa 920-0869, Japan (fictional)",
+      address: "Horinouchi 3-chome, Nonoichi, Ishikawa, Japan",
       phone: "0120-867-309",
       phoneHours: "Weekdays 10:00–17:00 (JST, excluding holidays)",
       email: "ronron201907@gmail.com",
@@ -240,7 +248,9 @@ export function getLandingContent(locale) {
       tokushoNote: "Sample disclosure for online services (fictional).",
       privacyTitle: "Privacy policy",
       termsTitle: "Terms of use",
-      footerFictional: "※ Address, phone, and representative are fictional sample data.",
+      footerFictional: "※ Phone number and representative name are fictional sample data.",
+      mapTitle: "Location (Google Maps)",
+      mapLink: "Open larger map in Google Maps",
       agreePrivacy: "I agree to the",
       submit: "Submit",
       submitting: "Sending…",
