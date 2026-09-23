@@ -19,12 +19,13 @@ const demoLinkProps = {
   rel: "noopener noreferrer",
 };
 
-const CANCEL_CATEGORY = "cancel";
+const CANCEL_CATEGORY = "subscription_cancel";
 const CANCEL_CATEGORY_MAIL = "サブスク解除申請";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function cancelEmailFromParams(params) {
-  if (params.get("type") !== CANCEL_CATEGORY) return "";
+  const type = params.get("type");
+  if (type !== "subscription_cancel" && type !== "cancel") return "";
   const email = (params.get("email") || "").trim();
   if (email.length > 254 || !EMAIL_PATTERN.test(email)) return "";
   return email;

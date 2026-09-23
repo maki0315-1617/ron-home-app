@@ -103,7 +103,7 @@ export function getLandingContent(locale) {
           { value: "請求・契約", label: "請求・契約" },
           { value: "その他", label: "その他" },
         ],
-        cancelCategory: { value: "cancel", label: "サブスク解除申請" },
+        cancelCategory: { value: "subscription_cancel", label: "サブスク解除申請" },
         labels: {
           name: "お名前",
           email: "メールアドレス",
@@ -267,7 +267,7 @@ export function getLandingContent(locale) {
         { value: "billing", label: "Billing / contract" },
         { value: "other", label: "Other" },
       ],
-      cancelCategory: { value: "cancel", label: "Subscription cancellation request" },
+      cancelCategory: { value: "subscription_cancel", label: "Subscription cancellation request" },
       labels: {
         name: "Name",
         email: "Email",
