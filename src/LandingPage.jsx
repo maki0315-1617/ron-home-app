@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useLanguage } from "./i18n/LanguageContext.jsx";
 import {
   getLandingContent,
@@ -18,6 +18,17 @@ const demoLinkProps = {
   target: "_blank",
   rel: "noopener noreferrer",
 };
+
+const CANCEL_CATEGORY = "cancel";
+const CANCEL_CATEGORY_MAIL = "サブスク解除申請";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function cancelEmailFromParams(params) {
+  if (params.get("type") !== CANCEL_CATEGORY) return "";
+  const email = (params.get("email") || "").trim();
+  if (email.length > 254 || !EMAIL_PATTERN.test(email)) return "";
+  return email;
+}
 
 function SectionCard({ id, title, icon, children, style }) {
   return (
@@ -72,23 +83,37 @@ export default function LandingPage() {
     [L.company, locale],
   );
   const ui = L.ui;
+  const [searchParams] = useSearchParams();
+  const cancelEmail = cancelEmailFromParams(searchParams);
+  const categories = cancelEmail
+    ? [...L.form.categories, L.form.cancelCategory]
+    : L.form.categories;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState(() => ({
     name: "",
-    email: "",
+    email: cancelEmail,
     company: "",
-    category: L.form.defaultCategory,
+    category: cancelEmail ? CANCEL_CATEGORY : L.form.defaultCategory,
     message: "",
     agree: false,
-  });
+  }));
   const [formStatus, setFormStatus] = useState("idle");
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
-    setForm((prev) => ({ ...prev, category: L.form.defaultCategory }));
+    setForm((prev) => {
+      if (prev.category === CANCEL_CATEGORY) return prev;
+      return { ...prev, category: L.form.defaultCategory };
+    });
   }, [L.form.defaultCategory]);
+
+  useEffect(() => {
+    if (!cancelEmail) return;
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+  }, [cancelEmail]);
 
   const scrollToSection = useCallback((id) => {
     setIsMenuOpen(false);
@@ -156,7 +181,7 @@ export default function LandingPage() {
           name: form.name.trim(),
           email: form.email.trim(),
           company: form.company.trim(),
-          category: form.category,
+          category: form.category === CANCEL_CATEGORY ? CANCEL_CATEGORY_MAIL : form.category,
           message: form.message.trim(),
         }),
       });
@@ -654,9 +679,9 @@ export default function LandingPage() {
                   setFormStatus("idle");
                   setForm({
                     name: "",
-                    email: "",
+                    email: cancelEmail,
                     company: "",
-                    category: L.form.defaultCategory,
+                    category: cancelEmail ? CANCEL_CATEGORY : L.form.defaultCategory,
                     message: "",
                     agree: false,
                   });
@@ -733,7 +758,7 @@ export default function LandingPage() {
                   onChange={handleFormChange}
                   style={inputStyle}
                 >
-                  {L.form.categories.map((opt) => (
+                  {categories.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
                     </option>
