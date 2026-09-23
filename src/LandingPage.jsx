@@ -967,8 +967,6 @@ export default function LandingPage() {
           </div>
           <p style={{ margin: "18px 0 0", color: "#94a3b8", fontSize: "12px" }}>
             &copy; {new Date().getFullYear()} {company.nameEn}. All rights reserved.
-            <br />
-            {ui.footerFictional}
           </p>
         </div>
       </footer>
