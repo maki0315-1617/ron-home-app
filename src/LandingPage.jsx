@@ -8,7 +8,7 @@ import {
   GOOGLE_MAPS_LINK_URL,
 } from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
-import { SITE_URL, DEMO_APP_URL } from "./siteConfig.js";
+import { SITE_URL, DEMO_APP_URL, STRIPE_STANDARD_CHECKOUT_URL } from "./siteConfig.js";
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
@@ -599,6 +599,27 @@ export default function LandingPage() {
                   <span style={{ fontSize: "13px", fontWeight: 600, color: "#666" }}>{plan.unit}</span>
                 </p>
                 <p style={{ margin: 0, fontSize: "14px", color: "#555", lineHeight: 1.6 }}>{plan.desc}</p>
+                {plan.checkout && (
+                  <a
+                    href={STRIPE_STANDARD_CHECKOUT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cta-button"
+                    style={{
+                      display: "inline-block",
+                      marginTop: "14px",
+                      backgroundColor: themeColor,
+                      color: "#fff",
+                      padding: "8px 16px",
+                      borderRadius: "999px",
+                      textDecoration: "none",
+                      fontWeight: 700,
+                      fontSize: "14px",
+                    }}
+                  >
+                    {ui.subscribe}
+                  </a>
+                )}
               </div>
             ))}
           </div>
