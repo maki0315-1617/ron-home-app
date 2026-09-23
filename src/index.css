@@ -109,3 +109,8 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+body.menu-cat-cursor,
+body.menu-cat-cursor * {
+  cursor: url("/black-cat-cursor.png") 32 50, pointer !important;
+}

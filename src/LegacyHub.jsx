@@ -25,10 +25,15 @@ export default function LegacyHub() {
   }, []);
 
   useEffect(() => {
+    document.body.classList.toggle("menu-cat-cursor", isMenuOpen);
+    return () => document.body.classList.remove("menu-cat-cursor");
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
       @keyframes slideIn {
-        0% { transform: translateX(-100%); opacity: 0; }
+        0% { transform: translateX(100%); opacity: 0; }
         100% { transform: translateX(0); opacity: 1; }
       }
       .slide-menu {
@@ -130,7 +135,7 @@ export default function LegacyHub() {
             backgroundColor: darkColor,
             position: "fixed",
             top: "70px",
-            left: 0,
+            right: 0,
             width: "80%",
             height: "80vh",
             overflowY: "auto",

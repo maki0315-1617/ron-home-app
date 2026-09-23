@@ -100,7 +100,7 @@ export default function LandingPage() {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
       @keyframes slideIn {
-        0% { transform: translateX(-100%); opacity: 0; }
+        0% { transform: translateX(100%); opacity: 0; }
         100% { transform: translateX(0); opacity: 1; }
       }
       .slide-menu { animation: slideIn 0.35s ease-out; }
@@ -110,6 +110,11 @@ export default function LandingPage() {
     document.head.appendChild(styleSheet);
     return () => document.head.removeChild(styleSheet);
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-cat-cursor", isMenuOpen);
+    return () => document.body.classList.remove("menu-cat-cursor");
+  }, [isMenuOpen]);
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 320);
@@ -314,7 +319,7 @@ export default function LandingPage() {
               backgroundColor: darkColor,
               position: "fixed",
               top: "70px",
-              left: 0,
+              right: 0,
               width: "min(320px, 88vw)",
               maxHeight: "calc(100vh - 70px)",
               overflowY: "auto",
