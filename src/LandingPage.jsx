@@ -480,6 +480,9 @@ export default function LandingPage() {
               ? `${company.name}（${company.nameEn}）${ui.providedBy}`
               : `${ui.providedBy} ${company.name}`}
           </p>
+          <p style={{ margin: "0 0 8px", fontSize: "13px", fontWeight: 700, letterSpacing: "0.04em", color: darkColor }}>
+            {ui.heroKicker}
+          </p>
           <h1 style={{ margin: "0 0 8px", fontSize: "clamp(26px, 5vw, 34px)", lineHeight: 1.35 }}>
             {company.product}
           </h1>
@@ -488,6 +491,9 @@ export default function LandingPage() {
               {company.productEn}
             </p>
           )}
+          <p style={{ margin: "0 auto 12px", maxWidth: "560px", fontSize: "18px", fontWeight: 700, lineHeight: 1.6, color: darkColor }}>
+            {ui.heroTagline}
+          </p>
           <p style={{ margin: "0 auto 22px", maxWidth: "560px", lineHeight: 1.75, color: "#555" }}>
             {ui.heroLead}
           </p>
