@@ -61,6 +61,10 @@ export function getLandingContent(locale) {
           "タスクも予定も、日付ごとにまとめて追加できます",
           "インストールは不要。ブラウザを開けば、すぐに書き始められます",
           "むずかしい操作はありません。はじめての日でも、その日から使えます",
+          "パソコンからも、スマホからも利用できます",
+          "通知を設定すれば、スケジュールの忘れや服薬の忘れをお知らせします",
+          "その日の日記としても利用できます",
+          "先の予定から、その日の忙しさを予測できます",
         ],
         demoTitle: "デモアプリ",
         demoLead:
@@ -227,6 +231,10 @@ export function getLandingContent(locale) {
         "Add tasks and events by date, in one place",
         "No install. Open the browser and start writing",
         "Simple enough to use on the first day",
+        "Use it on a computer or a phone",
+        "Turn on reminders so you don't miss a plan or a dose",
+        "Keep the day as a diary",
+        "See how busy a future day will be from the plans already there",
       ],
       demoTitle: "Demo app",
       demoLead:
