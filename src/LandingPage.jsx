@@ -116,6 +116,25 @@ export default function LandingPage() {
     if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
   }, [cancelEmail]);
 
+  // ヘルプ等からの #pricing / #contact リンクで対象セクションへスクロール
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = (window.location.hash || "").replace(/^#/, "");
+      if (!id || id === "top") return;
+      const run = () => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+      run();
+      // SPA描画後の追いスクロール
+      window.setTimeout(run, 120);
+      window.setTimeout(run, 400);
+    };
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
   const scrollToSection = useCallback((id) => {
     setIsMenuOpen(false);
     const el = document.getElementById(id);
