@@ -50,6 +50,7 @@ const content = {
     noteFigma: "※ Figmaで作成されています",
     openSite: "サイトを開く ➔",
     footerHistory: "更新履歴",
+    scrollTop: "ページトップへ戻る",
     footerAi: "※ このサイトはAIで自動生成されています",
     lastChecked: "最終確認",
     history: [
@@ -128,6 +129,7 @@ const content = {
     noteFigma: "Created in Figma",
     openSite: "Open site ➔",
     footerHistory: "Changelog",
+    scrollTop: "Back to top",
     footerAi: "※ This site was auto-generated with AI",
     lastChecked: "Last checked",
     history: [

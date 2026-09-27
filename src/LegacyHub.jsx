@@ -6,6 +6,7 @@ import LanguageToggle from "./components/LanguageToggle.jsx";
 
 export default function LegacyHub() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const { locale } = useLanguage();
   const h = getHubContent(locale);
   const {
@@ -30,6 +31,13 @@ export default function LegacyHub() {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 320);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
       @keyframes slideIn {
@@ -44,6 +52,7 @@ export default function LegacyHub() {
         box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
         border-color: ${themeColor} !important;
       }
+      .scroll-top-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
     `;
     document.head.appendChild(styleSheet);
     return () => document.head.removeChild(styleSheet);
@@ -638,28 +647,9 @@ export default function LegacyHub() {
           marginTop: "40px",
         }}
       >
-        <img
-          src="/brand/ron-ai-systems-logo.svg"
-          alt={locale === "en" ? "Ron AI Systems" : "ロンAIシステムズ"}
-          style={{
-            display: "block",
-            width: "min(480px, 92%)",
-            height: "auto",
-            margin: "0 auto 14px",
-          }}
-        />
-        <p>&copy; {new Date().getFullYear()} Ron AI Systems. All rights reserved.</p>
-        <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
-          {h.lastChecked}:{" "}
-          {new Date().toLocaleDateString(locale === "en" ? "en-US" : "ja-JP", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-          })}
-        </p>
         <div
           style={{
-            marginTop: "14px",
+            marginTop: 0,
             padding: "14px 16px",
             backgroundColor: "#f9fafb",
             borderRadius: "14px",
@@ -680,8 +670,54 @@ export default function LegacyHub() {
             ))}
           </ul>
         </div>
+        <p style={{ margin: "16px 0 0" }}>&copy; {new Date().getFullYear()} Ron AI Systems. All rights reserved.</p>
+        <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
+          {h.lastChecked}:{" "}
+          {new Date().toLocaleDateString(locale === "en" ? "en-US" : "ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })}
+        </p>
+        <img
+          src="/brand/ron-ai-systems-logo.svg"
+          alt={locale === "en" ? "Ron AI Systems" : "ロンAIシステムズ"}
+          style={{
+            display: "block",
+            width: "min(480px, 92%)",
+            height: "auto",
+            margin: "18px auto 0",
+          }}
+        />
         <p style={{ fontSize: "12px", color: "#aaa", margin: "14px 0 0 0" }}>{h.footerAi}</p>
       </footer>
+
+      {showScrollTop && (
+        <button
+          type="button"
+          className="scroll-top-btn"
+          aria-label={h.scrollTop}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          style={{
+            position: "fixed",
+            right: "18px",
+            bottom: "22px",
+            width: "48px",
+            height: "48px",
+            borderRadius: "50%",
+            border: "none",
+            backgroundColor: themeColor,
+            color: "#fff",
+            fontSize: "22px",
+            cursor: "pointer",
+            boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
+            zIndex: 1001,
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+          }}
+        >
+          ↑
+        </button>
+      )}
 
       {/* スマホ用CSS：のハンバーガーだけ制御 */}
       <style>{`
