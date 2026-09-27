@@ -670,8 +670,7 @@ export default function LegacyHub() {
             ))}
           </ul>
         </div>
-        <p style={{ margin: "16px 0 0" }}>&copy; {new Date().getFullYear()} Ron AI Systems. All rights reserved.</p>
-        <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
+        <p style={{ fontSize: "12px", color: "#444", margin: "16px 0 0" }}>
           {h.lastChecked}:{" "}
           {new Date().toLocaleDateString(locale === "en" ? "en-US" : "ja-JP", {
             year: "numeric",
@@ -689,7 +688,9 @@ export default function LegacyHub() {
             margin: "18px auto 0",
           }}
         />
-        <p style={{ fontSize: "12px", color: "#aaa", margin: "14px 0 0 0" }}>{h.footerAi}</p>
+        <p style={{ fontSize: "12px", color: "#aaa", margin: "14px 0 0 0" }}>
+          &copy; {new Date().getFullYear()} Ron AI Systems. All rights reserved.
+        </p>
       </footer>
 
       {showScrollTop && (

@@ -51,7 +51,6 @@ const content = {
     openSite: "サイトを開く ➔",
     footerHistory: "更新履歴",
     scrollTop: "ページトップへ戻る",
-    footerAi: "※ このサイトはAIで自動生成されています",
     lastChecked: "最終確認",
     history: [
       "2026/09/27: ヘッダーを会社ロゴに整え、フッターに会社バナーを追加しました。",
@@ -130,7 +129,6 @@ const content = {
     openSite: "Open site ➔",
     footerHistory: "Changelog",
     scrollTop: "Back to top",
-    footerAi: "※ This site was auto-generated with AI",
     lastChecked: "Last checked",
     history: [
       "2026/09/27: Aligned the header with the company logo and added the company banner to the footer.",
