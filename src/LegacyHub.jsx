@@ -68,6 +68,7 @@ export default function LegacyHub() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "10px",
           position: "sticky",
           top: 0,
           zIndex: 1000,
@@ -79,22 +80,24 @@ export default function LegacyHub() {
             display: "flex",
             alignItems: "center",
             gap: "10px",
+            minWidth: 0,
+            flex: "1 1 auto",
             color: "#fff",
             textDecoration: "none",
           }}
         >
           <img
-            src="/ron.png"
-            alt="Ron Logo"
+            src="/brand/ron-ai-systems-mark-on-dark.svg"
+            alt=""
             style={{
-              width: "40px",
+              width: "36px",
               height: "40px",
-              borderRadius: "50%",
-              backgroundColor: "#fff",
-              padding: "2px",
+              objectFit: "contain",
+              flexShrink: 0,
+              display: "block",
             }}
           />
-          <span style={{ fontWeight: "bold", fontSize: "16px", lineHeight: 1.3 }}>
+          <span style={{ fontWeight: "bold", fontSize: "15px", lineHeight: 1.3, textAlign: "left" }}>
             {h.siteTitle}
           </span>
         </Link>
@@ -121,6 +124,7 @@ export default function LegacyHub() {
             border: "none",
             color: "#fff",
             fontSize: "28px",
+            flexShrink: 0,
           }}
         >
           {isMenuOpen ? "🐾" : "☰"}
@@ -634,7 +638,17 @@ export default function LegacyHub() {
           marginTop: "40px",
         }}
       >
-        <p>&copy; {new Date().getFullYear()} ron. All rights reserved.</p>
+        <img
+          src="/brand/ron-ai-systems-logo.svg"
+          alt={locale === "en" ? "Ron AI Systems" : "ロンAIシステムズ"}
+          style={{
+            display: "block",
+            width: "min(480px, 92%)",
+            height: "auto",
+            margin: "0 auto 14px",
+          }}
+        />
+        <p>&copy; {new Date().getFullYear()} Ron AI Systems. All rights reserved.</p>
         <p style={{ fontSize: "12px", color: "#444", margin: "8px 0 0" }}>
           {h.lastChecked}:{" "}
           {new Date().toLocaleDateString(locale === "en" ? "en-US" : "ja-JP", {

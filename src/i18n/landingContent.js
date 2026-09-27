@@ -53,7 +53,7 @@ export function getLandingContent(locale) {
           "カレンダーはこれ、健康記録はこれ、タスクはこれ。バラバラになりがちな毎日を、ロンスケ＋ジュールひとつにまとめます。予定も健康もタスクも、まとめて管理できるオールインワンアプリです。",
         contactCta: "お問い合わせ",
         freeDemo: "デモを新しいタブで見る ↗",
-        mascotAlt: "ロンスケ＋ジュールのマスコット",
+        mascotAlt: "ロンスケ＋ジュール",
         featuresTitle: "機能・特徴",
         features: [
           "予定・服薬・健康記録を、同じ画面で見られます",
@@ -223,7 +223,7 @@ export function getLandingContent(locale) {
         "A calendar here, health records there, tasks somewhere else. Ron Schedule+ brings a scattered day into one place. Plans, health, and tasks—together in one all-in-one app.",
       contactCta: "Contact us",
       freeDemo: "View demo in new tab ↗",
-      mascotAlt: "Ron Schedule+ mascot",
+      mascotAlt: "Ron Schedule+",
       featuresTitle: "Features",
       features: [
         "See plans, medication, and health records on the same screen",

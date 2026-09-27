@@ -273,6 +273,8 @@ export default function LandingPage() {
             display: "flex",
             alignItems: "center",
             gap: "10px",
+            minWidth: 0,
+            flex: "1 1 auto",
             background: "none",
             border: "none",
             color: "#fff",
@@ -282,20 +284,29 @@ export default function LandingPage() {
           }}
         >
           <img
-            src="/ron.png"
+            src="/brand/ron-ai-systems-mark-on-dark.svg"
             alt=""
             style={{
-              width: "40px",
+              width: "36px",
               height: "40px",
-              borderRadius: "50%",
-              backgroundColor: "#fff",
-              padding: "2px",
+              objectFit: "contain",
+              flexShrink: 0,
+              display: "block",
             }}
           />
-          <span style={{ fontWeight: "bold", fontSize: "17px", lineHeight: 1.3 }}>
-            {company.product}
-            <span style={{ display: "block", fontSize: "10px", opacity: 0.85, fontWeight: 500 }}>
-              {locale === "ja" ? `${company.name} / ${company.nameEn}` : company.nameEn}
+          <span
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              gap: "2px",
+              minWidth: 0,
+              lineHeight: 1.25,
+            }}
+          >
+            <span style={{ fontWeight: 700, fontSize: "16px" }}>{company.product}</span>
+            <span style={{ fontWeight: 500, fontSize: "12px", opacity: 0.92 }}>
+              {locale === "ja" ? company.name : company.nameEn}
             </span>
           </span>
         </button>
@@ -480,9 +491,15 @@ export default function LandingPage() {
           }}
         >
           <img
-            src="/ron.png"
+            src="/brand/schlogo1.jpg"
             alt={ui.mascotAlt}
-            style={{ width: "120px", height: "120px", objectFit: "contain", marginBottom: "16px" }}
+            style={{
+              display: "block",
+              width: "min(220px, 70%)",
+              height: "auto",
+              objectFit: "contain",
+              margin: "0 auto 16px",
+            }}
           />
           <p
             style={{
@@ -968,11 +985,17 @@ export default function LandingPage() {
         }}
       >
         <div style={{ maxWidth: "920px", margin: "0 auto", textAlign: "center" }}>
+          <img
+            src="/brand/ron-ai-systems-logo-on-dark.svg"
+            alt={locale === "ja" ? company.name : company.nameEn}
+            style={{
+              display: "block",
+              width: "min(520px, 100%)",
+              height: "auto",
+              margin: "0 auto 14px",
+            }}
+          />
           <p style={{ margin: "0 0 8px", fontWeight: 700, color: "#fff" }}>
-            {locale === "ja"
-              ? `${company.name}（${company.nameEn}）`
-              : company.name}
-            <br />
             {company.product}
             {locale === "ja" ? ` / ${company.productEn}` : ""}
           </p>

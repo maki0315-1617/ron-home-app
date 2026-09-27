@@ -53,6 +53,7 @@ const content = {
     footerAi: "※ このサイトはAIで自動生成されています",
     lastChecked: "最終確認",
     history: [
+      "2026/09/27: ヘッダーを会社ロゴに整え、フッターに会社バナーを追加しました。",
       "2026/08/13: 共有ページ一覧を追加し、report.html への導線を分かりやすくしました。",
       "2026/08/11: 「更新履歴」表示を追加しました。",
       "2026/08/11: Cursor / Figma を検証環境リンクに追加しました。",
@@ -130,6 +131,7 @@ const content = {
     footerAi: "※ This site was auto-generated with AI",
     lastChecked: "Last checked",
     history: [
+      "2026/09/27: Aligned the header with the company logo and added the company banner to the footer.",
       "2026/08/13: Added shared pages section and clearer link to report.html.",
       "2026/08/11: Added changelog display.",
       "2026/08/11: Added Cursor / Figma to stack badges.",
