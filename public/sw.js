@@ -1,5 +1,4 @@
-/* Minimal service worker for installability (Chrome / Android). */
-const CACHE_NAME = "ron-home-app-v1";
+const CACHE_NAME = "ron-home-app-v2";
 const PRECACHE_URLS = ["/", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
@@ -25,6 +24,22 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
+
+  // HTML は常に最新を取りにいく（PCレイアウト修正が古いキャッシュで残らないように）
+  if (request.mode === "navigate" || (request.headers.get("accept") || "").includes("text/html")) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request)),
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then((cached) => {

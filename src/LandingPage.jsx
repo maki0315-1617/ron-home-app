@@ -12,6 +12,7 @@ import { SITE_URL, DEMO_APP_URL, STRIPE_STANDARD_CHECKOUT_URL } from "./siteConf
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
+const CONTENT_MAX = 920;
 
 const demoLinkProps = {
   href: DEMO_APP_URL,
@@ -31,6 +32,17 @@ function cancelEmailFromParams(params) {
   return email;
 }
 
+function contentWrapStyle(extra = {}) {
+  return {
+    width: "100%",
+    maxWidth: `${CONTENT_MAX}px`,
+    marginLeft: "auto",
+    marginRight: "auto",
+    boxSizing: "border-box",
+    ...extra,
+  };
+}
+
 function SectionCard({ id, title, icon, children, style }) {
   return (
     <section
@@ -42,6 +54,7 @@ function SectionCard({ id, title, icon, children, style }) {
         padding: "28px 22px",
         marginBottom: "32px",
         boxShadow: "0 6px 15px rgba(0,0,0,0.06)",
+        textAlign: "center",
         ...style,
       }}
     >
@@ -52,6 +65,7 @@ function SectionCard({ id, title, icon, children, style }) {
           color: darkColor,
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: "10px",
         }}
       >
@@ -65,10 +79,19 @@ function SectionCard({ id, title, icon, children, style }) {
 
 function LegalBlock({ title, paragraphs }) {
   return (
-    <div style={{ marginBottom: "22px" }}>
+    <div style={{ marginBottom: "22px", textAlign: "center" }}>
       <h3 style={{ fontSize: "16px", margin: "0 0 8px", color: darkColor }}>{title}</h3>
       {paragraphs.map((text, i) => (
-        <p key={i} style={{ margin: "0 0 10px", lineHeight: 1.75, color: "#444", fontSize: "14px" }}>
+        <p
+          key={i}
+          style={{
+            margin: "0 auto 10px",
+            lineHeight: 1.75,
+            color: "#444",
+            fontSize: "14px",
+            maxWidth: "640px",
+          }}
+        >
           {text}
         </p>
       ))}
@@ -262,16 +285,20 @@ export default function LandingPage() {
         style={{
           backgroundColor: darkColor,
           color: "#fff",
-          padding: "14px 18px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
           position: "sticky",
           top: 0,
           zIndex: 1000,
-          gap: "12px",
         }}
       >
+        <div
+          style={contentWrapStyle({
+            padding: "14px 18px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "12px",
+          })}
+        >
         <button
           type="button"
           onClick={() => scrollToSection("top")}
@@ -356,6 +383,7 @@ export default function LandingPage() {
         >
           {isMenuOpen ? "✕" : "☰"}
         </button>
+        </div>
       </header>
 
       {isMenuOpen && (
@@ -482,7 +510,7 @@ export default function LandingPage() {
         </>
       )}
 
-      <main style={{ maxWidth: "920px", margin: "0 auto", padding: "32px 18px 48px" }}>
+      <main style={contentWrapStyle({ padding: "32px 18px 48px" })}>
         <section
           id="top"
           style={{
@@ -583,9 +611,20 @@ export default function LandingPage() {
         </section>
 
         <SectionCard id="features" title={ui.featuresTitle} icon="✨">
-          <ul style={{ margin: 0, paddingLeft: "20px", lineHeight: 1.85, color: "#444" }}>
+          <ul
+            style={{
+              margin: "0 auto",
+              padding: 0,
+              listStyle: "none",
+              lineHeight: 1.85,
+              color: "#444",
+              maxWidth: "640px",
+            }}
+          >
             {ui.features.map((line) => (
-              <li key={line}>{line}</li>
+              <li key={line} style={{ marginBottom: "8px" }}>
+                {line}
+              </li>
             ))}
           </ul>
         </SectionCard>
@@ -635,13 +674,13 @@ export default function LandingPage() {
           <p style={{ marginTop: 0, lineHeight: 1.75, color: "#444" }}>
             {ui.resourcesLead}
           </p>
-          <ul style={{ margin: "0 0 16px", paddingLeft: "20px", lineHeight: 1.85 }}>
-            <li>
+          <ul style={{ margin: "0 0 16px", padding: 0, listStyle: "none", lineHeight: 1.85 }}>
+            <li style={{ marginBottom: "8px" }}>
               <Link to="/hub" style={{ color: darkColor, fontWeight: 700 }}>
                 {ui.hubLink}
               </Link>
             </li>
-            <li>
+            <li style={{ marginBottom: "8px" }}>
               <a href="/report.html" target="_blank" rel="noopener noreferrer" style={{ color: darkColor }}>
                 {ui.reportLink}
               </a>
@@ -748,7 +787,15 @@ export default function LandingPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate>
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              style={{
+                maxWidth: "560px",
+                margin: "0 auto",
+                textAlign: "left",
+              }}
+            >
               {formError && (
                 <p role="alert" style={{ color: "#b91c1c", fontWeight: 600, marginTop: 0 }}>
                   {formError}
@@ -903,10 +950,18 @@ export default function LandingPage() {
         </SectionCard>
 
         <SectionCard id="company" title={ui.companyTitle} icon="🏢">
-          <dl style={{ margin: 0, display: "grid", gap: "10px", fontSize: "14px" }}>
+          <dl
+            style={{
+              margin: "0 auto",
+              display: "grid",
+              gap: "14px",
+              fontSize: "14px",
+              maxWidth: "520px",
+            }}
+          >
             {L.companyFields.map(([dt, key]) => (
-              <div key={dt} style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: "8px" }}>
-                <dt style={{ fontWeight: 700, color: darkColor }}>{dt}</dt>
+              <div key={dt}>
+                <dt style={{ fontWeight: 700, color: darkColor, marginBottom: "4px" }}>{dt}</dt>
                 <dd style={{ margin: 0, color: "#444", lineHeight: 1.6 }}>{company[key]}</dd>
               </div>
             ))}
@@ -953,7 +1008,7 @@ export default function LandingPage() {
 
         <SectionCard id="tokusho" title={ui.tokushoTitle} icon="📋">
           <p style={{ fontSize: "13px", color: "#666", marginTop: 0 }}>{ui.tokushoNote}</p>
-          <dl style={{ margin: 0, fontSize: "14px", lineHeight: 1.75 }}>
+          <dl style={{ margin: "0 auto", fontSize: "14px", lineHeight: 1.75, maxWidth: "560px" }}>
             {L.tokushoRows.map(([dt, key]) => (
               <div key={dt} style={{ marginBottom: "12px" }}>
                 <dt style={{ fontWeight: 700, color: darkColor }}>{dt}</dt>
@@ -990,7 +1045,7 @@ export default function LandingPage() {
           fontSize: "13px",
         }}
       >
-        <div style={{ maxWidth: "920px", margin: "0 auto", textAlign: "center" }}>
+        <div style={contentWrapStyle({ textAlign: "center" })}>
           <img
             src="/brand/ron-ai-systems-logo-on-dark.svg"
             alt={locale === "ja" ? company.name : company.nameEn}
