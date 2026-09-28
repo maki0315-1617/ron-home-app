@@ -777,11 +777,11 @@ export default function LandingPage() {
                 />
               </div>
               <div style={{ marginBottom: "14px" }}>
-                <label htmlFor="company" style={labelStyle}>
+                <label htmlFor="contact-company" style={labelStyle}>
                   {L.form.labels.company}
                 </label>
                 <input
-                  id="company"
+                  id="contact-company"
                   name="company"
                   type="text"
                   autoComplete="organization"
