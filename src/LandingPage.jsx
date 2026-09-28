@@ -137,8 +137,14 @@ export default function LandingPage() {
 
   const scrollToSection = useCallback((id) => {
     setIsMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const run = () => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    // ハンバーガーを閉じたあとに測る（開いたままだと位置がずれる）
+    window.requestAnimationFrame(() => {
+      window.setTimeout(run, 50);
+    });
   }, []);
 
   useEffect(() => {
