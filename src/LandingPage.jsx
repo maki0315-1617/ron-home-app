@@ -8,7 +8,7 @@ import {
   GOOGLE_MAPS_LINK_URL,
 } from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
-import { SITE_URL, DEMO_APP_URL, STRIPE_STANDARD_CHECKOUT_URL } from "./siteConfig.js";
+import { SITE_URL, DEMO_APP_URL, STRIPE_CHECKOUT_URLS } from "./siteConfig.js";
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
@@ -169,6 +169,16 @@ export default function LandingPage() {
       window.setTimeout(run, 50);
     });
   }, []);
+
+  const scrollToContactWithCategory = useCallback(
+    (category) => {
+      if (!cancelEmail && category) {
+        setForm((prev) => ({ ...prev, category }));
+      }
+      scrollToSection("contact");
+    },
+    [cancelEmail, scrollToSection],
+  );
 
   useEffect(() => {
     const styleSheet = document.createElement("style");
@@ -717,9 +727,9 @@ export default function LandingPage() {
                   <span style={{ fontSize: "13px", fontWeight: 600, color: "#666" }}>{plan.unit}</span>
                 </p>
                 <p style={{ margin: 0, fontSize: "14px", color: "#555", lineHeight: 1.6 }}>{plan.desc}</p>
-                {plan.checkout && (
+                {plan.checkout && STRIPE_CHECKOUT_URLS[plan.checkout] && (
                   <a
-                    href={STRIPE_STANDARD_CHECKOUT_URL}
+                    href={STRIPE_CHECKOUT_URLS[plan.checkout]}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cta-button"
@@ -737,6 +747,27 @@ export default function LandingPage() {
                   >
                     {ui.subscribe}
                   </a>
+                )}
+                {plan.contact && (
+                  <button
+                    type="button"
+                    className="cta-button"
+                    onClick={() => scrollToContactWithCategory(plan.contactCategory)}
+                    style={{
+                      display: "inline-block",
+                      marginTop: "14px",
+                      backgroundColor: themeColor,
+                      color: "#fff",
+                      padding: "8px 16px",
+                      borderRadius: "999px",
+                      border: "none",
+                      cursor: "pointer",
+                      fontWeight: 700,
+                      fontSize: "14px",
+                    }}
+                  >
+                    {ui.contactCta}
+                  </button>
                 )}
               </div>
             ))}
