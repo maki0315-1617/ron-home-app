@@ -13,6 +13,7 @@ import { SITE_URL, DEMO_APP_URL, STRIPE_CHECKOUT_URLS } from "./siteConfig.js";
 const themeColor = "#fca311";
 const darkColor = "#14213d";
 const CONTENT_MAX = 920;
+const sectionMint = "#D4EADD";
 
 const demoLinkProps = {
   href: DEMO_APP_URL,
@@ -525,7 +526,7 @@ export default function LandingPage() {
           id="top"
           style={{
             scrollMarginTop: "88px",
-            backgroundColor: "#fff",
+            backgroundColor: sectionMint,
             borderRadius: "20px",
             padding: "36px 24px",
             textAlign: "center",
@@ -637,13 +638,39 @@ export default function LandingPage() {
               </li>
             ))}
           </ul>
+          <h3
+            style={{
+              margin: "22px auto 10px",
+              fontSize: "16px",
+              color: darkColor,
+              maxWidth: "640px",
+            }}
+          >
+            {ui.featuresSplusTitle}
+          </h3>
+          <ul
+            style={{
+              margin: "0 auto",
+              padding: 0,
+              listStyle: "none",
+              lineHeight: 1.85,
+              color: "#444",
+              maxWidth: "640px",
+            }}
+          >
+            {ui.featuresSplus.map((line) => (
+              <li key={line} style={{ marginBottom: "8px" }}>
+                {line}
+              </li>
+            ))}
+          </ul>
         </SectionCard>
 
         <SectionCard
           id="demo"
           title={ui.demoTitle}
           icon="📅"
-          style={{ background: "linear-gradient(135deg, #fff7ed, #eff6ff)" }}
+          style={{ backgroundColor: sectionMint }}
         >
           <p style={{ lineHeight: 1.75, color: "#444", marginTop: 0 }}>
             {ui.demoLead}
@@ -703,7 +730,7 @@ export default function LandingPage() {
           </ul>
         </SectionCard>
 
-        <SectionCard id="pricing" title={ui.pricingTitle} icon="💴">
+        <SectionCard id="pricing" title={ui.pricingTitle} icon="💴" style={{ backgroundColor: sectionMint }}>
           <div
             style={{
               display: "grid",
@@ -980,7 +1007,7 @@ export default function LandingPage() {
           </div>
         </SectionCard>
 
-        <SectionCard id="company" title={ui.companyTitle} icon="🏢">
+        <SectionCard id="company" title={ui.companyTitle} icon="🏢" style={{ backgroundColor: sectionMint }}>
           <dl
             style={{
               margin: "0 auto",
@@ -1051,7 +1078,7 @@ export default function LandingPage() {
           </dl>
         </SectionCard>
 
-        <SectionCard id="privacy" title={ui.privacyTitle} icon="🔒">
+        <SectionCard id="privacy" title={ui.privacyTitle} icon="🔒" style={{ backgroundColor: sectionMint }}>
           <p style={{ fontSize: "14px", lineHeight: 1.75, color: "#444", marginTop: 0 }}>
             {L.privacyIntro(company.name, company.product, SITE_URL)}
           </p>

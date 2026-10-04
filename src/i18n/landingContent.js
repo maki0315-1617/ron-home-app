@@ -66,6 +66,12 @@ export function getLandingContent(locale) {
           "その日の日記としても利用できます",
           "先の予定から、その日の忙しさを予測できます",
         ],
+        featuresSplusTitle: "Sプラス",
+        featuresSplus: [
+          "家族みんなでの見守りが出来ます",
+          "施設などで利用者の見守りが出来ます",
+          "見守り側と見守られる側でのコミュニケーションが簡単になります",
+        ],
         demoTitle: "デモアプリ",
         demoLead:
           "予定、服薬、健康記録、タスクが一つの画面にまとまる使い心地を、新しいタブで試せます。デモの操作では課金は発生しません。",
@@ -243,6 +249,12 @@ export function getLandingContent(locale) {
         "Turn on reminders so you don't miss a plan or a dose",
         "Keep the day as a diary",
         "See how busy a future day will be from the plans already there",
+      ],
+      featuresSplusTitle: "S Plus",
+      featuresSplus: [
+        "Families can watch over one another",
+        "Facilities can watch over the people they support",
+        "The watcher and the person being watched can communicate more easily",
       ],
       demoTitle: "Demo app",
       demoLead:
