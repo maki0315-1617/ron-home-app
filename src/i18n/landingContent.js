@@ -71,6 +71,7 @@ export function getLandingContent(locale) {
           "家族みんなでの見守りが出来ます",
           "施設などで利用者の見守りが出来ます",
           "見守り側と見守られる側でのコミュニケーションが簡単になります",
+          "位置情報の共有で依頼人がどこにいるかの情報が分かります",
         ],
         demoTitle: "デモアプリ",
         demoLead:
@@ -255,6 +256,7 @@ export function getLandingContent(locale) {
         "Families can watch over one another",
         "Facilities can watch over the people they support",
         "The watcher and the person being watched can communicate more easily",
+        "Sharing location shows where the person being watched is",
       ],
       demoTitle: "Demo app",
       demoLead:
