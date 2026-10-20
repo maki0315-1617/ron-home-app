@@ -8,7 +8,7 @@ import {
   GOOGLE_MAPS_LINK_URL,
 } from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
-import { SITE_URL, DEMO_APP_URL, STRIPE_CHECKOUT_URLS } from "./siteConfig.js";
+import { SITE_URL, DEMO_APP_URL, BRAIN_CLUB_URL, STRIPE_CHECKOUT_URLS } from "./siteConfig.js";
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
@@ -804,7 +804,32 @@ export default function LandingPage() {
           </p>
         </SectionCard>
 
-        <SectionCard id="contact" title={ui.contactTitle} icon="✉️">
+        <SectionCard id="brain" title={ui.brainTitle} icon="🍵">
+          {ui.brainParagraphs.map((line) => (
+            <p key={line} style={{ lineHeight: 1.75, color: "#444", margin: "0 0 12px" }}>
+              {line}
+            </p>
+          ))}
+          <a
+            href={BRAIN_CLUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-button"
+            style={{
+              display: "inline-block",
+              backgroundColor: themeColor,
+              color: "#fff",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+          >
+            {ui.brainOpen}
+          </a>
+        </SectionCard>
+
+        <SectionCard id="contact" title={ui.contactTitle} icon="✉️" style={{ backgroundColor: sectionMint }}>
           {formStatus === "sent" ? (
             <div
               style={{
@@ -1007,7 +1032,7 @@ export default function LandingPage() {
           </div>
         </SectionCard>
 
-        <SectionCard id="company" title={ui.companyTitle} icon="🏢" style={{ backgroundColor: sectionMint }}>
+        <SectionCard id="company" title={ui.companyTitle} icon="🏢">
           <dl
             style={{
               margin: "0 auto",
@@ -1064,7 +1089,7 @@ export default function LandingPage() {
           </div>
         </SectionCard>
 
-        <SectionCard id="tokusho" title={ui.tokushoTitle} icon="📋">
+        <SectionCard id="tokusho" title={ui.tokushoTitle} icon="📋" style={{ backgroundColor: sectionMint }}>
           <p style={{ fontSize: "13px", color: "#666", marginTop: 0 }}>{ui.tokushoNote}</p>
           <dl style={{ margin: "0 auto", fontSize: "14px", lineHeight: 1.75, maxWidth: "560px" }}>
             {L.tokushoRows.map(([dt, key]) => (
@@ -1078,7 +1103,7 @@ export default function LandingPage() {
           </dl>
         </SectionCard>
 
-        <SectionCard id="privacy" title={ui.privacyTitle} icon="🔒" style={{ backgroundColor: sectionMint }}>
+        <SectionCard id="privacy" title={ui.privacyTitle} icon="🔒">
           <p style={{ fontSize: "14px", lineHeight: 1.75, color: "#444", marginTop: 0 }}>
             {L.privacyIntro(company.name, company.product, SITE_URL)}
           </p>
@@ -1088,7 +1113,7 @@ export default function LandingPage() {
           <p style={{ fontSize: "13px", color: "#777", marginBottom: 0 }}>{L.privacyDates}</p>
         </SectionCard>
 
-        <SectionCard id="terms" title={ui.termsTitle} icon="📜">
+        <SectionCard id="terms" title={ui.termsTitle} icon="📜" style={{ backgroundColor: sectionMint }}>
           {L.termsSections.map((section) => (
             <LegalBlock key={section.title} title={section.title} paragraphs={section.paragraphs} />
           ))}

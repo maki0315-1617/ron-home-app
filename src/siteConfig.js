@@ -3,6 +3,9 @@ export const SITE_URL = "https://ron-home-app.vercel.app";
 /** ロンスケ＋ジュール デモ（別サイト・新しいタブで開く） */
 export const DEMO_APP_URL = "https://ron-sch.vercel.app/?demo=1";
 
+/** 茶話会・みんなで脳活（Figma サイト） */
+export const BRAIN_CLUB_URL = "https://remix-cub-59409977.figma.site/";
+
 /** スタンダードプラン（¥350）の Stripe テスト用支払いリンク */
 export const STRIPE_STANDARD_CHECKOUT_URL =
   "https://buy.stripe.com/test_00w14nbVPdKF3121v5gUM01";
