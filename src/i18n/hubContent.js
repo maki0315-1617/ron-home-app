@@ -11,13 +11,13 @@ const LINK_URLS = {
     "https://zeikin-calc.vercel.app/",
     "https://noto-musice-collection.vercel.app/",
     "https://ron-makino.vercel.app/",
+    BRAIN_CLUB_URL,
   ],
   workers: ["https://rongokiv2.ronron201907.workers.dev/"],
   render: ["https://my-js-page.onrender.com/", "https://zeikin-calc.onrender.com/"],
   figma: [
     "https://beatle-noto-ogi.figma.site/",
     "https://mace-walk-72354966.figma.site/",
-    BRAIN_CLUB_URL,
   ],
 };
 
@@ -87,6 +87,7 @@ const content = {
       { title: "💰 ロン君の消費税計算サイト", desc: "金額を入力すると消費税を自動計算！" },
       { title: "🎵 能登衆音楽コレクション（Vercel版）", desc: "能登衆の音楽をまとめたコレクションサイト。" },
       { title: "🐾 ロン君大好き！！", desc: "ロン君への愛情がたっぷり詰まった特設サイト！" },
+      { title: "🍵 茶話会・みんなで脳活", desc: "チャットグループで仲間と脳活。無料、インストール不要、個人情報の収集なし。" },
     ],
     workersLinks: [
       { title: "🐛 ロン君のゴキ退 Ver2", desc: "Cloudflare Workersで動くロン君のゴキ退治 Ver2。" },
@@ -98,7 +99,6 @@ const content = {
     figmaLinks: [
       { title: "🎵 能登衆音楽コレクション（Figma）", desc: "Figmaで作成した音楽コレクションサイト。" },
       { title: "💰 ロン君消費税計算サイト（Figma）", desc: "Figmaで作成した消費税計算サイト。" },
-      { title: "🍵 茶話会・みんなで脳活", desc: "チャットグループで仲間と脳活。無料、インストール不要、個人情報の収集なし。" },
     ],
     sectionLabels: { vercel: "🚀 Vercel", workers: "☁️ Cloudflare Workers", render: "⚙ Render", figma: "🎨 Figma" },
   },
@@ -166,6 +166,7 @@ const content = {
       { title: "💰 Ron tax calculator", desc: "Enter amounts to calculate consumption tax." },
       { title: "🎵 Noto music collection (Vercel)", desc: "Collection of Noto community music." },
       { title: "🐾 We love Ron!!", desc: "A fan site full of love for Ron!" },
+      { title: "🍵 Tea chat & brain training", desc: "Brain training with friends in a chat group. Free, no install, and no personal data collected." },
     ],
     workersLinks: [
       { title: "🐛 Ron's roach patrol Ver2", desc: "Roach patrol v2 on Cloudflare Workers." },
@@ -177,7 +178,6 @@ const content = {
     figmaLinks: [
       { title: "🎵 Noto music collection (Figma)", desc: "Music collection site made in Figma." },
       { title: "💰 Tax calculator (Figma)", desc: "Tax calculator prototype in Figma." },
-      { title: "🍵 Tea chat & brain training", desc: "Brain training with friends in a chat group. Free, no install, and no personal data collected." },
     ],
     sectionLabels: { vercel: "🚀 Vercel", workers: "☁️ Cloudflare Workers", render: "⚙ Render", figma: "🎨 Figma" },
   },
