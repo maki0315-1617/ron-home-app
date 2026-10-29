@@ -433,45 +433,25 @@ export default function LandingPage() {
               {ui.siteNav}
             </p>
             {L.nav.map((item) => (
-              item.id === "brain" ? (
-                <a
-                  key={item.id}
-                  href={BRAIN_CLUB_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    display: "block",
-                    color: "#fff",
-                    textDecoration: "none",
-                    padding: "11px 0",
-                    borderBottom: "1px solid rgba(255,255,255,0.15)",
-                    fontSize: "15px",
-                  }}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollToSection(item.id)}
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    textAlign: "left",
-                    background: "none",
-                    border: "none",
-                    color: "#fff",
-                    padding: "11px 0",
-                    borderBottom: "1px solid rgba(255,255,255,0.15)",
-                    cursor: "pointer",
-                    fontSize: "15px",
-                  }}
-                >
-                  {item.label}
-                </button>
-              )
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  padding: "11px 0",
+                  borderBottom: "1px solid rgba(255,255,255,0.15)",
+                  cursor: "pointer",
+                  fontSize: "15px",
+                }}
+              >
+                {item.label}
+              </button>
             ))}
             <p
               style={{

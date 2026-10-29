@@ -18,6 +18,7 @@ const LINK_URLS = {
   figma: [
     "https://beatle-noto-ogi.figma.site/",
     "https://mace-walk-72354966.figma.site/",
+    "https://remix-cub-59409977.figma.site/",
   ],
 };
 
@@ -99,6 +100,7 @@ const content = {
     figmaLinks: [
       { title: "🎵 能登衆音楽コレクション（Figma）", desc: "Figmaで作成した音楽コレクションサイト。" },
       { title: "💰 ロン君消費税計算サイト（Figma）", desc: "Figmaで作成した消費税計算サイト。" },
+      { title: "🍵 茶話会・みんなで脳活", desc: "チャットグループで仲間と脳活。無料、インストール不要、個人情報の収集なし。" },
     ],
     sectionLabels: { vercel: "🚀 Vercel", workers: "☁️ Cloudflare Workers", render: "⚙ Render", figma: "🎨 Figma" },
   },
@@ -178,6 +180,7 @@ const content = {
     figmaLinks: [
       { title: "🎵 Noto music collection (Figma)", desc: "Music collection site made in Figma." },
       { title: "💰 Tax calculator (Figma)", desc: "Tax calculator prototype in Figma." },
+      { title: "🍵 Tea chat & brain training", desc: "Brain training with friends in a chat group. Free, no install, and no personal data collected." },
     ],
     sectionLabels: { vercel: "🚀 Vercel", workers: "☁️ Cloudflare Workers", render: "⚙ Render", figma: "🎨 Figma" },
   },
