@@ -827,6 +827,33 @@ export default function LandingPage() {
           >
             {ui.brainOpen}
           </a>
+          <p style={{ margin: "18px 0 8px", fontWeight: 700, color: "#444" }}>
+            {ui.brainDocsTitle}
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            {[
+              { href: "/docs/sawakai-guide.html", label: ui.brainGuide },
+              { href: "/docs/sawakai-pr.html", label: ui.brainPr },
+            ].map((doc) => (
+              <a
+                key={doc.href}
+                href={doc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  color: themeColor,
+                  border: `2px solid ${themeColor}`,
+                  padding: "8px 16px",
+                  borderRadius: "999px",
+                  textDecoration: "none",
+                  fontWeight: 700,
+                }}
+              >
+                📄 {doc.label}
+              </a>
+            ))}
+          </div>
         </SectionCard>
 
         <SectionCard id="contact" title={ui.contactTitle} icon="✉️" style={{ backgroundColor: sectionMint }}>

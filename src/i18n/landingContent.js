@@ -94,6 +94,9 @@ export function getLandingContent(locale) {
           "AIが出題するいろいろな問題に、みんなでチャレンジしましょう。",
         ],
         brainOpen: "茶話会・みんなで脳活を開く ↗",
+        brainDocsTitle: "資料（印刷・PDF保存もできます）",
+        brainGuide: "ご利用ガイド",
+        brainPr: "PR資料",
         subscribe: "申し込む",
         plans: [
           { name: "スタンダード", price: "¥350", unit: "/ 月（税込）", desc: "個人の予定・服薬・健康記録・タスクを、ひとつの画面で", checkout: "standard" },
@@ -288,6 +291,9 @@ export function getLandingContent(locale) {
         "Take on the questions the AI sets, together.",
       ],
       brainOpen: "Open tea chat & brain training ↗",
+      brainDocsTitle: "Documents (printable, save as PDF)",
+      brainGuide: "User guide (Japanese)",
+      brainPr: "Overview (Japanese)",
       subscribe: "Subscribe",
       plans: [
         { name: "Standard", price: "¥350", unit: "/ month (tax incl.)", desc: "Personal plans, medication, health records, and tasks on one screen", checkout: "standard" },
