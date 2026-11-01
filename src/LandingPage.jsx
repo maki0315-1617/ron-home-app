@@ -8,7 +8,13 @@ import {
   GOOGLE_MAPS_LINK_URL,
 } from "./i18n/landingContent.js";
 import LanguageToggle from "./components/LanguageToggle.jsx";
-import { SITE_URL, DEMO_APP_URL, BRAIN_CLUB_URL, STRIPE_CHECKOUT_URLS } from "./siteConfig.js";
+import {
+  SITE_URL,
+  DEMO_APP_URL,
+  BRAIN_CLUB_URL,
+  STRIPE_BRAIN_SUPPORT_URL,
+  STRIPE_CHECKOUT_URLS,
+} from "./siteConfig.js";
 
 const themeColor = "#fca311";
 const darkColor = "#14213d";
@@ -810,6 +816,48 @@ export default function LandingPage() {
               {line}
             </p>
           ))}
+          <div
+            style={{
+              margin: "20px 0",
+              border: "1px solid #e5e7eb",
+              borderRadius: "14px",
+              padding: "18px",
+              backgroundColor: "#fafafa",
+            }}
+          >
+            <h3 style={{ margin: "0 0 8px", fontSize: "18px" }}>{ui.brainSupportTitle}</h3>
+            <p style={{ margin: "0 0 6px", fontSize: "22px", fontWeight: 800, color: themeColor }}>
+              {ui.brainSupportPrice}
+              <span style={{ fontSize: "13px", fontWeight: 600, color: "#666" }}>
+                {ui.brainSupportUnit}
+              </span>
+            </p>
+            <p style={{ margin: "0 0 8px", fontSize: "14px", color: "#555", lineHeight: 1.6 }}>
+              {ui.brainSupportDesc}
+            </p>
+            <p style={{ margin: 0, fontSize: "13px", color: "#666", lineHeight: 1.7 }}>
+              {ui.brainSupportNote}
+            </p>
+            <a
+              href={STRIPE_BRAIN_SUPPORT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-button"
+              style={{
+                display: "inline-block",
+                marginTop: "14px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                padding: "8px 16px",
+                borderRadius: "999px",
+                textDecoration: "none",
+                fontWeight: 700,
+                fontSize: "14px",
+              }}
+            >
+              {ui.brainSupportCta}
+            </a>
+          </div>
           <a
             href={BRAIN_CLUB_URL}
             target="_blank"

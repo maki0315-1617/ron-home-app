@@ -6,6 +6,10 @@ export const DEMO_APP_URL = "https://ron-sch.vercel.app/?demo=1";
 /** 茶話会・みんなで脳活 */
 export const BRAIN_CLUB_URL = "https://sawakaichat.vercel.app/";
 
+/** 茶話会の運営支援（1回 ¥500）の Stripe 支払いリンク */
+export const STRIPE_BRAIN_SUPPORT_URL =
+  "https://buy.stripe.com/test_dRmbJ1e3XdKF6de6PpgUM03";
+
 /** スタンダードプラン（¥350）の Stripe テスト用支払いリンク */
 export const STRIPE_STANDARD_CHECKOUT_URL =
   "https://buy.stripe.com/test_00w14nbVPdKF3121v5gUM01";
