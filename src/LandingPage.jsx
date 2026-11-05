@@ -924,6 +924,8 @@ export default function LandingPage() {
             {[
               { href: "/docs/sawakai-guide.html", label: ui.brainGuide },
               { href: "/docs/sawakai-pr.html", label: ui.brainPr },
+              { href: "/docs/sawakai-pamphlet.png", label: ui.brainPamphlet, type: "image" },
+              { href: "/docs/sawakai-cm.mp4", label: ui.brainVideo, type: "video" },
             ].map((doc) => (
               <button
                 key={doc.href}
@@ -1397,11 +1399,31 @@ export default function LandingPage() {
                 ✕ {ui.brainDocClose}
               </button>
             </div>
-            <iframe
-              title={docView.label}
-              src={docView.href}
-              style={{ flex: 1, width: "100%", border: "none" }}
-            />
+            {docView.type === "image" ? (
+              <div style={{ flex: 1, overflow: "auto", backgroundColor: "#f8fafc", textAlign: "center" }}>
+                <img
+                  src={docView.href}
+                  alt={docView.label}
+                  style={{ maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }}
+                />
+              </div>
+            ) : docView.type === "video" ? (
+              <div style={{ flex: 1, backgroundColor: "#000", display: "flex", alignItems: "center" }}>
+                <video
+                  src={docView.href}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  style={{ width: "100%", maxHeight: "100%" }}
+                />
+              </div>
+            ) : (
+              <iframe
+                title={docView.label}
+                src={docView.href}
+                style={{ flex: 1, width: "100%", border: "none" }}
+              />
+            )}
           </div>
         </div>
       )}

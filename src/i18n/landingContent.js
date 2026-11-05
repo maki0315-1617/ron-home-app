@@ -111,6 +111,8 @@ export function getLandingContent(locale) {
         brainDocsTitle: "資料（印刷・PDF保存もできます）",
         brainGuide: "ご利用ガイド",
         brainPr: "PR資料",
+        brainPamphlet: "パンフレット",
+        brainVideo: "紹介動画",
         subscribe: "申し込む",
         plans: [
           { name: "スタンダード", price: "¥350", unit: "/ 月（税込）", desc: "個人の予定・服薬・健康記録・タスクを、ひとつの画面で", checkout: "standard" },
@@ -323,6 +325,8 @@ export function getLandingContent(locale) {
       brainDocsTitle: "Documents (printable, save as PDF)",
       brainGuide: "User guide (Japanese)",
       brainPr: "Overview (Japanese)",
+      brainPamphlet: "Pamphlet",
+      brainVideo: "Intro video",
       subscribe: "Subscribe",
       plans: [
         { name: "Standard", price: "¥350", unit: "/ month (tax incl.)", desc: "Personal plans, medication, health records, and tasks on one screen", checkout: "standard" },
