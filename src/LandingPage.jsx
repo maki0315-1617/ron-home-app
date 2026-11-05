@@ -1364,6 +1364,7 @@ export default function LandingPage() {
             style={{
               width: "min(820px, 100%)",
               height: "min(86vh, 900px)",
+              maxHeight: "calc(100dvh - 32px)",
               backgroundColor: "#fff",
               borderRadius: "16px",
               overflow: "hidden",
@@ -1408,13 +1409,24 @@ export default function LandingPage() {
                 />
               </div>
             ) : docView.type === "video" ? (
-              <div style={{ flex: 1, backgroundColor: "#000", display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  flex: 1,
+                  minHeight: 0,
+                  minWidth: 0,
+                  backgroundColor: "#000",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                }}
+              >
                 <video
                   src={docView.href}
                   controls
                   playsInline
                   preload="metadata"
-                  style={{ width: "100%", maxHeight: "100%" }}
+                  style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
                 />
               </div>
             ) : (
