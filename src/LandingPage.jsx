@@ -122,6 +122,7 @@ export default function LandingPage() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [docView, setDocView] = useState(null);
   const [form, setForm] = useState(() => ({
     name: "",
     email: cancelEmail,
@@ -132,6 +133,15 @@ export default function LandingPage() {
   }));
   const [formStatus, setFormStatus] = useState("idle");
   const [formError, setFormError] = useState("");
+
+  useEffect(() => {
+    if (!docView) return undefined;
+    const onKey = (event) => {
+      if (event.key === "Escape") setDocView(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [docView]);
 
   useEffect(() => {
     setForm((prev) => {
@@ -825,6 +835,38 @@ export default function LandingPage() {
               backgroundColor: "#fafafa",
             }}
           >
+            <h3 style={{ margin: "0 0 8px", fontSize: "18px" }}>{ui.brainAdminTitle}</h3>
+            <p style={{ margin: 0, fontSize: "14px", color: "#555", lineHeight: 1.7 }}>
+              {ui.brainAdminBody}
+            </p>
+            <button
+              type="button"
+              className="cta-button"
+              onClick={() => scrollToContactWithCategory(ui.brainAdminCategory)}
+              style={{
+                marginTop: "14px",
+                backgroundColor: themeColor,
+                color: "#fff",
+                border: "none",
+                padding: "8px 16px",
+                borderRadius: "999px",
+                fontWeight: 700,
+                fontSize: "14px",
+                cursor: "pointer",
+              }}
+            >
+              ✉️ {ui.brainAdminCta}
+            </button>
+          </div>
+          <div
+            style={{
+              margin: "20px 0",
+              border: "1px solid #e5e7eb",
+              borderRadius: "14px",
+              padding: "18px",
+              backgroundColor: "#fafafa",
+            }}
+          >
             <h3 style={{ margin: "0 0 8px", fontSize: "18px" }}>{ui.brainSupportTitle}</h3>
             <p style={{ margin: "0 0 6px", fontSize: "22px", fontWeight: 800, color: themeColor }}>
               {ui.brainSupportPrice}
@@ -883,23 +925,25 @@ export default function LandingPage() {
               { href: "/docs/sawakai-guide.html", label: ui.brainGuide },
               { href: "/docs/sawakai-pr.html", label: ui.brainPr },
             ].map((doc) => (
-              <a
+              <button
                 key={doc.href}
-                href={doc.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() => setDocView(doc)}
                 style={{
                   display: "inline-block",
                   color: themeColor,
+                  backgroundColor: "#fff",
                   border: `2px solid ${themeColor}`,
                   padding: "8px 16px",
                   borderRadius: "999px",
-                  textDecoration: "none",
+                  fontFamily: "inherit",
+                  fontSize: "inherit",
                   fontWeight: 700,
+                  cursor: "pointer",
                 }}
               >
                 📄 {doc.label}
-              </a>
+              </button>
             ))}
           </div>
         </SectionCard>
@@ -1296,8 +1340,73 @@ export default function LandingPage() {
         </button>
       )}
 
+      {docView && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={docView.label}
+          onClick={() => setDocView(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(15,23,42,0.55)",
+            zIndex: 2000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px",
+          }}
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              width: "min(820px, 100%)",
+              height: "min(86vh, 900px)",
+              backgroundColor: "#fff",
+              borderRadius: "16px",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "10px",
+                padding: "10px 14px",
+                borderBottom: "1px solid #e5e7eb",
+              }}
+            >
+              <strong style={{ color: themeColor }}>📄 {docView.label}</strong>
+              <button
+                type="button"
+                onClick={() => setDocView(null)}
+                style={{
+                  border: `2px solid ${themeColor}`,
+                  backgroundColor: "#fff",
+                  color: themeColor,
+                  borderRadius: "999px",
+                  padding: "6px 16px",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                }}
+              >
+                ✕ {ui.brainDocClose}
+              </button>
+            </div>
+            <iframe
+              title={docView.label}
+              src={docView.href}
+              style={{ flex: 1, width: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+      )}
+
       <style>{`
-        @media (min-width: 720px) {
           #header-demo-cta { display: inline-flex !important; }
         }
         @media (max-width: 600px) {

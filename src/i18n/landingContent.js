@@ -94,6 +94,13 @@ export function getLandingContent(locale) {
           "AIが出題するいろいろな問題に、みんなでチャレンジしましょう。",
         ],
         brainOpen: "茶話会・みんなで脳活を開く ↗",
+        brainAdminTitle: "管理者として利用するには",
+        brainAdminBody:
+          "管理者として茶話会・みんなで脳活を利用するには許可コードが必要です。お問い合わせ先からご連絡をお願いします。参加のみの方は、管理者から招待コードを受け取るだけでご利用いただけます。",
+        brainAdminCta: "許可コードを請求する",
+        brainAdminCategory: "茶話会許可コード請求",
+        brainDocClose: "閉じる",
+        brainDocPrint: "印刷・PDFで保存",
         brainSupportTitle: "茶話会の運営を応援する",
         brainSupportPrice: "¥500",
         brainSupportUnit: "/ 1回",
@@ -138,6 +145,7 @@ export function getLandingContent(locale) {
         categories: [
           { value: "個別見積依頼", label: "個別見積依頼" },
           { value: "資料請求", label: "資料請求" },
+          { value: "茶話会許可コード請求", label: "茶話会許可コード請求" },
           { value: "デモ・トライアル", label: "デモ・トライアル" },
           { value: "導入相談", label: "導入相談" },
           { value: "請求・契約", label: "請求・契約" },
@@ -298,6 +306,13 @@ export function getLandingContent(locale) {
         "Take on the questions the AI sets, together.",
       ],
       brainOpen: "Open tea chat & brain training ↗",
+      brainAdminTitle: "Using it as an administrator",
+      brainAdminBody:
+        "A permission code is required to use tea chat & brain training as an administrator. Please contact us through the inquiry form. Members who only join need just an invite code from their administrator.",
+      brainAdminCta: "Request a permission code",
+      brainAdminCategory: "permission_code",
+      brainDocClose: "Close",
+      brainDocPrint: "Print / save as PDF",
       brainSupportTitle: "Support the tea chat community",
       brainSupportPrice: "¥500",
       brainSupportUnit: "/ one-time",
@@ -342,6 +357,7 @@ export function getLandingContent(locale) {
       categories: [
         { value: "custom_quote", label: "Custom quote request" },
         { value: "materials", label: "Request materials" },
+        { value: "permission_code", label: "Tea chat permission code request" },
         { value: "demo", label: "Demo / trial" },
         { value: "onboarding", label: "Implementation inquiry" },
         { value: "billing", label: "Billing / contract" },
