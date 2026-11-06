@@ -309,6 +309,7 @@ export default function LandingPage() {
       }}
     >
       <header
+        className="landing-header"
         style={{
           backgroundColor: darkColor,
           color: "#fff",
@@ -318,6 +319,7 @@ export default function LandingPage() {
         }}
       >
         <div
+          className="landing-header-inner"
           style={contentWrapStyle({
             padding: "14px 18px",
             display: "flex",
@@ -329,6 +331,7 @@ export default function LandingPage() {
         <button
           type="button"
           onClick={() => scrollToSection("top")}
+          className="landing-header-brand"
           style={{
             display: "flex",
             alignItems: "center",
@@ -346,6 +349,7 @@ export default function LandingPage() {
           <img
             src="/brand/ron-ai-systems-mark-on-dark.svg"
             alt=""
+            className="landing-header-logo"
             style={{
               width: "36px",
               height: "40px",
@@ -355,6 +359,7 @@ export default function LandingPage() {
             }}
           />
           <span
+            className="landing-header-brand-copy"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -364,8 +369,10 @@ export default function LandingPage() {
               lineHeight: 1.25,
             }}
           >
-            <span style={{ fontWeight: 700, fontSize: "16px" }}>{company.product}</span>
-            <span style={{ fontWeight: 500, fontSize: "12px", opacity: 0.92 }}>
+            <span className="landing-header-product" style={{ fontWeight: 700, fontSize: "16px" }}>
+              {company.product}
+            </span>
+            <span className="landing-header-company" style={{ fontWeight: 500, fontSize: "12px", opacity: 0.92 }}>
               {locale === "ja" ? company.name : company.nameEn}
             </span>
           </span>
@@ -391,14 +398,16 @@ export default function LandingPage() {
           {ui.tryDemo}
         </a>
 
-        <LanguageToggle compact />
+        <div className="landing-header-language">
+          <LanguageToggle compact />
+        </div>
 
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? ui.menuClose : ui.menuOpen}
-          className="menu-button"
+          className="menu-button landing-header-menu-button"
           style={{
             background: "none",
             border: "none",
@@ -419,6 +428,7 @@ export default function LandingPage() {
             type="button"
             aria-label={ui.menuClose}
             onClick={() => setIsMenuOpen(false)}
+            className="landing-menu-backdrop"
             style={{
               position: "fixed",
               inset: 0,
@@ -431,6 +441,7 @@ export default function LandingPage() {
           />
           <nav
             className="slide-menu"
+            data-landing-menu
             aria-label={ui.siteNav}
             style={{
               backgroundColor: darkColor,
@@ -1442,9 +1453,44 @@ export default function LandingPage() {
 
       <style>{`
           #header-demo-cta { display: inline-flex !important; }
-        }
         @media (max-width: 600px) {
+          .landing-header-inner {
+            gap: 6px !important;
+            padding: 8px 10px !important;
+          }
+          .landing-header-brand { gap: 6px !important; }
+          .landing-header-logo {
+            width: 28px !important;
+            height: 32px !important;
+          }
+          .landing-header-product {
+            font-size: 13px !important;
+            white-space: nowrap;
+          }
+          .landing-header-company { font-size: 10px !important; }
+          #header-demo-cta {
+            padding: 6px 9px !important;
+            font-size: 11px !important;
+          }
+          .landing-header-language button {
+            padding: 4px 6px !important;
+            font-size: 10px !important;
+          }
+          .landing-header-menu-button {
+            padding: 0 !important;
+            font-size: 22px !important;
+            line-height: 1 !important;
+          }
+          .landing-menu-backdrop,
+          [data-landing-menu] {
+            top: 52px !important;
+          }
+          [data-landing-menu] { max-height: calc(100vh - 52px) !important; }
           main { padding: 24px 14px 40px !important; }
+        }
+        @media (max-width: 360px) {
+          .landing-header-company { display: none; }
+          #header-demo-cta { display: none !important; }
         }
       `}</style>
     </div>
