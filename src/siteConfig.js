@@ -10,13 +10,13 @@ export const BRAIN_CLUB_URL = "https://sawakaichat.vercel.app/";
 export const STRIPE_BRAIN_SUPPORT_URL =
   "https://buy.stripe.com/bJedR95xrgWRcBCehRgUM00";
 
-/** スタンダードプラン（¥350）の Stripe テスト用支払いリンク */
+/** スタンダードプラン（月額 ¥200）の Stripe 本番用支払いリンク */
 export const STRIPE_STANDARD_CHECKOUT_URL =
-  "https://buy.stripe.com/test_00w14nbVPdKF3121v5gUM01";
+  "https://buy.stripe.com/00w14nbVPdKF3121v5gUM01";
 
-/** Sプラスプラン（¥450）の Stripe テスト用支払いリンク */
+/** Sプラスプラン（月額 ¥300）の Stripe 本番用支払いリンク */
 export const STRIPE_SPLUS_CHECKOUT_URL =
-  "https://buy.stripe.com/test_aFadR90d7cGB6de1v5gUM02";
+  "https://buy.stripe.com/aFadR90d7cGB6de1v5gUM02";
 
 /** 料金プランの checkout キー → 支払いリンク */
 export const STRIPE_CHECKOUT_URLS = {

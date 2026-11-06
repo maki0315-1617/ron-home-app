@@ -84,8 +84,8 @@ export function getLandingContent(locale) {
         hubLink: "ロンAIシステムズAI検証HUB",
         reportLink: "セキュリティ診断レポート",
         memoLink: "React学習サイト",
-        pricingTitle: "料金プラン（参考）",
-        pricingNote: "※ Stripe のテスト決済です。本番公開前の確認用リンクです。",
+        pricingTitle: "料金プラン",
+        pricingNote: "※ スタンダード・Sプラスは月額サブスクリプションです。解約をご希望の場合はお問い合わせください。決済済みの料金は原則返金できません。",
         brainTitle: "茶話会・みんなで脳活",
         brainParagraphs: [
           "チャットグループを作成し、仲間たちで脳活を行いながらコミュニケーションを図ることができます。",
@@ -106,7 +106,7 @@ export function getLandingContent(locale) {
         brainSupportUnit: "/ 1回",
         brainSupportDesc: "茶話会の運営を応援いただくための、1回500円の任意のご支援です。",
         brainSupportNote:
-          "ご支援は任意です。支援の有無によって、アプリの機能や利用条件が変わることはありません。ご支援いただかなくても、これまでどおり無料でご利用いただけます。お支払いはStripeの決済ページで行います。",
+          "ご支援は任意の一回払いです。決済完了後の返金はできません。支援の有無によって、アプリの機能や利用条件が変わることはありません。ご支援いただかなくても、これまでどおり無料でご利用いただけます。お支払いはStripeの決済ページで行います。",
         brainSupportCta: "1回500円で運営を応援する ↗",
         brainDocsTitle: "資料（印刷・PDF保存もできます）",
         brainGuide: "ご利用ガイド",
@@ -115,8 +115,8 @@ export function getLandingContent(locale) {
         brainVideo: "紹介動画",
         subscribe: "申し込む",
         plans: [
-          { name: "スタンダード", price: "¥350", unit: "/ 月（税込）", desc: "個人の予定・服薬・健康記録・タスクを、ひとつの画面で", checkout: "standard" },
-          { name: "Sプラス", price: "¥450", unit: "/ 月（税込）", desc: "スタンダードの機能に加え、見守り機能を追加。複数の方をまとめて見守れます", checkout: "s_plus" },
+          { name: "スタンダード", price: "¥200", unit: "/ 月（税込）", desc: "個人の予定・服薬・健康記録・タスクを、ひとつの画面で", checkout: "standard" },
+          { name: "Sプラス", price: "¥300", unit: "/ 月（税込）", desc: "スタンダードの機能に加え、見守り機能を追加。複数の方をまとめて見守れます", checkout: "s_plus" },
           {
             name: "お問い合わせ",
             price: "個別見積",
@@ -298,8 +298,8 @@ export function getLandingContent(locale) {
       hubLink: "Ron AI Systems AI Verification HUB",
       reportLink: "Security assessment report",
       memoLink: "React learning notes",
-      pricingTitle: "Pricing (reference)",
-      pricingNote: "※ Stripe test checkout links for pre-launch verification.",
+      pricingTitle: "Pricing",
+      pricingNote: "※ Standard and S Plus are monthly subscriptions. To cancel, please contact us. Payments already made are generally non-refundable.",
       brainTitle: "Tea chat & brain training",
       brainParagraphs: [
         "Create a chat group and stay in touch while you train your brain with friends.",
@@ -320,7 +320,7 @@ export function getLandingContent(locale) {
       brainSupportUnit: "/ one-time",
       brainSupportDesc: "An optional one-time contribution of ¥500 to support the community.",
       brainSupportNote:
-        "Support is entirely optional. Whether you contribute or not, app features and terms of use stay the same. You can continue using the app for free without contributing. Payments are handled on Stripe's checkout page.",
+        "Support is an optional one-time payment and is non-refundable after payment. Whether you contribute or not, app features and terms of use stay the same. You can continue using the app for free without contributing. Payments are handled on Stripe's checkout page.",
       brainSupportCta: "Support us with ¥500 ↗",
       brainDocsTitle: "Documents (printable, save as PDF)",
       brainGuide: "User guide (Japanese)",
@@ -329,8 +329,8 @@ export function getLandingContent(locale) {
       brainVideo: "Intro video",
       subscribe: "Subscribe",
       plans: [
-        { name: "Standard", price: "¥350", unit: "/ month (tax incl.)", desc: "Personal plans, medication, health records, and tasks on one screen", checkout: "standard" },
-        { name: "S Plus", price: "¥450", unit: "/ month (tax incl.)", desc: "Everything in Standard, plus care monitoring for multiple people", checkout: "s_plus" },
+        { name: "Standard", price: "¥200", unit: "/ month (tax incl.)", desc: "Personal plans, medication, health records, and tasks on one screen", checkout: "standard" },
+        { name: "S Plus", price: "¥300", unit: "/ month (tax incl.)", desc: "Everything in Standard, plus care monitoring for multiple people", checkout: "s_plus" },
         {
           name: "Contact us",
           price: "Custom quote",
