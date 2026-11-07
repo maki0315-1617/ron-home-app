@@ -568,7 +568,7 @@ export default function LandingPage() {
             className="top-mascot"
             style={{
               display: "block",
-              width: "min(220px, 70%)",
+              width: "min(270px, 70%)",
               height: "auto",
               objectFit: "contain",
               margin: "0 auto 16px",
