@@ -44,6 +44,44 @@ img {
   height: auto;
 }
 
+.top-mascot {
+  animation: mascot-grow-in 3.2s cubic-bezier(0.18, 0.75, 0.3, 1) both;
+}
+
+@keyframes mascot-grow-in {
+  0% {
+    transform: translateY(24px) scale(0.08);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(0) scale(1.38);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(0) scale(1.38);
+    opacity: 1;
+  }
+  82% {
+    transform: translateY(-28px) scale(1.38);
+  }
+  90% {
+    transform: translateY(4px) scale(1.38);
+  }
+  95% {
+    transform: translateY(-5px) scale(1.38);
+  }
+  100% {
+    transform: translateY(0) scale(1.38);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-mascot {
+    animation: none;
+  }
+}
+
 body.menu-cat-cursor,
 body.menu-cat-cursor * {
   cursor: url("/black-cat-cursor.png") 32 50, pointer !important;

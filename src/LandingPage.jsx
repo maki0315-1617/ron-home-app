@@ -565,6 +565,7 @@ export default function LandingPage() {
           <img
             src="/brand/schlogo1.jpg"
             alt={ui.mascotAlt}
+            className="top-mascot"
             style={{
               display: "block",
               width: "min(220px, 70%)",
