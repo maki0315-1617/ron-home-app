@@ -837,6 +837,9 @@ export default function LandingPage() {
               {line}
             </p>
           ))}
+          <p style={{ lineHeight: 1.75, color: "#444", margin: "0 0 12px" }}>
+            <strong>{ui.brainAccessibility}</strong>
+          </p>
           <div
             style={{
               margin: "20px 0",

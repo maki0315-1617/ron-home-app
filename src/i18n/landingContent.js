@@ -93,6 +93,8 @@ export function getLandingContent(locale) {
           "インストールは不要で、サイトにアクセスするだけで利用できます。個人情報の収集は全くありません。利用料金は無料です。",
           "AIが出題するいろいろな問題に、みんなでチャレンジしましょう。",
         ],
+        brainAccessibility:
+          "茶話会・みんなで脳活は、視覚障碍者や聴覚障碍者にも利用できるユニバーサルデザインのサービスを目指しています。多様性を重視したアプリです。",
         brainOpen: "茶話会・みんなで脳活を開く ↗",
         brainAdminTitle: "管理者として利用するには",
         brainAdminBody:
@@ -307,6 +309,8 @@ export function getLandingContent(locale) {
         "No install. Open the site and start. It collects no personal information, and it is free.",
         "Take on the questions the AI sets, together.",
       ],
+      brainAccessibility:
+        "Tea chat & brain training aims to be a universally designed service that people with visual or hearing disabilities can use. This app values diversity.",
       brainOpen: "Open tea chat & brain training ↗",
       brainAdminTitle: "Using it as an administrator",
       brainAdminBody:
