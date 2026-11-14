@@ -190,11 +190,24 @@ export default function LandingPage() {
   const scrollToContactWithCategory = useCallback(
     (category) => {
       if (!cancelEmail && category) {
-        setForm((prev) => ({ ...prev, category }));
+        setForm((prev) => {
+          const next = { ...prev, category };
+          // 許可コード請求ボタンから来たときだけ、空の本文を案内文で埋める（他種別は触らない）
+          const isPermissionRequest =
+            category === ui.brainAdminCategory
+            || category === "茶話会許可コード請求"
+            || category === "permission_code";
+          if (isPermissionRequest && !prev.message.trim()) {
+            next.message = locale === "en"
+              ? "I would like to request an administrator permission code for tea chat & brain training."
+              : "茶話会・みんなで脳活の管理者用許可コードの発行を希望します。";
+          }
+          return next;
+        });
       }
       scrollToSection("contact");
     },
-    [cancelEmail, scrollToSection],
+    [cancelEmail, scrollToSection, ui.brainAdminCategory, locale],
   );
 
   useEffect(() => {
