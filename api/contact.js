@@ -1,4 +1,7 @@
+import dns from "node:dns";
 import nodemailer from "nodemailer";
+
+dns.setDefaultResultOrder("ipv4first");
 
 const CONTACT_TO = process.env.CONTACT_TO_EMAIL || "ronron201907@gmail.com";
 const MAX_FIELD_LENGTH = 2000;
@@ -47,6 +50,46 @@ function safeSubjectPart(value, max = 80) {
     .slice(0, max);
 }
 
+/** 環境変数に混ざりやすい空白・引用符・ゼロ幅文字を除く */
+function normalizeSecret(value) {
+  return String(value || "")
+    .replace(/[\u200b\u200c\u200d\ufeff]/g, "")
+    .replace(/^['"]+|['"]+$/g, "")
+    .replace(/\s+/g, "");
+}
+
+function createTransport(user, pass, port) {
+  const secure = port === 465;
+  return nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port,
+    secure,
+    requireTLS: !secure,
+    auth: {
+      user,
+      pass,
+    },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 12000,
+  });
+}
+
+function isConnectionError(err) {
+  return ["ETIMEDOUT", "ECONNECTION", "ESOCKET", "EDNS", "EAI_AGAIN"].includes(err?.code);
+}
+
+function mailErrorMessage(err) {
+  const responseCode = Number(err?.responseCode);
+  if (responseCode === 535 || responseCode === 534 || err?.code === "EAUTH") {
+    return "Gmailがアプリパスワードを拒否しました。Googleアカウントでアプリパスワードを作り直し、Vercelの GMAIL_APP_PASSWORD を更新してから再デプロイしてください。";
+  }
+  if (isConnectionError(err)) {
+    return "Gmailへの接続がタイムアウトしました。時間をおいて再度お試しください。";
+  }
+  return "メールの送信に失敗しました。時間をおいて再度お試しください。";
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -55,7 +98,7 @@ export default async function handler(req, res) {
 
   const gmailUser = trim(process.env.GMAIL_USER || "", 254);
   // アプリパスワードはスペース付きで貼られることがあるため除去する
-  const gmailPass = String(process.env.GMAIL_APP_PASSWORD || "").replace(/\s+/g, "");
+  const gmailPass = normalizeSecret(process.env.GMAIL_APP_PASSWORD);
 
   if (!gmailUser || !gmailPass) {
     console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD");
@@ -88,18 +131,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: "メールアドレスの形式が正しくありません。" });
   }
 
-  // service: "gmail" より明示設定の方がアプリパスワード運用で安定しやすい
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: gmailUser,
-      pass: gmailPass,
-    },
-  });
-
   const text = [
     "ロンスケ＋ジュール お問い合わせフォームより",
     "",
@@ -116,25 +147,35 @@ export default async function handler(req, res) {
 
   const subject = `[ロンスケ＋ジュール] ${safeSubjectPart(category, 40)} - ${safeSubjectPart(name, 40)}`;
 
-  try {
-    await transporter.sendMail({
-      from: gmailUser,
-      to: CONTACT_TO,
-      replyTo: email,
-      subject,
-      text,
-    });
-    return res.status(200).json({ ok: true });
-  } catch (err) {
-    console.error("contact mail error", {
-      code: err?.code,
-      responseCode: err?.responseCode,
-      command: err?.command,
-      message: err?.message,
-    });
-    return res.status(500).json({
-      ok: false,
-      error: "メールの送信に失敗しました。時間をおいて再度お試しください。",
-    });
+  // 465（SSL）が主。接続だけ失敗したときは 587 でもう一度送る
+  const mail = {
+    from: gmailUser,
+    to: CONTACT_TO,
+    replyTo: email,
+    subject,
+    text,
+  };
+
+  let lastError;
+  for (const port of [465, 587]) {
+    try {
+      await createTransport(gmailUser, gmailPass, port).sendMail(mail);
+      return res.status(200).json({ ok: true });
+    } catch (err) {
+      lastError = err;
+      console.error("contact mail error", {
+        port,
+        code: err?.code,
+        responseCode: err?.responseCode,
+        command: err?.command,
+        message: err?.message,
+      });
+      if (!isConnectionError(err)) break;
+    }
   }
+
+  return res.status(500).json({
+    ok: false,
+    error: mailErrorMessage(lastError),
+  });
 }
