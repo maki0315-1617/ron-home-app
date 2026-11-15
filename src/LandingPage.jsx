@@ -952,7 +952,7 @@ export default function LandingPage() {
             {[
               { href: "/docs/sawakai-guide.html", label: ui.brainGuide },
               { href: "/docs/sawakai-pr.html", label: ui.brainPr },
-              { href: "/docs/sawakai-pamphlet.png", label: ui.brainPamphlet, type: "image" },
+              { href: "/docs/sawakai-pamphlet.png?v=2", label: ui.brainPamphlet, type: "image" },
               { href: "/docs/sawakai-cm.mp4", label: ui.brainVideo, type: "video" },
             ].map((doc) => (
               <button
