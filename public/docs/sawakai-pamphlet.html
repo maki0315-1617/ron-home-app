@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>茶話会・みんなで脳活 パンフレット | ロンAIシステムズ</title>
+<style>
+  @page { size: A4 portrait; margin: 8mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", Meiryo, sans-serif;
+    background: #f3f4f6;
+    color: #263b38;
+  }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px auto; max-width: 210mm; padding: 0 12px; }
+  .bar a, .bar button {
+    padding: 10px 16px;
+    border: 1px solid #287c70;
+    border-radius: 999px;
+    background: #fff;
+    color: #287c70;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .bar button { background: #287c70; color: #fff; }
+  .hint { max-width: 210mm; margin: 0 auto 16px; padding: 0 12px; font-size: 14px; line-height: 1.7; }
+  .sheet {
+    width: min(100% - 24px, 210mm);
+    margin: 0 auto 24px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .sheet img { width: 100%; height: auto; display: block; }
+  .embed .bar a { display: none; }
+  @media print {
+    body { background: #fff; }
+    .bar, .hint { display: none !important; }
+    .sheet { width: 194mm; margin: 0 auto; box-shadow: none; }
+    .sheet img { width: 194mm; height: auto; }
+  }
+</style>
+<script>if (window.self !== window.top) document.documentElement.className = "embed";</script>
+</head>
+<body>
+<div class="bar">
+  <a href="/#brain">← サイトに戻る</a>
+  <button type="button" onclick="window.print()">A4で印刷・PDFで保存</button>
+</div>
+<p class="hint">印刷画面で、用紙サイズを A4、向きを縦にしてください。余白は「最小」で、1枚に収まります。</p>
+<div class="sheet">
+  <img src="/docs/sawakai-pamphlet.png?v=3" alt="茶話会・みんなで脳活のA4パンフレット。ご家族、サークル、施設向けの説明とQRコードがあります。">
+</div>
+</body>
+</html>
