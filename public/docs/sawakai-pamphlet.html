@@ -36,33 +36,29 @@
   .embed .bar a { display: none; }
   @media print {
     html, body {
-      width: 210mm;
-      height: 297mm;
       margin: 0 !important;
       padding: 0 !important;
-      background: #fff;
-      overflow: hidden;
+      background: #fff !important;
+      height: auto !important;
+      overflow: visible !important;
     }
     .bar, .hint { display: none !important; }
     .sheet {
-      width: 210mm;
-      height: 297mm;
-      margin: 0;
-      padding: 0;
+      width: 186.79mm;
+      margin: 0 auto;
       box-shadow: none;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
     .sheet img {
       width: 186.79mm;
-      height: 296mm;
+      height: auto;
+      display: block;
     }
   }
 </style>
 <script>if (window.self !== window.top) document.documentElement.className = "embed";</script>
-<script src="/docs/print-doc.js?v=1"></script>
+<script src="/docs/print-doc.js?v=2"></script>
 </head>
 <body>
 <div class="bar">
@@ -70,7 +66,7 @@
   <a href="/docs/sawakai-pamphlet-new.pdf">PDFをダウンロード</a>
   <button type="button" onclick="printDocument()">A4で印刷・PDFで保存</button>
 </div>
-<p class="hint">印刷画面で、用紙サイズを A4、向きを縦、余白を「なし」にしてください。1枚に収まります。</p>
+<p class="hint">iPhoneでは、この緑のボタンを押すと、このパンフレットだけが印刷されます。用紙は A4、向きは縦、余白は「なし」です。</p>
 <div class="sheet">
   <img src="/docs/sawakai-pamphlet.png?v=10" alt="茶話会・みんなで脳活のA4パンフレット。ユニバーサルデザイン対応の説明、QRコード、ロンAIシステムズの連絡先があります。">
 </div>

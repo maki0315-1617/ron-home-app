@@ -958,7 +958,14 @@ export default function LandingPage() {
               <button
                 key={doc.href}
                 type="button"
-                onClick={() => setDocView(doc)}
+                onClick={() => {
+                  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+                  if (ios && doc.type !== "video") {
+                    window.location.assign(doc.href);
+                    return;
+                  }
+                  setDocView(doc);
+                }}
                 style={{
                   display: "inline-block",
                   color: themeColor,
