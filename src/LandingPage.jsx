@@ -950,9 +950,9 @@ export default function LandingPage() {
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
             {[
-              { href: "/docs/sawakai-guide.html", label: ui.brainGuide },
-              { href: "/docs/sawakai-pr.html", label: ui.brainPr },
-              { href: "/docs/sawakai-pamphlet.html", label: ui.brainPamphlet },
+              { href: "/docs/sawakai-guide.html", pdf: "/docs/sawakai-guide.pdf", label: ui.brainGuide },
+              { href: "/docs/sawakai-pr.html", pdf: "/docs/sawakai-pr.pdf", label: ui.brainPr },
+              { href: "/docs/sawakai-pamphlet.html", pdf: "/docs/sawakai-pamphlet-a4.pdf", label: ui.brainPamphlet },
               { href: "/docs/sawakai-cm.mp4?v=2", label: ui.brainVideo, type: "video" },
             ].map((doc) => (
               <button
@@ -960,8 +960,8 @@ export default function LandingPage() {
                 type="button"
                 onClick={() => {
                   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
-                  if (ios && doc.type !== "video") {
-                    window.location.assign(doc.href);
+                  if (ios && doc.pdf) {
+                    window.location.assign(doc.pdf);
                     return;
                   }
                   setDocView(doc);

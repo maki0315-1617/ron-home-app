@@ -13,7 +13,8 @@ th,td{border:1px solid #c8d6d1;padding:8px;text-align:left;vertical-align:top}
 th{background:#e8f2ef;width:11em}
 .bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .bar a,.bar button{padding:10px 16px;border:1px solid #287c70;border-radius:999px;background:#fff;color:#287c70;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer}
-.bar button{background:#287c70;color:#fff}
+.bar button,.bar a.print{background:#287c70;color:#fff}
+.embed .bar a.back{display:none}
 @page{size:A4 portrait;margin:8mm}
 @media print{
   .bar,.hint{display:none !important}
@@ -27,17 +28,16 @@ th{background:#e8f2ef;width:11em}
   th{width:8.2em}
   .contact{break-inside:avoid;page-break-inside:avoid}
 }
-.embed .bar a{display:none}
 </style>
 <script>if(window.self!==window.top)document.documentElement.className="embed";</script>
-<script src="/docs/print-doc.js?v=2"></script>
+<script src="/docs/print-doc.js?v=3"></script>
 </head>
 <body>
 <div class="bar">
-<a href="/#brain">← サイトに戻る</a>
-<button type="button" onclick="printDocument()">印刷・PDFで保存</button>
+<a class="back" href="/#brain">← サイトに戻る</a>
+<a class="print" target="_top" href="/docs/sawakai-pr.pdf" onclick="return printDocument(event)">印刷・PDFで保存</a>
 </div>
-<p class="hint" style="font-size:14px;line-height:1.7">iPhoneでは、この緑のボタンを押すと、この資料だけが印刷されます。用紙は A4、向きは縦です。</p>
+<p class="hint" style="font-size:14px;line-height:1.7">iPhoneでは、緑のボタンを押すとPDFが開きます。開いた画面の下にある、四角から矢印が出ているマークを押し、「プリント」を選んでください。</p>
 <h1>茶話会・みんなで脳活</h1>
 <p>声と大きな文字で、みんなとつながる場所です。ご家族、サークル、施設で、目が見えにくい方も一緒に参加できます。</p>
 <h2>視覚障碍のある方へ</h2>

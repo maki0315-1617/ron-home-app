@@ -24,7 +24,8 @@
     text-decoration: none;
     cursor: pointer;
   }
-  .bar button { background: #287c70; color: #fff; }
+  .bar button, .bar a.print { background: #287c70; color: #fff; }
+  .embed .bar a.back { display: none; }
   .hint { max-width: 210mm; margin: 0 auto 16px; padding: 0 12px; font-size: 14px; line-height: 1.7; }
   .sheet {
     width: min(100% - 24px, 210mm);
@@ -33,7 +34,6 @@
     box-shadow: 0 8px 24px rgba(0,0,0,.12);
   }
   .sheet img { width: 100%; height: auto; display: block; }
-  .embed .bar a { display: none; }
   @media print {
     html, body {
       margin: 0 !important;
@@ -58,15 +58,14 @@
   }
 </style>
 <script>if (window.self !== window.top) document.documentElement.className = "embed";</script>
-<script src="/docs/print-doc.js?v=2"></script>
+<script src="/docs/print-doc.js?v=3"></script>
 </head>
 <body>
 <div class="bar">
-  <a href="/#brain">← サイトに戻る</a>
-  <a href="/docs/sawakai-pamphlet-new.pdf">PDFをダウンロード</a>
-  <button type="button" onclick="printDocument()">A4で印刷・PDFで保存</button>
+  <a class="back" href="/#brain">← サイトに戻る</a>
+  <a class="print" target="_top" href="/docs/sawakai-pamphlet-a4.pdf" onclick="return printDocument(event)">A4で印刷・PDFで保存</a>
 </div>
-<p class="hint">iPhoneでは、この緑のボタンを押すと、このパンフレットだけが印刷されます。用紙は A4、向きは縦、余白は「なし」です。</p>
+<p class="hint">iPhoneでは、緑のボタンを押すとPDFが開きます。開いた画面の下にある、四角から矢印が出ているマークを押し、「プリント」を選んでください。用紙は A4、向きは縦です。</p>
 <div class="sheet">
   <img src="/docs/sawakai-pamphlet.png?v=10" alt="茶話会・みんなで脳活のA4パンフレット。ユニバーサルデザイン対応の説明、QRコード、ロンAIシステムズの連絡先があります。">
 </div>

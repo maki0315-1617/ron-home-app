@@ -3,25 +3,18 @@
     return /iPhone|iPad|iPod/.test(navigator.userAgent || "");
   }
 
-  function standaloneUrl() {
-    var url = new URL(location.href);
-    url.searchParams.delete("print");
-    return url.href;
-  }
-
-  function printDocument() {
+  function printDocument(event) {
+    if (isIos()) return true;
+    if (event && event.preventDefault) event.preventDefault();
     if (window.self !== window.top) {
-      if (isIos()) {
-        window.top.location.href = standaloneUrl();
-        return;
-      }
       var url = new URL(location.href);
       url.searchParams.set("print", "1");
       var opened = window.open(url.href, "_blank");
       if (!opened) window.top.location.href = url.href;
-      return;
+      return false;
     }
     window.print();
+    return false;
   }
 
   window.printDocument = printDocument;
