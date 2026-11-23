@@ -960,8 +960,8 @@ export default function LandingPage() {
                 type="button"
                 onClick={() => {
                   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
-                  if (ios && doc.pdf) {
-                    window.location.assign(doc.pdf);
+                  if (ios && doc.type !== "video") {
+                    window.location.assign(doc.href);
                     return;
                   }
                   setDocView(doc);

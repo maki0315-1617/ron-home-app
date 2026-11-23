@@ -12,7 +12,7 @@
     background: #f3f4f6;
     color: #263b38;
   }
-  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px auto; max-width: 210mm; padding: 0 12px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 auto 16px; max-width: 210mm; padding: 12px; position: sticky; top: 0; z-index: 5; background: #f3f4f6; }
   .bar a, .bar button {
     padding: 10px 16px;
     border: 1px solid #287c70;
@@ -58,14 +58,14 @@
   }
 </style>
 <script>if (window.self !== window.top) document.documentElement.className = "embed";</script>
-<script src="/docs/print-doc.js?v=3"></script>
+<script src="/docs/print-doc.js?v=4"></script>
 </head>
 <body>
 <div class="bar">
-  <a class="back" href="/#brain">← サイトに戻る</a>
-  <a class="print" target="_top" href="/docs/sawakai-pamphlet-a4.pdf" onclick="return printDocument(event)">A4で印刷・PDFで保存</a>
+  <a class="print" href="/docs/sawakai-pamphlet-a4.pdf" onclick="return printDocument(event)">印刷・保存</a>
+  <a class="close" target="_top" href="/#brain">閉じる</a>
 </div>
-<p class="hint">iPhoneでは、緑のボタンを押すとPDFが開きます。開いた画面の下にある、四角から矢印が出ているマークを押し、「プリント」を選んでください。用紙は A4、向きは縦です。</p>
+<p class="hint">iPhoneでは「印刷・保存」を押すとメニューが出ます。「プリント」で印刷、「ファイルに保存」で保存できます。終わったら「閉じる」でサイトに戻ります。</p>
 <div class="sheet">
   <img src="/docs/sawakai-pamphlet.png?v=10" alt="茶話会・みんなで脳活のA4パンフレット。ユニバーサルデザイン対応の説明、QRコード、ロンAIシステムズの連絡先があります。">
 </div>
